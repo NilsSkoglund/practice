@@ -26,9 +26,11 @@ if "deta" not in st.session_state:
 st.session_state["db"] =\
 st.session_state["deta"].Base("NILLE")
 
-st.session_state["db"].insert({
-    "name": "Geordi",
-    "title": "Chief Engineer"
+
+def update_db():
+    st.session_state["db"].insert({
+    "genomfört": st.session_state["test"],
+    "key": "test"
 })
 
 def vallen_skivstång():
@@ -39,6 +41,9 @@ def vallen_skivstång():
     - Frivändningar 5x5 (67.5kg)
     - Bänkpress 5x5 (75kg)
     """)
+    st.checkbox("Genomfört"
+    , key="test"
+    , on_change=update_db)
 
 def stretch():
     st.markdown("""
