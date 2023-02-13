@@ -1,5 +1,30 @@
 import streamlit as st
 from datetime import datetime
+from deta import Deta
+
+# def register_new_session_in_db():
+#     # Create row in db including session key
+#     st.session_state["db"].put(temp_dct\
+#                                 , key=st.session_state["db_session_key"])
+
+# def get_all_items_from_db(db):
+#     # Get items from db (limit is 1000 so while loop is added for robustness)
+#     res = db.fetch()
+#     all_items = res.items
+#     # fetch until last is 'None'
+#     while res.last:
+#         res = db.fetch(last=res.last)
+#         all_items += res.items
+#     return all_items
+
+# Connect to Deta Base with your Project Key
+if "deta" not in st.session_state:
+    st.session_state["deta"] = Deta(st.secrets["deta_key"])
+
+# connect to database
+# database name based on username - new session state variable
+st.session_state["db"] =\
+st.session_state["deta"].Base("NILLE")
 
 def vallen_skivstång():
     st.markdown("""
@@ -29,16 +54,16 @@ def sats_cardio():
     st.markdown(
     """
     **Gym Cardio 40/20 x2 06:45-07:15**
-    - Burpees 
     - KB Swings (32kg)
     - Hoppa på box
     - Slam balls (12kg)
-    - PU Deadlift (10 kg)
-    - KB Snactch (20kg)
+    - PU Deadlift (18 kg x2 Kettle Bell)
+    - KB Snatch (18 kg x2 Kettle Bell)
     - Barbell Thrusters (30kg)
     - Boll över axel (30kg)
     - Deadlift + Clean (30kg)
     - Planka
+    - Burpees 
     """)
 
 def chins():
