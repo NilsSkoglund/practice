@@ -26,6 +26,11 @@ if "deta" not in st.session_state:
 st.session_state["db"] =\
 st.session_state["deta"].Base("NILLE")
 
+st.session_state["db"].insert({
+    "name": "Geordi",
+    "title": "Chief Engineer"
+})
+
 def vallen_skivstång():
     st.markdown("""
     **Vallen Skivstång 60 min + bastu 17:30-19:30**
