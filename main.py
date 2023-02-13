@@ -40,12 +40,7 @@ def vallen_skivstång():
     - Marklyft 5x5 (120kg)
     - Frivändningar 5x5 (67.5kg)
     - Bänkpress 5x5 (75kg)
-    """)
-
-    if "test" not in st.session_state:
-        st.checkbox("Genomfört"
-        , key="test"
-        , on_change=update_db)
+    """)    
 
 def stretch():
     st.markdown("""
@@ -108,6 +103,10 @@ with st.expander("Måndag"):
 
     vallen_skivstång()
     st.write("")
+    if "test" not in st.session_state:
+        st.checkbox("Genomfört"
+        , key="test"
+        , on_change=update_db)
 
 with st.expander("Tisdag"):
     stretch()
