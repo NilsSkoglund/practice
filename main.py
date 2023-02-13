@@ -41,9 +41,11 @@ def vallen_skivstång():
     - Frivändningar 5x5 (67.5kg)
     - Bänkpress 5x5 (75kg)
     """)
-    st.checkbox("Genomfört"
-    , key="test"
-    , on_change=update_db)
+
+    if "test" not in st.session_state:
+        st.checkbox("Genomfört"
+        , key="test"
+        , on_change=update_db)
 
 def stretch():
     st.markdown("""
