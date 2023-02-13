@@ -28,7 +28,7 @@ st.session_state["deta"].Base("NILLE")
 
 
 def update_db():
-    st.session_state["db"].insert({
+    st.session_state["db"].put({
     "genomfört": st.session_state["test"],
     "key": "test"
 })
