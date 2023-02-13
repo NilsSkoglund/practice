@@ -33,6 +33,8 @@ def update_db():
     "key": "test"
 })
 
+st.session_state["test"] = st.session_state["db"].get("test").get("genomfört")
+
 def vallen_skivstång():
     st.markdown("""
     **Vallen Skivstång 60 min + bastu 17:30-19:30**
@@ -103,10 +105,9 @@ with st.expander("Måndag"):
 
     vallen_skivstång()
     st.write("")
-    if "test" not in st.session_state:
-        st.checkbox("Genomfört"
-        , key="test"
-        , on_change=update_db)
+    st.checkbox("Genomfört"
+    , key="test"
+    , on_change=update_db)
 
 with st.expander("Tisdag"):
     stretch()
