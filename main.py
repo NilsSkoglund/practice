@@ -4,8 +4,8 @@ from deta import Deta
 st.session_state["counter"] = 0
 def add_exercise():
     st.session_state["counter"] += 1
-
-    st.text_input(f"Övning {st.session_state['counter']}")
+    text_string = f"Övning {st.session_state['counter']}"
+    st.text_input(text_string, key=text_string)
 
 add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 
