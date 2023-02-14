@@ -28,18 +28,15 @@ if workout_name:
         , key = workout_name)
     except:
         pass
-    add_exercise_btn = st.button("Lägg till övning")
 
-    if add_exercise_btn:
-    
-        st.text_input("Lägg till övning"
-                                    , on_change=add_exercise_func
-                                    , key=f"Övning: {st.session_state['exercise_counter']}")       
-            
+    st.text_input("Lägg till övning"
+                                , on_change=add_exercise_func
+                                , key=f"Övning: {st.session_state['exercise_counter']}")       
         
-        text_from_db = st.session_state["db"].get(workout_name)
+    
+    text_from_db = st.session_state["db"].get(workout_name)
 
-        st.write(text_from_db)
+    st.write(text_from_db)
 
 
 
