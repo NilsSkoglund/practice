@@ -32,7 +32,7 @@ if workout_name:
 
     if add_exercise_btn:
     
-        add_exercise = st.text_input("Lägg till övning"
+        st.text_input("Lägg till övning"
                                     , on_change=add_exercise_func
                                     , key=f"Övning: {st.session_state['exercise_counter']}")       
             
