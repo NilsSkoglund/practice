@@ -17,7 +17,11 @@ st.date_input(
 st.session_state["current_week"] =\
      datetime.now().date().isocalendar().week
 
+st.session_state["week_from_input"] =\
+     st.session_state["first_day_of_week"].isocalendar().week
+
 st.write(st.session_state["current_week"])
+st.write(st.session_state["week_from_input"])
 
 # Ange datum
     # Ange pass 1
