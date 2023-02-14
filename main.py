@@ -10,7 +10,7 @@ if "exercise_counter" not in st.session_state:
 
 def add_exercise_func():
     dct_from_db = st.session_state["db"].get(st.session_state["workout name"])
-    st.write(dct_from_db)
+    st.write(dct_from_db.get("Övningar").update({key_string: st.session_state[key_string]}))
     st.write("HAJ FROM FUNC")
     key_string = f"Övning {st.session_state['exercise_counter']}"
     new_temp_dct = {"Övningar": {key_string: st.session_state[key_string]}}
