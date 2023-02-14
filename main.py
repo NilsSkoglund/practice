@@ -3,7 +3,7 @@ from datetime import datetime
 from deta import Deta
 
 def add_exercise():
-    form.st.text_input("Övning")
+    st.text_input("Övning")
 
 add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 
