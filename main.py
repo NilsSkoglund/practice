@@ -5,18 +5,15 @@ from deta import Deta
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
-add_workout = st.button("Lägg till pass")
-
-if add_workout:
+workout_name = st.text_input("Ange namnet på passet")
+if workout_name:
     st.session_state["db"] = st.session_state["deta"].Base("workouts")
-    workout_name = st.text_input("Ange namnet på passet")
-    if workout_name:
-        st.write("Haj")
-        # connect to database
-        # database name based on username - new session state variable
-        temp_dct = {"Övningar":{}}
-        st.session_state["db"].put(temp_dct
-        , key = workout_name)
+    st.write("Haj")
+    # connect to database
+    # database name based on username - new session state variable
+    temp_dct = {"Övningar":{}}
+    st.session_state["db"].put(temp_dct
+    , key = workout_name)
 
 
 
