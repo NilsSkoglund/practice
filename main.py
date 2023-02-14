@@ -14,6 +14,7 @@ def add_exercise_func():
     st.session_state["db"].put({"Övningar": temp_dct}
                                 , key = workout_name)
     st.session_state["exercise_counter"]+=1
+    st.write(st.session_state["exercise_counter"])
 
 
 workout_name = st.text_input("Ange namnet på passet")
@@ -37,6 +38,7 @@ if workout_name:
     text_from_db = st.session_state["db"].get(workout_name)
 
     st.write(text_from_db)
+    st.write(st.session_state["exercise_counter"])
 
 
 
