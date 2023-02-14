@@ -47,7 +47,7 @@ st.subheader(f"Vecka: {week_from_input}")
 list_week_days()
 
 db = st.session_state["deta"].Base("workouts")
-db_keys = [i["key"] for i in db.fetch()]
+db_keys = [i["key"] for i in db.fetch().items]
 
 if st.session_state[f"Vecka {week_from_input} måndag"]:
     st.write("lägg till här")
