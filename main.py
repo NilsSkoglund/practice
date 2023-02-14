@@ -2,6 +2,18 @@ import streamlit as st
 from datetime import datetime
 from deta import Deta
 
+with st.form("my_form"):
+   st.write("Inside the form")
+   slider_val = st.slider("Form slider")
+   checkbox_val = st.checkbox("Form checkbox")
+
+   # Every form must have a submit button.
+   submitted = st.form_submit_button("Submit")
+   if submitted:
+       st.write("slider", slider_val, "checkbox", checkbox_val)
+
+st.write("Outside the form")
+
 # def register_new_session_in_db():
 #     # Create row in db including session key
 #     st.session_state["db"].put(temp_dct\
@@ -64,13 +76,13 @@ def sats_cardio():
     """
     **Gym Cardio 40/20 x2 06:45-07:15**
     - KB Swings (32kg)
-    - Hoppa på box
-    - Slam balls (12kg)
     - PU Deadlift (18 kg x2 Kettle Bell)
+    - Slam balls (12kg)
+    - Hoppa på box
     - KB Snatch (18 kg x2 Kettle Bell)
-    - Barbell Thrusters (30kg)
     - Boll över axel (30kg)
-    - Deadlift + Clean (30kg)
+    - Barbell Thrusters (30kg)
+    - Cleans (30kg)
     - Planka
     - Burpees 
     """)
