@@ -14,6 +14,18 @@ if workout_name:
     temp_dct = {"Övningar":{}}
     st.session_state["db"].put(temp_dct
     , key = workout_name)
+    
+    add_exercise = st.text_input("Lägg till övning")
+
+    if add_exercise: 
+        temp_dct["Övningar"] = {"Övning 1":add_exercise}
+        st.session_state["db"].put(temp_dct
+                                , key = workout_name)
+    
+    text_from_db = st.session_state["db"].get(workout_name)
+
+    st.write(text_from_db)
+
 
 
 
