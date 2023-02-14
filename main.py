@@ -26,8 +26,7 @@ if workout_name:
     st.session_state["db"].put(temp_dct
     , key = workout_name)
 
-    add_exercise_btn = st.button("Lägg till övning"
-                                , on_click = add_exercise_func)
+    add_exercise_btn = st.button("Lägg till övning")
 
     if add_exercise_btn:
     
