@@ -1,18 +1,23 @@
 import streamlit as st
 from datetime import datetime
 from deta import Deta
+# Connect to Deta Base with your Project Key
+if "deta" not in st.session_state:
+    st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
-if "counter" not in st.session_state:
-    st.session_state["counter"] = 0
-def add_exercise():
-    st.session_state["counter"] += 1
+add_workout = st.button("Lägg till pass")
 
-    for i in range(st.session_state["counter"]):
-        text_string = f"Övning {i}"
-        st.text_input(text_string, key=text_string)
-st.write(st.session_state["counter"])
+if add_workout:
+    db = st.session_state["deta"].Base("workouts")
+    workout_name = st.text_input("Ange namnet på passet")
+    if workout_name:
+        # connect to database
+        # database name based on username - new session state variable
+        temp_dct = {"Övningar":{}}
+        db.put(temp_dct
+        , key = workout_name)
 
-add_text_input = st.button("Lägg till övning", on_click=add_exercise)
+
 
 
 # def register_new_session_in_db():
