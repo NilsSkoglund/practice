@@ -1,9 +1,11 @@
 import streamlit as st
 from datetime import datetime
 from deta import Deta
-
+st.session_state["counter"] = 0
 def add_exercise():
-    st.text_input("Övning")
+    st.session_state["counter"] += 1
+
+    st.text_input(f"Övning {st.session_state['counter']}")
 
 add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 
