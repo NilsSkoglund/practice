@@ -7,7 +7,7 @@ if "counter" not in st.session_state:
 def add_exercise():
     st.session_state["counter"] += 1
 
-    for i in st.session_state["counter"]:
+    for i in range(st.session_state["counter"]):
         text_string = f"Övning {st.session_state['counter']}"
         st.text_input(text_string, key=text_string)
 st.write(st.session_state["counter"])
