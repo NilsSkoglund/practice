@@ -27,7 +27,7 @@ if st.session_state["workout name"]:
     # database name based on username - new session state variable
     temp_dct = {"Övningar":{}}
     try:
-        st.session_state["db"].put(temp_dct
+        st.session_state["db"].insert(temp_dct
         , key = st.session_state["workout name"])
     except:
         pass
