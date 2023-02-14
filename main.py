@@ -11,6 +11,7 @@ if add_workout:
     db = st.session_state["deta"].Base("workouts")
     workout_name = st.text_input("Ange namnet på passet")
     if workout_name:
+        st.write("Haj")
         # connect to database
         # database name based on username - new session state variable
         temp_dct = {"Övningar":{}}
