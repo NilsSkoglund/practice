@@ -2,11 +2,15 @@ import streamlit as st
 from datetime import datetime
 from deta import Deta
 
+def add_exercise():
+    st.text_input("Övning")
 with st.form("my_form"):
    st.write("Inside the form")
    slider_val = st.slider("Form slider")
    checkbox_val = st.checkbox("Form checkbox")
-   text_input = st.text_input("Form text input")
+   text_input = st.text_input("Namn på pass")
+
+   add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
