@@ -3,21 +3,15 @@ from datetime import datetime
 from deta import Deta
 
 def add_exercise():
-    st.text_input("Övning")
-with st.form("my_form"):
-   st.write("Inside the form")
-   slider_val = st.slider("Form slider")
-   checkbox_val = st.checkbox("Form checkbox")
-   text_input = st.text_input("Namn på pass")
+    form.st.text_input("Övning")
 
-   add_text_input = st.button("Lägg till övning", on_click=add_exercise)
+add_text_input = st.button("Lägg till övning", on_click=add_exercise)
+form = st.form("my_form")
+form.slider("Inside the form")
+st.slider("Outside the form")
 
-   # Every form must have a submit button.
-   submitted = st.form_submit_button("Submit")
-   if submitted:
-       st.write("slider", slider_val, "checkbox", checkbox_val)
-
-st.write("Outside the form")
+# Now add a submit button to the form:
+form.form_submit_button("Submit")
 
 # def register_new_session_in_db():
 #     # Create row in db including session key
