@@ -72,9 +72,6 @@ with st.expander("Måndag"):
 
     vallen_skivstång()
     st.write("")
-    st.checkbox("Genomfört"
-    , key="test"
-    , on_change=update_db)
 
 with st.expander("Tisdag"):
     stretch()
