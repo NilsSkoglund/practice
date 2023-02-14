@@ -5,19 +5,16 @@ from deta import Deta
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
-if "exercise_counter" not in st.session_state:
-    st.session_state["exercise_counter"] = 1
 
 def add_exercise_func():
     dct_from_db = st.session_state["db"].get(st.session_state["workout name"])
     
-    key_string = f"Övning {st.session_state['exercise_counter']}"
+    key_string = st.session_state["next_exercise"]
     dct_from_db.get("Övningar").update({key_string: st.session_state[key_string]})
     
     new_temp_dct = {"Övningar": dct_from_db["Övningar"]}
     st.session_state["db"].put(new_temp_dct
                     , key = st.session_state["workout name"])
-    st.session_state["exercise_counter"]+=1
 
 
 st.text_input("Ange namnet på passet"
@@ -34,15 +31,17 @@ if st.session_state["workout name"]:
     except:
         pass
 
+    text_from_db = st.session_state["db"].get(st.session_state["workout name"])
+    st.session_state["no_of_exercises"] = len(text_from_db["Övningar"].keys())
+    st.session_state["next_exercise"] = f"Övning {st.session_state['no_of_exercises']+1}"
+    
     st.text_input("Lägg till övning"
                                 , on_change=add_exercise_func
-                                , key=f"Övning {st.session_state['exercise_counter']}")       
-        
-    
-    text_from_db = st.session_state["db"].get(st.session_state["workout name"])
+                                , key=st.session_state["next_exercise"])       
+   
 
     st.write(text_from_db)
-    st.write(st.session_state["exercise_counter"])
+    st.write(st.session_state['no_of_exercises'])
 
 
 
