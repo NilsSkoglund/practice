@@ -9,8 +9,15 @@ if "deta" not in st.session_state:
 
 # Skapa träningsvecka
 st.date_input(
-    "Veckostart",
-    datetime.date(datetime.now()))
+    "Veckostart"
+    , datetime.date(datetime.now())
+    , key = "first_day_of_week"
+)
+
+st.session_state["current_week"] =\
+     datetime.now().date().isocalendar().week
+
+st.write(st.session_state["current_week"])
 
 # Ange datum
     # Ange pass 1
