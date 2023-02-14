@@ -10,7 +10,7 @@ if "exercise_counter" not in st.session_state:
 
 def add_exercise_func():
     st.write("HAJ FROM FUNC")
-    key_string = f"Övning: {st.session_state['exercise_counter']}"
+    key_string = f"Övning {st.session_state['exercise_counter']}"
     temp_dct = {key_string: st.session_state[key_string]}
     st.write(key_string)
     st.write(temp_dct)
@@ -37,7 +37,7 @@ if st.session_state["workout name"]:
 
     st.text_input("Lägg till övning"
                                 , on_change=add_exercise_func
-                                , key=f"Övning: {st.session_state['exercise_counter']}")       
+                                , key=f"Övning {st.session_state['exercise_counter']}")       
         
     
     text_from_db = st.session_state["db"].get(st.session_state["workout name"])
