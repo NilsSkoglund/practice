@@ -5,7 +5,6 @@ from deta import Deta
 def add_exercise():
     form.st.text_input("Övning")
 
-add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 form = st.form("my_form")
 form.slider("Inside the form")
 st.slider("Outside the form")
@@ -13,6 +12,7 @@ st.slider("Outside the form")
 # Now add a submit button to the form:
 form.form_submit_button("Submit")
 
+add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 # def register_new_session_in_db():
 #     # Create row in db including session key
 #     st.session_state["db"].put(temp_dct\
