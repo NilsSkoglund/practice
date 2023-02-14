@@ -13,7 +13,7 @@ def add_exercise_func():
     key_string = f"Övning {st.session_state['exercise_counter']}"
     new_temp_dct = {key_string: st.session_state[key_string]}
     st.write(key_string)
-    st.write(temp_dct)
+    st.write(new_temp_dct)
 
     st.session_state["db"].put({"Övningar": new_temp_dct}
                                 , key = st.session_state["workout name"])
