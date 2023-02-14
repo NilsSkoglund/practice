@@ -28,6 +28,24 @@ week_from_input = st.session_state["week_from_input"]
 
 st.subheader(f"Vecka: {week_from_input}")
 
+def list_week_days():
+    lista_veckodagar = [
+        "måndag"
+        , "tisdag"
+        , "onsdag"
+        , "torsdag"
+        , "fredag"
+        , "lördag"
+        , "söndag"
+    ]
+    for i in lista_veckodagar:
+        st.checkbox(
+            f"Lägg till pass {i}"
+            , key = f"Vecka {week_from_input} {i}"
+        )
+if st.session_state[f"Vecka {week_from_input} måndag"]:
+    st.write("lägg till här")
+
 # Ange datum
     # Ange pass 1
         # Genomfört
