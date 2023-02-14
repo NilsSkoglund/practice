@@ -34,7 +34,7 @@ if workout_name:
         
         text_from_db = st.session_state["db"].get(workout_name)
 
-    st.write(text_from_db)
+        st.write(text_from_db)
 
 
 
