@@ -53,7 +53,8 @@ if st.session_state[f"Vecka {week_from_input} måndag"]:
     st.write("lägg till här")
     with st.expander("måndag"):
         st.selectbox("Välj pass"
-                    , options = db_keys)
+                    , options = db_keys
+                    , on_change)
         
 
 # Ange datum
