@@ -13,13 +13,14 @@ def add_exercise_func():
     key_string = f"Övning: {st.session_state['exercise_counter']}"
     temp_dct = {key_string: st.session_state[key_string]}
     st.session_state["db"].put({"Övningar": temp_dct}
-                                , key = workout_name)
+                                , key = st.session_state["workout name"])
     st.session_state["exercise_counter"]+=1
     st.write(st.session_state["exercise_counter"])
 
 
-workout_name = st.text_input("Ange namnet på passet")
-if workout_name:
+st.text_input("Ange namnet på passet"
+            , key = "workout name")
+if st.session_state["workout name"]:
     st.session_state["db"] = st.session_state["deta"].Base("workouts")
     st.write("Haj")
     # connect to database
@@ -27,7 +28,7 @@ if workout_name:
     temp_dct = {"Övningar":{}}
     try:
         st.session_state["db"].put(temp_dct
-        , key = workout_name)
+        , key = st.session_state["workout name"])
     except:
         pass
 
@@ -36,7 +37,7 @@ if workout_name:
                                 , key=f"Övning: {st.session_state['exercise_counter']}")       
         
     
-    text_from_db = st.session_state["db"].get(workout_name)
+    text_from_db = st.session_state["db"].get(st.session_state["workout name"])
 
     st.write(text_from_db)
     st.write(st.session_state["exercise_counter"])
