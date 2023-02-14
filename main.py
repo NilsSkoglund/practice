@@ -26,7 +26,7 @@ if st.session_state["workout name"]:
     st.write("Haj")
     # connect to database
     # database name based on username - new session state variable
-    temp_dct = {"Övningar":{"a":"b"}}
+    temp_dct = {"Övningar":{}}
     try:
         st.session_state["db"].insert(temp_dct
         , key = st.session_state["workout name"])
