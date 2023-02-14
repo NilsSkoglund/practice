@@ -6,9 +6,11 @@ if "counter" not in st.session_state:
     st.session_state["counter"] = 0
 def add_exercise():
     st.session_state["counter"] += 1
-    text_string = f"Övning {st.session_state['counter']}"
-    st.text_input(text_string, key=text_string)
-    st.write(text_string)
+
+    for i in st.session_state["counter"]:
+        text_string = f"Övning {st.session_state['counter']}"
+        st.text_input(text_string, key=text_string)
+st.write(st.session_state["counter"])
 
 add_text_input = st.button("Lägg till övning", on_click=add_exercise)
 
