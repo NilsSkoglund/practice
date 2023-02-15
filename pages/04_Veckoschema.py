@@ -6,7 +6,7 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
 db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
-db_items = dict(sorted(db_items.items()))
+db_items = sorted(db_items, key=lambda x: x["key"])
 
 for item in db_items:
     st.header(f"Vecka {item['key']}")
