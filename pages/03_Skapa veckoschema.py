@@ -59,6 +59,8 @@ if "first_day_of_week" in st.session_state:
     week_from_input = st.session_state["week_from_input"]
     db_name = "Veckoscheman"
     db = st.session_state["deta"].Base(db_name)
+
+    st.write(db)
     dct_temp = {"Måndag": ""
             , "Tisdag": ""
             , "Onsdag": ""
