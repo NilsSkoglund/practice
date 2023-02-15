@@ -19,31 +19,21 @@ def exercise_widgets_update_db(widget_str, week, day, workout):
         db_item[day][workout][widget_str]["timme"] = time_object.hour
         db_item[day][workout][widget_str]["minut"] = time_object.minute
 
-
-
-    
-
-
-
 for item in db_items:
     st.header(f"Vecka {item['key']}")
     for day in st.session_state["lista_veckodagar"]:
         if len(item[day]) > 0:
             with st.expander(day):
                 for key in item[day].keys():
-                    st.write(item[day][key])
                     
                     st.subheader(key)
 
                     workout = st.session_state["deta"]\
                         .Base("workouts").get(key)["Övningar"]
 
-
-
                     for övning in workout:
                         övning_str = f"- {workout[övning]}"
                         st.markdown(övning_str)
-
                     
                     st.write("")
 
