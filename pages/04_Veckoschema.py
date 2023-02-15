@@ -54,6 +54,10 @@ for item in db_items:
                     sluttid = current_item["Sluttid"]
                     kommentar = current_item["Kommentar"]
 
+                    st.write(starttid)
+                    st.write(starttid["timme"])
+
+
 
                     genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
                     st.checkbox("Genomfört pass"
