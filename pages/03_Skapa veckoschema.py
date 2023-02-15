@@ -75,6 +75,7 @@ for day in st.session_state["lista_veckodagar"]:
         with st.expander(day):
             st.selectbox("Välj pass"
                         , options = st.session_state["workouts"]
+                        , key = f"selectbox_{day}"
             )
 
 
