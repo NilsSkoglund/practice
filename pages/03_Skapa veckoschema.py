@@ -58,7 +58,7 @@ if "first_day_of_week" in st.session_state:
         st.session_state["first_day_of_week"].isocalendar().week
     week_from_input = st.session_state["week_from_input"]
     db_name = "Veckoscheman"
-    db = st.session_state["deta"].Base(db_name)
+
 
     st.write(db)
     dct_temp = {"Måndag": ""
@@ -69,10 +69,8 @@ if "first_day_of_week" in st.session_state:
             , "Lördag": ""
             , "Söndag": ""}
 
-    try:
-        db.insert(dct_temp, key = "HAJ")
-    except:
-        db.insert(dct_temp, key = "HAJ")
+    st.session_state["deta"].Base(db_name)\
+            .put(dct_temp, key = "HAJ")
     
 
 
