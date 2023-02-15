@@ -26,6 +26,7 @@ for item in db_items:
             with st.expander(day):
                 for key in item[day].keys():
                     
+                    st.markdown("---")
                     st.subheader(key)
 
                     workout = st.session_state["deta"]\
