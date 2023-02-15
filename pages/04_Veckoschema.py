@@ -48,16 +48,10 @@ for item in db_items:
                     st.write("")
 
                     current_item = item[day][key]
-                    st.write(current_item)
                     genomfört = current_item["Genomfört"]
                     starttid = current_item["Starttid"]
                     sluttid = current_item["Sluttid"]
                     kommentar = current_item["Kommentar"]
-
-                    st.write(starttid)
-                    st.write(starttid["timme"])
-
-
 
                     genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
                     st.checkbox("Genomfört pass"
@@ -65,7 +59,6 @@ for item in db_items:
                                 , key = genomfört_string
                                 , on_change = exercise_widgets_update_db
                                 , args=("Genomfört", item['key'], day, key))
-
                     
                     kommentar_string = f"Kommentar{item['key']}{day}{key}"
                     st.text_area("Kommentar"
@@ -80,6 +73,13 @@ for item in db_items:
                                 , key = starttid_string
                                 , on_change = exercise_widgets_update_db
                                 , args = ("Starttid", item['key'], day, key))
+                    
+                    sluttid_string = f"Sluttid{item['key']}{day}{key}"
+                    st.time_input("Sluttid"
+                                , value = time(sluttid["timme"], sluttid["minut"])
+                                , key = sluttid_string
+                                , on_change = exercise_widgets_update_db
+                                , args = ("Sluttid", item['key'], day, key))
 
                     
 
