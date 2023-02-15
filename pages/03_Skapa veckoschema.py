@@ -66,7 +66,7 @@ if "first_day_of_week" in st.session_state:
 
     try:
         st.session_state["deta"].Base(db_name)\
-            .put(dct_temp, key = f"{week_from_input}")
+            .insert(dct_temp, key = f"{week_from_input}")
     except:
         pass
     
