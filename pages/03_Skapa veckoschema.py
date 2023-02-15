@@ -97,6 +97,8 @@ def add_workout_to_weekly_schedule(day):
     st.write(pass_namn)
     db_res[day].update({pass_namn: temp_dct})
 
+    st.write(db_res)
+
     db.put(db_res)
 
 
