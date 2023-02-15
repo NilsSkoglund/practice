@@ -96,23 +96,23 @@ def add_workout_to_weekly_schedule(day):
     db.put(db_res)
 
 
-
-
-
-
-
-
-
 for day in st.session_state["lista_veckodagar"]:
 
     if st.session_state[day]:
         with st.expander(day):
             st.selectbox(""
-                        , options = ["Välj pass"] + st.session_state["workouts"]
-                        , key = f"selectbox_{day}"
-                        , on_change = add_workout_to_weekly_schedule
-                        , args = (day,)
+                , options = ["Välj pass"] + st.session_state["workouts"]
+                , key = f"selectbox_{day}"
+                , on_change = add_workout_to_weekly_schedule
+                , args = (day,)
             )
 
 
+db = st.session_state["deta"].Base("Veckoschema")
+week = st.session_state["week_from_input"]
+week_dct = db.get(week)
 
+for day in week_dct:
+    st.write(day)
+    for workout in week_dct[day].keys():
+        st.write(workout)
