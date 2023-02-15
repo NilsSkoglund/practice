@@ -72,7 +72,7 @@ if "first_day_of_week" in st.session_state:
     try:
         db.insert(dct_temp, key = week_from_input)
     except:
-        pass
+        db.insert(dct_temp, key = week_from_input)
     
 
 
