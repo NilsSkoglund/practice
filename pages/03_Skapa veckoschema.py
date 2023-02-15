@@ -51,7 +51,7 @@ st.date_input(
     , key = "first_day_of_week"
 )
 
-if "first_day_of_week" in st.session_sate:
+if "first_day_of_week" in st.session_state:
 
 
     st.session_state["week_from_input"] =\
