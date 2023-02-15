@@ -110,7 +110,7 @@ for day in st.session_state["lista_veckodagar"]:
 
 week_dct = st.session_state["deta"].Base("Veckoschema")\
     .get(str(st.session_state["week_from_input"]))
-
+st.write(st.session_state["week_from_input"])
 st.write(week_dct)
 
 for day in week_dct:
