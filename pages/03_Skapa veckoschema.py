@@ -113,7 +113,12 @@ week_dct = st.session_state["deta"].Base("Veckoscheman")\
 st.write(st.session_state["week_from_input"])
 st.write(week_dct)
 
+del week_dct["key"]
+
 for day in week_dct:
     st.write(day)
-    for workout in week_dct[day].keys():
-        st.write(workout)
+    if len(week_dct[day].keys()) == 0:
+        st.write("Inget pass inlagt")
+    else:
+        for workout in week_dct[day].keys():
+            st.write(workout)
