@@ -70,9 +70,9 @@ if "first_day_of_week" in st.session_state:
             , "Söndag": ""}
 
     try:
-        db.insert(dct_temp, key = week_from_input)
+        db.insert(dct_temp, key = "HAJ")
     except:
-        db.insert(dct_temp, key = week_from_input)
+        db.insert(dct_temp, key = "HAJ")
     
 
 
