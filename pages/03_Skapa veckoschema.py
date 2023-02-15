@@ -10,27 +10,19 @@ if "deta" not in st.session_state:
 def list_week_days():    
     col1, col2 = st.columns(2)
 
-    with col1:
-        st.header("A cat")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
-
-    with col2:
-        st.header("A dog")
-        st.image("https://static.streamlit.io/examples/dog.jpg")
-
     stop_index = 4
-
-    for day in st.session_state["lista_veckodagar"][:stop_index]:
-        st.checkbox(
-            f"Lägg till pass {day}"
-            , key = day
-        )
-
-    for day in st.session_state["lista_veckodagar"][stop_index:]:
-        st.checkbox(
-            f"Lägg till pass {day}"
-            , key = day
-        )
+    with col1:
+        for day in st.session_state["lista_veckodagar"][:stop_index]:
+            st.checkbox(
+                f"Lägg till pass {day}"
+                , key = day
+            )
+    with col2:
+        for day in st.session_state["lista_veckodagar"][stop_index:]:
+            st.checkbox(
+                f"Lägg till pass {day}"
+                , key = day
+            )
     
 
 ################################# Program #####################################
