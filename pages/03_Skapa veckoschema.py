@@ -99,7 +99,7 @@ def add_workout_to_weekly_schedule(day):
 
     st.write(db_res)
 
-    db.put(db_res)
+    st.session_state["deta"].Base(db_name).put(db_res)
 
 
 
