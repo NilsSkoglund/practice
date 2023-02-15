@@ -6,6 +6,7 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
 db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
+db_items = dict(sorted(db_items()))
 
 for item in db_items:
     st.header(f"Vecka {item['key']}")
@@ -18,7 +19,6 @@ for item in db_items:
                     workout = st.session_state["deta"]\
                         .Base("workouts").get(key)["Övningar"]
 
-                    #st.write(workout)
 
                     for övning in workout:
                         övning_str = f"- {workout[övning]}"
