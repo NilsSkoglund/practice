@@ -86,8 +86,8 @@ def add_workout_to_weekly_schedule(day):
 
     pass_namn =  st.session_state[f"selectbox_{day}"]
 
-    temp_dct = {"Starttid": ""
-            , "Sluttid": ""
+    temp_dct = {"Starttid": datetime.time(12)
+            , "Sluttid": datetime.time(12)
             , "Genomfört": False
             , "Kommentar": ""}
 
