@@ -5,10 +5,7 @@ from deta import Deta
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
-db = st.session_state["deta"].Base("Veckoscheman")
-
-
-db_items = db.fetch().items
+db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
 
 for item in db_items:
     st.header(f"Vecka {item['key']}")
@@ -17,5 +14,11 @@ for item in db_items:
             with st.expander(day):
                 for key in item[day].keys():
                     st.write(key)
+
+                    workout = st.session_state["deta"]\
+                        .Base("workouts").get(key)["Övningar"]
+
+                    st.write(workout)
+
     
 
