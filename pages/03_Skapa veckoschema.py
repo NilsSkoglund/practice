@@ -90,7 +90,7 @@ for day in st.session_state["lista_veckodagar"]:
         st.write("lägg till här")
         with st.expander(day):
             st.selectbox("Välj pass"
-                        , options = st.session_state["workouts"]
+                        , options = ["Välj pass"] + st.session_state["workouts"]
                         , key = f"selectbox_{day}"
                         , on_change = add_workout_to_weekly_schedule
                         , args = (day,)
