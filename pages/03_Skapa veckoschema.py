@@ -116,14 +116,3 @@ for day in st.session_state["lista_veckodagar"]:
 
 
 
-# Ange datum
-    # Ange pass 1
-        # Genomfört
-        # Kommentar
-    # Ange pass 2
-        # Genomfört
-        # Kommentar
-# Ange datum
-    # Ange pass 1
-        # Gneomfört 
-        # Kommentar
