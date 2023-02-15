@@ -15,6 +15,7 @@ for item in db_items:
     for day in st.session_state["lista_veckodagar"]:
         if len(item[day]) > 0:
             with st.expander(day):
-                st.write(item[day].keys())
+                for key in item[day].keys():
+                    st.write(key)
     
 
