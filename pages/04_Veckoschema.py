@@ -24,7 +24,7 @@ for item in db_items:
                 for key in item[day].keys():
                     st.write(item[day][key])
                     
-                    st.write(key)
+                    st.subheader(key)
 
                     workout = st.session_state["deta"]\
                         .Base("workouts").get(key)["Övningar"]
@@ -55,7 +55,7 @@ for item in db_items:
 
                     
                     kommentar_string = f"Kommentar{item['key']}{day}{key}"
-                    st.text_input("Kommentar"
+                    st.text_area("Kommentar"
                                 , value = kommentar
                                 , key = kommentar_string
                                 , on_change = update_db
