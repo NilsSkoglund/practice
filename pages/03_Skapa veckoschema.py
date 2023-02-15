@@ -68,7 +68,7 @@ list_week_days()
 db = st.session_state["deta"].Base("workouts")
 st.session_state["workouts"] = [i["key"] for i in db.fetch().items]
 
-for day in st.session_state["lista veckodagar"]:
+for day in st.session_state["lista_veckodagar"]:
 
     if st.session_state[day]:
         st.write("lägg till här")
