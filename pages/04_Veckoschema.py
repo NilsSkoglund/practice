@@ -22,6 +22,8 @@ for item in db_items:
         if len(item[day]) > 0:
             with st.expander(day):
                 for key in item[day].keys():
+                    st.write(item[day][key])
+                    
                     st.write(key)
 
                     workout = st.session_state["deta"]\
