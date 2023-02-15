@@ -113,9 +113,8 @@ week_dct = st.session_state["deta"].Base("Veckoscheman")\
 st.write(st.session_state["week_from_input"])
 st.write(week_dct)
 
-del week_dct["key"]
 
-for day in week_dct:
+for day in st.session_state["lista_veckodagar"]:
     st.write(day)
     if len(week_dct[day].keys()) == 0:
         st.write("Inget pass inlagt")
