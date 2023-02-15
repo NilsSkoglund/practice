@@ -52,8 +52,6 @@ st.date_input(
 )
 
 if "first_day_of_week" in st.session_state:
-    st.write("Hello")
-
     st.session_state["week_from_input"] =\
         st.session_state["first_day_of_week"].isocalendar().week
     week_from_input = st.session_state["week_from_input"]
