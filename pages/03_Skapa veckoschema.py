@@ -114,12 +114,10 @@ st.write(st.session_state["week_from_input"])
 st.write(week_dct)
 
 
-col1, col2 = st.columns(2)
-
-stop_index = 4
+col1, col2, col3 = st.columns(3)
 
 with col1:
-    for day in st.session_state["lista_veckodagar"][:stop_index]:
+    for day in st.session_state["lista_veckodagar"][:2]:
         st.markdown(f"**{day}**")
         if len(week_dct[day].keys()) == 0:
             st.markdown("- Inget pass inlagt")
@@ -127,10 +125,18 @@ with col1:
             for workout in week_dct[day].keys():
                 st.markdown(f"- {workout}")
 with col2:
-    for day in st.session_state["lista_veckodagar"][stop_index:]:
-        st.write(day)
+    for day in st.session_state["lista_veckodagar"][2:4]:
+        st.markdown(f"**{day}**")
         if len(week_dct[day].keys()) == 0:
-            st.write("Inget pass inlagt")
+            st.markdown("- Inget pass inlagt")
         else:
             for workout in week_dct[day].keys():
-                st.write(workout)
+                st.markdown(f"- {workout}")
+with col3:
+    for day in st.session_state["lista_veckodagar"][4:]:
+        st.markdown(f"**{day}**")
+        if len(week_dct[day].keys()) == 0:
+            st.markdown("- Inget pass inlagt")
+        else:
+            for workout in week_dct[day].keys():
+                st.markdown(f"- {workout}")
