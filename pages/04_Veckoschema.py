@@ -26,6 +26,7 @@ for item in db_items:
 
                     workout = st.session_state["deta"]\
                         .Base("workouts").get(key)["Övningar"]
+                    st.write(workout)
 
 
                     for övning in workout:
