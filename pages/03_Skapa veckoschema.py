@@ -51,12 +51,12 @@ st.date_input(
     , key = "first_day_of_week"
 )
 
+if "first_day_of_week" in st.session_sate:
 
 
-st.session_state["week_from_input"] =\
-     st.session_state["first_day_of_week"].isocalendar().week
-week_from_input = st.session_state["week_from_input"]
-if week_from_input: 
+    st.session_state["week_from_input"] =\
+        st.session_state["first_day_of_week"].isocalendar().week
+    week_from_input = st.session_state["week_from_input"]
     db_name = "Veckoscheman"
     db = st.session_state["deta"].Base(db_name)
     dct_temp = {"Måndag": ""
