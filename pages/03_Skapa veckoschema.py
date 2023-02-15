@@ -79,6 +79,10 @@ list_week_days()
 db = st.session_state["deta"].Base("workouts")
 st.session_state["workouts"] = [i["key"] for i in db.fetch().items]
 
+def add_workout_to_weekly_schedule(day):
+    week = st.session_state["week_from_input"]
+    st.write(f"{week}{day}")
+
 for day in st.session_state["lista_veckodagar"]:
 
     if st.session_state[day]:
@@ -87,16 +91,11 @@ for day in st.session_state["lista_veckodagar"]:
             st.selectbox("Välj pass"
                         , options = st.session_state["workouts"]
                         , key = f"selectbox_{day}"
+                        , on_change = add_workout_to_weekly_schedule
+                        , args = (day,)
             )
 
 
-# if st.session_state[f"Vecka {week_from_input} måndag"]:
-#     st.write("lägg till här")
-#     with st.expander("måndag"):
-#         st.selectbox("Välj pass"
-#                     , options = st.session_state["workouts"]
-#                     , on_change = add_workout)
-        
 
 # Ange datum
     # Ange pass 1
