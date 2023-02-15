@@ -29,8 +29,7 @@ for item in db_items:
                     st.markdown("---")
                     st.subheader(key)
 
-                    workout = st.session_state["deta"]\
-                        .Base("workouts").get(key)["Övningar"]
+                    workout = st.session_state["deta"].Base("workouts").get(key)["Övningar"]
 
                     for övning in workout:
                         övning_str = f"- {workout[övning]}"
