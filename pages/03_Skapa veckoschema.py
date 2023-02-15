@@ -91,7 +91,7 @@ def add_workout_to_weekly_schedule(day):
             , "Kommentar": ""}
 
     #st.write(db_res)
-    db.res[day].update({pass_namn: temp_dct})
+    db_res[day].update({pass_namn: temp_dct})
 
     db.put(db_res)
 
