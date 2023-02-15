@@ -59,8 +59,7 @@ week_from_input = st.session_state["week_from_input"]
 if week_from_input: 
     db_name = "Veckoscheman"
     db = st.session_state["deta"].Base(db_name)
-    dct_temp = {"Vecka": 0
-            , "Måndag": ""
+    dct_temp = {"Måndag": ""
             , "Tisdag": ""
             , "Onsdag": ""
             , "Torsdag": ""
@@ -68,7 +67,10 @@ if week_from_input:
             , "Lördag": ""
             , "Söndag": ""}
 
-    dct_temp["Vecka"] = week_from_input
+    try:
+        db.insert(dct_temp, key = week_from_input)
+    except:
+        pass
     
 
 
