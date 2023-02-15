@@ -26,17 +26,19 @@ for item in db_items:
 
                     workout = st.session_state["deta"]\
                         .Base("workouts").get(key)["Övningar"]
-                    st.write(workout)
+
 
 
                     for övning in workout:
                         övning_str = f"- {workout[övning]}"
                         st.markdown(övning_str)
 
+                    
+
                     checkbox_string = f"checkbox_{item['key']}{day}{key}"
                     
                     st.checkbox("Genomfört pass"
-                                , value = workout["Genomfört"]
+                                , value = key["Genomfört"]
                                 , key = checkbox_string
                                 , on_change = update_db
                                 , args=(item['key'], day, key))
