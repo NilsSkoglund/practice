@@ -80,16 +80,31 @@ db = st.session_state["deta"].Base("workouts")
 st.session_state["workouts"] = [i["key"] for i in db.fetch().items]
 
 def add_workout_to_weekly_schedule(day):
+    db_name = "Veckoscheman"
+    db = st.session_state["deta"].Base(db_name)
+    
     week = st.session_state["week_from_input"]
-    st.write(f"{week}{day}")
-    st.write(st.session_state[f"selectbox_{day}"])
+    db_res = db.get(week)    
+    
+    antal_pass = len(db_res[day.title()])
+    pass_no = antal_pass + 1
+
+    pass_namn =  st.session_state[f"selectbox_{day}"]
+
+    st.write(db_res)
+
+
+
+
+
+
+
 
 for day in st.session_state["lista_veckodagar"]:
 
     if st.session_state[day]:
-        st.write("lägg till här")
         with st.expander(day):
-            st.selectbox("Välj pass"
+            st.selectbox(""
                         , options = ["Välj pass"] + st.session_state["workouts"]
                         , key = f"selectbox_{day}"
                         , on_change = add_workout_to_weekly_schedule
