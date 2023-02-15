@@ -101,47 +101,18 @@ for day in st.session_state["lista_veckodagar"]:
     if st.session_state[day]:
         with st.expander(day):
             st.selectbox(""
-                , options = ["Välj pass"] + st.session_state["workouts"]
+                , options = st.session_state["workouts"]
                 , key = f"selectbox_{day}"
                 , on_change = add_workout_to_weekly_schedule
                 , args = (day,)
+                , label_visibility = "collapsed"
             )
 
             week_dct = st.session_state["deta"].Base("Veckoscheman")\
                 .get(str(st.session_state["week_from_input"]))
-            st.markdown(f"**{day}**")
+            #st.markdown(f"**{day}**")
             if len(week_dct[day].keys()) == 0:
                 st.markdown("- Inget pass inlagt")
             else:
                 for workout in week_dct[day].keys():
                     st.markdown(f"- {workout}")
-
-week_dct = st.session_state["deta"].Base("Veckoscheman")\
-    .get(str(st.session_state["week_from_input"]))
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    for day in st.session_state["lista_veckodagar"][:2]:
-        st.markdown(f"**{day}**")
-        if len(week_dct[day].keys()) == 0:
-            st.markdown("- Inget pass inlagt")
-        else:
-            for workout in week_dct[day].keys():
-                st.markdown(f"- {workout}")
-with col2:
-    for day in st.session_state["lista_veckodagar"][2:4]:
-        st.markdown(f"**{day}**")
-        if len(week_dct[day].keys()) == 0:
-            st.markdown("- Inget pass inlagt")
-        else:
-            for workout in week_dct[day].keys():
-                st.markdown(f"- {workout}")
-with col3:
-    for day in st.session_state["lista_veckodagar"][4:]:
-        st.markdown(f"**{day}**")
-        if len(week_dct[day].keys()) == 0:
-            st.markdown("- Inget pass inlagt")
-        else:
-            for workout in week_dct[day].keys():
-                st.markdown(f"- {workout}")
