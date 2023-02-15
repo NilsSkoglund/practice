@@ -40,7 +40,7 @@ for item in db_items:
                     checkbox_string = f"checkbox_{item['key']}{day}{key}"
                     
                     st.checkbox("Genomfört pass"
-                                , value = key["Genomfört"]
+                                , value = item[day][key]["Genomfört"]
                                 , key = checkbox_string
                                 , on_change = update_db
                                 , args=(item['key'], day, key))
