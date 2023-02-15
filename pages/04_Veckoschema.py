@@ -20,5 +20,11 @@ for item in db_items:
 
                     st.write(workout)
 
+                    for övning in workout:
+                        övning_str = f"- {workout[övning]}"
+                        st.markdown(övning_str)
+
+                        
+
     
 
