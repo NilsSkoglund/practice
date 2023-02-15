@@ -106,7 +106,9 @@ for day in st.session_state["lista_veckodagar"]:
                 , on_change = add_workout_to_weekly_schedule
                 , args = (day,)
             )
-            
+
+            week_dct = st.session_state["deta"].Base("Veckoscheman")\
+                .get(str(st.session_state["week_from_input"]))
             st.markdown(f"**{day}**")
             if len(week_dct[day].keys()) == 0:
                 st.markdown("- Inget pass inlagt")
