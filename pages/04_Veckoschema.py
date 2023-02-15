@@ -8,11 +8,11 @@ if "deta" not in st.session_state:
 db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
 db_items = sorted(db_items, key=lambda x: int(x["key"]))
 
-def update_db(week, day, workout):
+def update_db(widget_str, week, day, workout):
     db = st.session_state["deta"].Base("Veckoscheman")
     db_item = db.get(week)
-    db_item[day][workout]["Genomfört"] =\
-         st.session_state[f"checkbox_{week}{day}{workout}"]
+    db_item[day][workout][widget_str] =\
+         st.session_state[f"{widget_str}{week}{day}{workout}"]
 
 
 
@@ -36,14 +36,30 @@ for item in db_items:
                         st.markdown(övning_str)
 
                     
+                    st.write("")
 
-                    checkbox_string = f"checkbox_{item['key']}{day}{key}"
+                    current_item = item[day][key]
+                    genomfört = current_item["Genomfört"]
+                    starttid = current_item["Starttid"]
+                    sluttid = current_item["Sluttid"]
+                    kommentar = current_item["Kommentar"]
+
+
+                    genomfört_string = f"Genomfört{item['key']}{day}{key}"
                     
                     st.checkbox("Genomfört pass"
-                                , value = item[day][key]["Genomfört"]
-                                , key = checkbox_string
+                                , value = genomfört
+                                , key = genomfört_string
                                 , on_change = update_db
-                                , args=(item['key'], day, key))
+                                , args=("Genomfört", item['key'], day, key))
+
+                    
+                    kommentar_string = f"Kommentar{item['key']}{day}{key}"
+                    st.text_input("Kommentar"
+                                , value = kommentar
+                                , key = kommentar_string
+                                , on_change = update_db
+                                , args = ("Kommentar", item['key'], day, key))
 
                         
 
