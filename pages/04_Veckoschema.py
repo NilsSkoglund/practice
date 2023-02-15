@@ -11,8 +11,17 @@ db_items = sorted(db_items, key=lambda x: int(x["key"]))
 def exercise_widgets_update_db(widget_str, week, day, workout):
     db = st.session_state["deta"].Base("Veckoscheman")
     db_item = db.get(week)
-    db_item[day][workout][widget_str] =\
-         st.session_state[f"{widget_str}{week}{day}{workout}"]
+    if widget_str in ["Genomfört", "Kommentar"]:
+        db_item[day][workout][widget_str] =\
+            st.session_state[f"{widget_str}{week}{day}{workout}"]
+    else:
+        time_object = st.session_state[f"{widget_str}{week}{day}{workout}"]
+        db_item[day][workout][widget_str]["timme"] = time_object.hour
+        db_item[day][workout][widget_str]["minut"] = time_object.minute
+
+
+
+    
 
 
 
@@ -62,7 +71,8 @@ for item in db_items:
                     
                     starttid_string = f"Starttid{item['key']}{day}{key}"
                     st.time_input("Starttid"
-                                , value = starttid
+                                , value = datetime.time(starttid.hour
+                                                        , starttid.minute)
                                 , key = starttid_string
                                 , on_change = exercise_widgets_update_db
                                 , args = ("Starttid", item['key'], day, key))
