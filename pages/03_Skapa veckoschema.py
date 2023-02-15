@@ -59,13 +59,10 @@ if "first_day_of_week" in st.session_state:
     week_from_input = st.session_state["week_from_input"]
     db_name = "Veckoscheman"
 
-    dct_temp = {"Måndag": ""
-            , "Tisdag": ""
-            , "Onsdag": ""
-            , "Torsdag": ""
-            , "Fredag": ""
-            , "Lördag": ""
-            , "Söndag": ""}
+    dct_temp = {}
+
+    for day in st.session_state["lista_veckodagar"]:
+        dct_temp[day] = {}
 
     st.session_state["deta"].Base(db_name)\
             .put(dct_temp, key = f"{week_from_input}")
@@ -85,13 +82,19 @@ def add_workout_to_weekly_schedule(day):
     
     week = st.session_state["week_from_input"]
     db_res = db.get(f"{week}")    
-    
-    antal_pass = len(db_res[day.title()])
-    pass_no = antal_pass + 1
 
     pass_namn =  st.session_state[f"selectbox_{day}"]
 
-    st.write(db_res)
+    temp_dct = {"Starttid": ""
+            , "Sluttid": ""
+            , "Genomfört": False
+            , "Kommentar": ""}
+
+    #st.write(db_res)
+    db.res[day].update({pass_namn: temp_dct})
+
+    db.put(db_res)
+
 
 
 
