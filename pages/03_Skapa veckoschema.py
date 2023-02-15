@@ -82,6 +82,7 @@ st.session_state["workouts"] = [i["key"] for i in db.fetch().items]
 def add_workout_to_weekly_schedule(day):
     week = st.session_state["week_from_input"]
     st.write(f"{week}{day}")
+    st.write(st.session_state[f"selectbox_{day}"])
 
 for day in st.session_state["lista_veckodagar"]:
 
