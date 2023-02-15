@@ -48,6 +48,7 @@ for item in db_items:
                     st.write("")
 
                     current_item = item[day][key]
+                    st.write(current_item)
                     genomfört = current_item["Genomfört"]
                     starttid = current_item["Starttid"]
                     sluttid = current_item["Sluttid"]
