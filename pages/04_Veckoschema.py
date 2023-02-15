@@ -71,7 +71,7 @@ for item in db_items:
                     
                     starttid_string = f"Starttid{item['key']}{day}{key}"
                     st.time_input("Starttid"
-                                , value = datetime.time(starttid.hour, starttid.minute)
+                                , value = datetime.time(starttid["timme"], starttid["minut"])
                                 , key = starttid_string
                                 , on_change = exercise_widgets_update_db
                                 , args = ("Starttid", item['key'], day, key))
