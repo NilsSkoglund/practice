@@ -84,7 +84,7 @@ def add_workout_to_weekly_schedule(day):
     db = st.session_state["deta"].Base(db_name)
     
     week = st.session_state["week_from_input"]
-    db_res = db.get(week)    
+    db_res = db.get(f"{week}")    
     
     antal_pass = len(db_res[day.title()])
     pass_no = antal_pass + 1
