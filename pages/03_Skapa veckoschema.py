@@ -47,7 +47,7 @@ st.write(f"Veckonummer: {current_weak}")
 
 # Skapa träningsvecka
 st.date_input(
-    "Veckostart"
+    "Välj veckostart för den vecka du vill skapa träningsschema för"
     , datetime.date(datetime.now())
     , key = "first_day_of_week"
 )
