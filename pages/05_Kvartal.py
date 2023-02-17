@@ -7,7 +7,7 @@ def add_comment(quarter):
     item = db.get(quarter)
     next_comment_no = len(item["Comments"]) + 1
     #item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
-    item["Comments"].update({f"Comment{next_comment_no}": ""})
+    item["Comments"].update({f"Comment{next_comment_no}": "Skriv kommentar här"})
     db.put(item)
 
 def modify_comment(comment, quarter):
