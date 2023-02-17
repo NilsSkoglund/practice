@@ -9,6 +9,16 @@ def add_comment(quarter):
     item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
     db.put(item)
 
+def modify_comment(comment, quarter):
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    item = db.get(quarter)
+    if comment == "":
+        del item[comment]
+    else:
+        item[comment] = st.session_state[comment]
+    db.put(item)
+
+
 
 # Connect to Deta Base with your Project Key
 if "deta" not in st.session_state:
@@ -39,7 +49,10 @@ item = db.get(quarter)
 
 for comment in item["Comments"].keys():
     st.text_area(""
-                , value = item["Comments"][comment])
+                , value=item["Comments"][comment]
+                , key=comment
+                , on_change=modify_comment
+                , args=(comment, quarter))
 
 ## Lägg till mål
     ## Lägg till namn på mål
