@@ -53,7 +53,7 @@ for comment in item["Comments"].keys():
                 , key=comment
                 , on_change=modify_comment
                 , args=(comment, quarter)
-                , visibility="collapsed")
+                , label_visibility="collapsed")
 
 ## Lägg till mål
     ## Lägg till namn på mål
