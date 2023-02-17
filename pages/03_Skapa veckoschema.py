@@ -95,6 +95,13 @@ def add_workout_to_weekly_schedule(day):
 
     db.put(db_res)
 
+def remove_workout_from_schedule(week, day, workout):
+    db = st.session_state["deta"].Base("Veckoscheman")
+    item = db.get(week)
+    del item[day][workout]
+    db.put(item)
+
+
 
 for day in st.session_state["lista_veckodagar"]:
 
@@ -115,4 +122,12 @@ for day in st.session_state["lista_veckodagar"]:
                 st.markdown("- Inget pass inlagt")
             else:
                 for workout in week_dct[day].keys():
-                    st.markdown(f"- {workout}")
+                    week = st.session_state["week_from_input"]
+                    key = f"Remove {week} {day} {workout}"
+
+                    st.checkbox(workout
+                                , key=key
+                                , on_change=remove_workout_from_schedule
+                                , args=(week, day, workout))
+
+                    st.markdown(f"Remove {week} {day} {workout}")
