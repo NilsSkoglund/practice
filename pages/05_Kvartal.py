@@ -48,11 +48,12 @@ if st.session_state[f"{quarter}{key_add_comment}"]:
 item = st.session_state["deta"].Base("Quarterly_goals").get(quarter)
 
 for comment in item["Comments"].keys():
-    st.text_area(comment
+    st.text_area(""
                 , value=item["Comments"][comment]
                 , key=comment
                 , on_change=modify_comment
-                , args=(comment, quarter))
+                , args=(comment, quarter)
+                , visibility="collapsed")
 
 ## Lägg till mål
     ## Lägg till namn på mål
