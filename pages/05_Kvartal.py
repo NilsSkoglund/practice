@@ -48,7 +48,7 @@ if st.session_state[f"{quarter}{key_add_comment}"]:
 item = st.session_state["deta"].Base("Quarterly_goals").get(quarter)
 
 for comment in item["Comments"].keys():
-    st.text_area(""
+    st.text_area(comment
                 , value=item["Comments"][comment]
                 , key=comment
                 , on_change=modify_comment
