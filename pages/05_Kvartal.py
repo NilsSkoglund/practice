@@ -7,6 +7,7 @@ def add_comment(quarter):
     item = db.get(quarter)
     next_comment_no = len(item["Comments"]) + 1
     item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
+    db.put(item)
 
 
 # Connect to Deta Base with your Project Key
