@@ -21,6 +21,7 @@ def exercise_widgets_update_db(widget_str, week, day, workout):
 
 weeks = [i["key"] for i in db_items]
 
+st.header("Välj de veckor du vill visa")
 for week in weeks:
     key = f"Visa vecka {week}"
     st.checkbox(f"Vecka {week}"
