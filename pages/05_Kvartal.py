@@ -41,7 +41,7 @@ st.checkbox(key_add_comment
             , key = f"{quarter}{key_add_comment}")
 
 if st.session_state[f"{quarter}{key_add_comment}"]:
-    add_comment()
+    add_comment(quarter)
     # st.text_area("Skriv kommentar"
     #             , key=f"add_comment{quarter}"
     #             , on_change=add_comment
