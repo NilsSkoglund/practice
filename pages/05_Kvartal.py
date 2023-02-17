@@ -37,11 +37,13 @@ except:
 ## Lägg till Kommentar
     ## Text  area
 key_add_comment = "Lägg till kommentar"
-st.checkbox(key_add_comment
-            , key = f"{quarter}{key_add_comment}")
+st.button(key_add_comment
+            , key = f"{quarter}{key_add_comment}"
+            , on_click=add_comment
+            , args=(quarter,))
 
-if st.session_state[f"{quarter}{key_add_comment}"]:
-    add_comment(quarter)
+# if st.session_state[f"{quarter}{key_add_comment}"]:
+#     add_comment(quarter)
     # st.text_area("Skriv kommentar"
     #             , key=f"add_comment{quarter}"
     #             , on_change=add_comment
