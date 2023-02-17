@@ -13,9 +13,9 @@ def modify_comment(comment, quarter):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     item = db.get(quarter)
     if comment == "":
-        del item[comment]
+        del item["Comments"][comment]
     else:
-        item[comment] = st.session_state[comment]
+        item["Comments"][comment] = st.session_state[comment]
     db.put(item)
 
 
