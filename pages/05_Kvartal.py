@@ -32,7 +32,7 @@ if st.session_state[f"{quarter}{key_add_comment}"]:
     st.text_area(""
                 , key=f"add_comment{quarter}"
                 , on_change=add_comment
-                , args=quarter)
+                , args=(quarter,))
 
 item = db.get(quarter)
 
