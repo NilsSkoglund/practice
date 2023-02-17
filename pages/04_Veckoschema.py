@@ -29,7 +29,7 @@ for week in weeks:
 display_weeks = []
 
 for week in weeks:
-    if st.session_state[f"Vecka {week}"]:
+    if st.session_state[f"Visa vecka {week}"]:
         display_weeks.append(week)
 
 for item in db_items:
