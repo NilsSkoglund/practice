@@ -18,8 +18,8 @@ def add_exercise_func():
     st.session_state["db"].put(new_temp_dct
                     , key = st.session_state["workout name"])
 
-
-st.text_input("Ange namnet på passet"
+st.header("Lägg till pass")
+st.text_input("Ange namnet på passet du vill lägga till"
             , key = "workout name")
 
 if st.session_state["workout name"]:
