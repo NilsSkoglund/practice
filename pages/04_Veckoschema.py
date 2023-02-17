@@ -44,6 +44,15 @@ for item in db_items:
                         st.markdown("---")
                         st.subheader(key)
 
+                        current_item = item[day][key]
+                        genomfört = current_item["Genomfört"]
+                        genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
+                        st.checkbox("Genomfört pass"
+                                    , value = genomfört
+                                    , key = genomfört_string
+                                    , on_change = exercise_widgets_update_db
+                                    , args=("Genomfört", item['key'], day, key))
+                        
                         workout = st.session_state["deta"].Base("workouts")\
                             .get(key)["Övningar"]
 
@@ -53,18 +62,10 @@ for item in db_items:
                         
                         st.write("")
 
-                        current_item = item[day][key]
-                        genomfört = current_item["Genomfört"]
                         starttid = current_item["Starttid"]
                         sluttid = current_item["Sluttid"]
                         kommentar = current_item["Kommentar"]
 
-                        genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
-                        st.checkbox("Genomfört pass"
-                                    , value = genomfört
-                                    , key = genomfört_string
-                                    , on_change = exercise_widgets_update_db
-                                    , args=("Genomfört", item['key'], day, key))
                         
                         kommentar_string = f"Kommentar{item['key']}{day}{key}"
                         st.text_area("Kommentar"
