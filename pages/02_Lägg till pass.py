@@ -26,7 +26,7 @@ if st.session_state["workout name"]:
     # connect to "workouts" database
     st.session_state["db"] =\
          st.session_state["deta"].Base("workouts")
-    st.write("Haj")
+    
     temp_dct = {"Övningar":{}}
     
     # if key already exist, insert throws an error
@@ -51,7 +51,6 @@ if st.session_state["workout name"]:
    
 
     st.write(text_from_db)
-    st.write(st.session_state['no_of_exercises'])
 
 st.checkbox("Visa alla inlagda pass"
             , key = "Visa inlagda pass")
