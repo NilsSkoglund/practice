@@ -6,10 +6,8 @@ def add_comment(quarter):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     item = db.get(quarter)
     next_comment_no = len(item["Comments"]) + 1
-    #item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
 
     text = "Skriv din kommentar här."
-
     item["Comments"].update({f"Comment{next_comment_no}": text})
     db.put(item)
 
@@ -44,13 +42,6 @@ st.button(key_add_comment
             , key = f"{quarter}{key_add_comment}"
             , on_click=add_comment
             , args=(quarter,))
-
-# if st.session_state[f"{quarter}{key_add_comment}"]:
-#     add_comment(quarter)
-    # st.text_area("Skriv kommentar"
-    #             , key=f"add_comment{quarter}"
-    #             , on_change=add_comment
-    #             , args=(quarter,))
 
 item = st.session_state["deta"].Base("Quarterly_goals").get(quarter)
 
