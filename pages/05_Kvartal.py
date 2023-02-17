@@ -10,7 +10,7 @@ def add_comment(quarter):
     item["Comments"]\
         .update({f"Comment{next_comment_no}":\
             "Skriv kommentar här. \
-            För att radera kommentar, ta bort all text och spara."})
+                För att radera kommentar, ta bort all text och spara."})
     db.put(item)
 
 def modify_comment(comment, quarter):
