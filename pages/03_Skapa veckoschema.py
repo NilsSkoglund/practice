@@ -124,10 +124,8 @@ for day in st.session_state["lista_veckodagar"]:
                 for workout in week_dct[day].keys():
                     week = st.session_state["week_from_input"]
                     key = f"Remove {week} {day} {workout}"
-
+                    st.markdown("**Nedan visas inlagda pass. Klicka i boxen för att ta bort ett pass**")
                     st.checkbox(workout
                                 , key=key
                                 , on_change=remove_workout_from_schedule
                                 , args=(week, day, workout))
-
-                    st.markdown(f"Remove {week} {day} {workout}")
