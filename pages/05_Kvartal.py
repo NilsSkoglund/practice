@@ -14,12 +14,12 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
 
-db = Deta(st.secrets["deta_key"]).Base("Quarterly goals")
+db = st.session_state["deta"].Base("Quarterly goals")
 ## Q1
 quarter = "Q1"
 temp_dct = {"Comments":{}, "Goals":{}}
 try:
-    db.insert(temp_dct, key=quarter)
+    db.insert(temp_dct, quarter)
 except:
     pass
 ## Lägg till Kommentar
