@@ -56,8 +56,19 @@ if st.session_state["workout name"]:
 st.checkbox("Visa alla inlagda pass"
             , key = "Visa inlagda pass")
 
+def remove_workout():
+    st.session_state["db"].delete(st.session_state["ta bort pass"])
+
 if st.session_state["Visa inlagda pass"]:
     db = st.session_state["db"]
+
+    lista_pass = [i["key"] for i in db.fetch().items]
     
-    for item in db.fetch().items:
-        st.write(item["key"])
+    for item in lista_pass:
+        st.write(item)
+
+    st.selectbox("Ta bort ett pass"
+                , options = lista_pass
+                , key = "ta bort pass"
+                , on_change=remove_workout)
+    
