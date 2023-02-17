@@ -6,7 +6,8 @@ def add_comment(quarter):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     item = db.get(quarter)
     next_comment_no = len(item["Comments"]) + 1
-    item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
+    #item["Comments"].update({f"Comment{next_comment_no}": st.session_state[f'add_comment{quarter}']})
+    item["Comments"].update({f"Comment{next_comment_no}": ""})
     db.put(item)
 
 def modify_comment(comment, quarter):
@@ -40,10 +41,11 @@ st.checkbox(key_add_comment
             , key = f"{quarter}{key_add_comment}")
 
 if st.session_state[f"{quarter}{key_add_comment}"]:
-    st.text_area("Skriv kommentar"
-                , key=f"add_comment{quarter}"
-                , on_change=add_comment
-                , args=(quarter,))
+    add_comment()
+    # st.text_area("Skriv kommentar"
+    #             , key=f"add_comment{quarter}"
+    #             , on_change=add_comment
+    #             , args=(quarter,))
 
 item = st.session_state["deta"].Base("Quarterly_goals").get(quarter)
 
