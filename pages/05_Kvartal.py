@@ -3,7 +3,7 @@ from datetime import datetime, time
 from deta import Deta
 # functions
 def add_comment(quarter):
-    db = Deta(st.secrets["deta_key"]).Base("Quarterly goals")
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     item = db.get(quarter)
     next_comment_no = len(item["Comments"]) + 1
     item["Comments"].update(f"Comment{next_comment_no}:{st.session_state[f'add_comment{quarter}']}")
