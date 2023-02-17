@@ -14,7 +14,7 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
 
-db = st.session_state["deta"].Base("Quarterly goals")
+db = st.session_state["deta"].Base("Quarterly_goals")
 ## Q1
 quarter = "Q1"
 temp_dct = {"Comments":{}, "Goals":{}}
