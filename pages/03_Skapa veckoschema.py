@@ -41,7 +41,7 @@ st.session_state["current_week"] =\
      datetime.now().date().isocalendar().week
 current_weak = st.session_state["current_week"]
 
-st.subheader(f"Veckonummer: {current_weak}")
+st.header(f"Dagens datum: {datetime.now().date()} Veckonummer: {current_weak}")
 
 
 # Skapa träningsvecka
