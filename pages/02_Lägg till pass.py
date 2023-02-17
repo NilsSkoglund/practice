@@ -52,3 +52,12 @@ if st.session_state["workout name"]:
 
     st.write(text_from_db)
     st.write(st.session_state['no_of_exercises'])
+
+st.checkbox("Visa alla inlagda pass"
+            , key = "Visa inlagda pass")
+
+if st.session_state["Visa inlagda pass"]:
+    db = st.session_state["db"]
+    
+    for item in db.fetch().items:
+        st.write(item["key"])
