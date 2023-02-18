@@ -38,7 +38,8 @@ def skapa_mål_func():
                             , "datum": {"år": datum.year
                                 , "månad":datum.month
                                 , "dag":datum.day}
-                            , "noteringar":noteringar}
+                            , "noteringar":noteringar
+                            , "uppnåt": False}
                 add_goal_to_db(temp_dct)            
 
 
@@ -48,9 +49,14 @@ skapa_mål_func()
 def display_goal(item):
 
     with st.expander(item["namn"]):
+        st.subheader(item["namn"])
+        st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
-        st.write(item["datum"])
-        st.write(item["noteringar"])
+        st.markdown(f"Datum för mål: {item['datum']}")
+
+        if item["noteringar"] != "":
+            st.markdown("**Övriga noteringar:**")
+            st.write(item["noteringar"])
 
 
 def display_goals():
@@ -60,7 +66,7 @@ def display_goals():
 
     q1 = [item for item in items if item["kvartal"] == "Q1"]
 
-    st.write(q1)
+    st.header("Kvartal 1")
 
     for item in q1:
         display_goal(item)
