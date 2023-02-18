@@ -53,8 +53,8 @@ def display_goal(item):
         st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
         st.markdown("**Datum för mål:**")
-        datum_string = f"{item['datum']['år']}-{item['datum']['månad']}\
-            -{item['datum']['dag']}"
+        datum = item['datum']
+        datum_string = f"{datum['år']}-{datum['månad']}-{datum['dag']}"
         st.write(datum_string)
         if item["noteringar"] != "":
             st.markdown("**Övriga noteringar:**")
