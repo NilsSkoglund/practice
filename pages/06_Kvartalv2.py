@@ -43,3 +43,26 @@ def skapa_mål_func():
 
 
 skapa_mål_func()
+
+
+def display_goal(item):
+
+    with st.expander(item["name"]):
+        st.write(item["beskrivning"])
+        st.write(item["datum"])
+        st.write(item["noteringar"])
+
+
+def display_goals():
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+
+    items = db.fetch().items
+
+    q1 = [item for item in items if item["kvartal"] == "Q1"]
+
+    st.write(q1)
+
+    for item in q1:
+        display_goal(item)
+
+display_goals()
