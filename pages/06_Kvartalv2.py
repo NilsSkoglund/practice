@@ -72,3 +72,23 @@ display_goals()
 
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
 skapa_mål_func(skapa_mål)
+
+def ta_bort_mål(key):
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    db.delete(key)
+
+def meny_ta_bort_mål(ta_bort):
+    if ta_bort:
+        db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+        items = db.fetch().items
+
+        for item in items:
+            display = f"{item['namn'] ({item['kvartal']})}"
+            st.checkbox(display
+                        , key = item["key"]
+                        , on_change = ta_bort_mål
+                        , args = (item["key"], ))
+
+ta_bort_mål_var = st.checkbox("Ta bort mål")
+meny_ta_bort_mål(ta_bort_mål_var)
+
