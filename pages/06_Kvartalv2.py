@@ -116,7 +116,6 @@ def meny_ta_bort_mål(ta_bort, kvartal, år):
                             , args = (item["key"], ))
 
 ################################# Program #####################################
-
 current_year = st.session_state["current_year"]
 lista_år = list(range(current_year, current_year+5))
 välj_år = st.radio("Vilket år vill du se?"
@@ -129,15 +128,21 @@ välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , horizontal=True)
 st.header(f"{välj_kvartal} - {välj_år}")
 
-col1, col2 = st.columns(2)
+vy = st.radio("Välj vy"
+            , ("Visningsvy", "Redigeringsvy"))
+            
 
-with col1:
-    skapa_mål = st.checkbox("Lägg till ett nytt mål")
-with col2:
-    ta_bort_mål_var = st.checkbox("Ta bort mål")
+if vy == "Redigeringsvy":
 
-meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
-skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
+    col1, col2 = st.columns(2)
+
+    with col1:
+        skapa_mål = st.checkbox("Lägg till ett nytt mål")
+    with col2:
+        ta_bort_mål_var = st.checkbox("Ta bort mål")
+
+    meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
+    skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
 
 display_goals(välj_kvartal, välj_år)
 
