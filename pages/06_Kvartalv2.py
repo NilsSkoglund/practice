@@ -69,9 +69,7 @@ def display_goals(kvartal):
     items = db.fetch({"kvartal": kvartal}).items
 
     if len(items) == 0:
-        st.info(f"Finns inga mål för {kvartal}")
-
-    st.header(kvartal)
+        st.info(f"Finns inga mål för {kvartal}")    
 
     for item in items:
         display_goal(item)
@@ -79,13 +77,12 @@ def display_goals(kvartal):
 välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , ('Q1', 'Q2', 'Q3', 'Q4')
                         , horizontal=True)
-
-display_goals(välj_kvartal)
+st.header(välj_kvartal)
 
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
 skapa_mål_func(skapa_mål, välj_kvartal)
-st.experimental_rerun()
 
+display_goals(välj_kvartal)
 
 def ta_bort_mål(key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
