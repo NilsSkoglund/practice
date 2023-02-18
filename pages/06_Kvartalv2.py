@@ -92,7 +92,7 @@ def display_goals(kvartal, år):
     items = db.fetch({"år": år, "kvartal": kvartal}).items
 
     if len(items) == 0:
-        st.info(f"Finns inga mål för {år} - {kvartal}")    
+        st.info(f"Finns inga mål för {kvartal} - {år}")    
 
     for item in items:
         display_goal(item)
@@ -127,7 +127,7 @@ välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , ('Q1', 'Q2', 'Q3', 'Q4')
                         , index=st.session_state["current_quarter"]
                         , horizontal=True)
-st.header(f"{välj_år} - {välj_kvartal}")
+st.header(f"{välj_kvartal} - {välj_år}")
 
 col1, col2 = st.columns(2)
 
