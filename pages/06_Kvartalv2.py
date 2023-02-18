@@ -38,14 +38,24 @@ def skapa_mål_func(skapa_mål):
                                 , "månad":datum.month
                                 , "dag":datum.day}
                             , "noteringar":noteringar
-                            , "uppnåt": False}
+                            , "uppnått": False}
                 add_goal_to_db(temp_dct)            
 
+def goal_reached_update_db(item, key):
+    item["uppnått"] = st.session_state[key]
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    db.put(item)
 
 
 def display_goal(item):
 
     with st.expander(item["namn"]):
+        key = item["key"] + "uppnått"
+        st.checkbox("Uppnåt"
+                    , value = item["uppnåt"]
+                    , key = key
+                    , on_change=goal_reached_update_db
+                    , args = (item, key))
         st.markdown("---")
         st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
@@ -82,12 +92,15 @@ def meny_ta_bort_mål(ta_bort):
         db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
         items = db.fetch().items
 
-        for item in items:
-            display = f"{item['namn']} {item['kvartal']}"
-            st.checkbox(display
-                        , key = item["key"]
-                        , on_change = ta_bort_mål
-                        , args = (item["key"], ))
+        display = "Tryck i checkbox för att ta bort målet"
+        with st.expander(display, expanded = True):
+
+            for item in items:
+                display = f"{item['namn']} {item['kvartal']}"
+                st.checkbox(display
+                            , key = item["key"]
+                            , on_change = ta_bort_mål
+                            , args = (item["key"], ))
 
 ta_bort_mål_var = st.checkbox("Ta bort mål")
 meny_ta_bort_mål(ta_bort_mål_var)
