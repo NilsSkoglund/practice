@@ -80,8 +80,9 @@ def display_goals(kvartal):
     for item in items:
         display_goal(item)
 
-välj_kvartal = st.radio("Vilket kvartal vill du se?", 
-                        ('Q1', 'Q2', 'Q3', 'Q4'))
+välj_kvartal = st.radio("Vilket kvartal vill du se?"
+                        , ('Q1', 'Q2', 'Q3', 'Q4')
+                        , horizontal=True)
 
 display_goals(välj_kvartal)
 
