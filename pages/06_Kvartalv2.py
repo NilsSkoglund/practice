@@ -52,7 +52,10 @@ def display_goal(item):
         st.subheader(item["namn"])
         st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
-        st.markdown(f"Datum för mål: {item['datum']}")
+        st.markdown(f"**Datum för mål:** \
+            {item['datum']['år']}-\
+                {item['datum']['månad']}-\
+                    {item['datum']['dag']}")
 
         if item["noteringar"] != "":
             st.markdown("**Övriga noteringar:**")
