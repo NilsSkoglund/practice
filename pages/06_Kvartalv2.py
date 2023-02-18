@@ -34,6 +34,8 @@ if skapa_mål:
             temp_dct = {"namn":namn
                         , "kvartal":kvartal
                         , "beskrivning":beskrivning
-                        , "datum": datum
+                        , "datum": {"år": datum.year
+                            , "månad":datum.month
+                            , "dag":datum.day}
                         , "noteringar":noteringar}
             add_goal_to_db(temp_dct)            
