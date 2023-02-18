@@ -34,3 +34,4 @@ with st.form("my_form"):
                 , "datum": datum
                 , "noteringar":noteringar}
     st.write(temp_dct)
+    st.experimental_rerun()
