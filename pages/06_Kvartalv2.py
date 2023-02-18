@@ -14,8 +14,7 @@ def add_goal_to_db(dct):
     except:
         st.error(f"Mål med namn {namn} finns redan för {kvartal}")
 
-def skapa_mål_func():
-    skapa_mål = st.checkbox("Lägg till ett nytt mål")
+def skapa_mål_func(skapa_mål):
 
     if skapa_mål:
         with st.form("my_form", clear_on_submit=True):
@@ -42,8 +41,8 @@ def skapa_mål_func():
                             , "uppnåt": False}
                 add_goal_to_db(temp_dct)            
 
-
-skapa_mål_func()
+skapa_mål = st.checkbox("Lägg till ett nytt mål")
+skapa_mål_func(skapa_mål)
 
 
 def display_goal(item):
