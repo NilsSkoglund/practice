@@ -50,12 +50,6 @@ def goal_reached_update_db(item, key):
 def display_goal(item):
 
     with st.expander(item["namn"]):
-        key = item["key"] + "uppnått"
-        st.checkbox("Uppnåt"
-                    , value = item["uppnått"]
-                    , key = key
-                    , on_change=goal_reached_update_db
-                    , args = (item, key))
         st.markdown("---")
         st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
@@ -66,6 +60,12 @@ def display_goal(item):
         if item["noteringar"] != "":
             st.markdown("**Övriga noteringar:**")
             st.write(item["noteringar"])
+        key = item["key"] + "uppnått"
+        st.checkbox("Uppnåt"
+                    , value = item["uppnått"]
+                    , key = key
+                    , on_change=goal_reached_update_db
+                    , args = (item, key))
 
 
 def display_goals():
