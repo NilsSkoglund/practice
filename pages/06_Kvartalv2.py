@@ -130,7 +130,8 @@ st.header(f"{välj_kvartal} - {välj_år}")
 
 vy = st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
-            , horizontal=True)
+            , horizontal=True
+            , label_visibility="collapsed")
             
 
 if vy == "Redigeringsvy":
