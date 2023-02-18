@@ -2,17 +2,18 @@ import streamlit as st
 from datetime import datetime, time
 from deta import Deta
 
-# Connect to Deta Base with your Project Key
-if "deta" not in st.session_state:
-    st.session_state["deta"] = Deta(st.secrets["deta_key"])
+def add_goal_to_db(dct):
+    # Connect to Deta Base
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    key = kvartal+namn
+    
+    try:
+        db.insert(dct, key)
+    except:
+        st.error(f"Mål med namn {namn} finns redan för {kvartal}")
+    
 
-db = st.session_state["deta"].Base("Quarterly_goals")
 
-# Add goal - Button?
-
-# Open form
-    # name - text input
-    # specify goal - text input
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
 
 if skapa_mål:
@@ -30,10 +31,9 @@ if skapa_mål:
         submitted = st.form_submit_button("Skapa mål")
 
         if submitted:
-            key = kvartal+namn
             temp_dct = {"namn":namn
                         , "kvartal":kvartal
                         , "beskrivning":beskrivning
                         , "datum": datum
                         , "noteringar":noteringar}
-            st.write(temp_dct)
+            add_goal_to_db(temp_dct)            
