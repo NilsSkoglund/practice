@@ -5,6 +5,10 @@ from deta import Deta
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
+if "db" not in st.session_state:
+    st.session_state["db"] =\
+         st.session_state["deta"].Base("workouts")
+
 
 def add_exercise_func():
     dct_from_db = st.session_state["db"]\
@@ -23,9 +27,6 @@ st.text_input("Ange namnet på passet du vill lägga till"
             , key = "workout name")
 
 if st.session_state["workout name"]:
-    # connect to "workouts" database
-    st.session_state["db"] =\
-         st.session_state["deta"].Base("workouts")
     
     temp_dct = {"Övningar":{}}
     
