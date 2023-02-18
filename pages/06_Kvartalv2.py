@@ -24,6 +24,17 @@ def add_goal_to_db(dct):
     except:
         st.error(f"Mål med namn {namn} finns redan för {kvartal}")
 
+def get_goal_end_date(kvartal, år):
+    if kvartal == "Q1":
+        return f"{år}-03-31"
+    elif kvartal == "Q2":
+        return f"{år}-06-30"
+    elif kvartal == "Q3":
+        return f"{år}-09-30"
+    elif kvartal == "Q4":
+        return f"{år}-12-31"
+
+
 def skapa_mål_func(skapa_mål, kvartal, år):
 
     if skapa_mål:
@@ -31,7 +42,9 @@ def skapa_mål_func(skapa_mål, kvartal, år):
             st.subheader("Skapa mål")
             namn = st.text_input("Namn på målet")
             beskrivning = st.text_input("Beskriv ditt mål")
-            datum = st.date_input("När ska målet vara uppnåt?")
+            date = get_goal_end_date(kvartal, år)
+            datum = st.date_input("När ska målet vara uppnåt?"
+                                , value = date)
             noteringar = st.text_area("Övriga anteckningar")
 
             submitted = st.form_submit_button("Skapa mål")
