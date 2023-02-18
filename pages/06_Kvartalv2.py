@@ -83,7 +83,7 @@ def meny_ta_bort_mål(ta_bort):
         items = db.fetch().items
 
         for item in items:
-            display = f"{item['namn'] ({item['kvartal']})}"
+            display = f"{item['namn']} {item['kvartal']}"
             st.checkbox(display
                         , key = item["key"]
                         , on_change = ta_bort_mål
