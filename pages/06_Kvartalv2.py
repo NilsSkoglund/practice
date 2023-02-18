@@ -90,21 +90,20 @@ def ta_bort_mål(key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     db.delete(key)
 
-def meny_ta_bort_mål(ta_bort):
+def meny_ta_bort_mål(ta_bort, kvartal):
     if ta_bort:
         db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-        items = db.fetch().items
+        items = db.fetch({"kvartal":kvartal}).items
 
         display = "Tryck i checkbox för att ta bort målet"
         with st.expander(display, expanded = True):
 
-            for item in items:
-                display = f"{item['namn']} {item['kvartal']}"
-                st.checkbox(display
+            for item in items:                
+                st.checkbox(item['namn']
                             , key = item["key"]
                             , on_change = ta_bort_mål
                             , args = (item["key"], ))
 
 ta_bort_mål_var = st.checkbox("Ta bort mål")
-meny_ta_bort_mål(ta_bort_mål_var)
+meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal)
 
