@@ -84,7 +84,7 @@ display_goals(välj_kvartal)
 
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
 skapa_mål_func(skapa_mål, välj_kvartal)
-
+st.experimental_rerun()
 
 
 def ta_bort_mål(key):
