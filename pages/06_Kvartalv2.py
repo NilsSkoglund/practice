@@ -14,15 +14,11 @@ def add_goal_to_db(dct):
     except:
         st.error(f"Mål med namn {namn} finns redan för {kvartal}")
 
-def skapa_mål_func(skapa_mål):
+def skapa_mål_func(skapa_mål, kvartal):
 
     if skapa_mål:
         with st.form("my_form", clear_on_submit=True):
             st.subheader("Skapa mål")
-            kvartal = st.radio(
-                    "För vilket kvartal gäller målet?"
-                    , ('Q1', 'Q2', 'Q3', 'Q4')
-                    , horizontal=True)
             namn = st.text_input("Namn på målet")
             beskrivning = st.text_input("Beskriv ditt mål")
             datum = st.date_input("När ska målet vara uppnåt?")
@@ -73,7 +69,7 @@ def display_goals(kvartal):
     items = db.fetch({"kvartal": kvartal}).items
 
     if len(items) == 0:
-        st.info(f"Inget mål har lagts till för {kvartal}")
+        st.info(f"Finns inga mål för {kvartal}")
 
     st.header(kvartal)
 
@@ -87,7 +83,7 @@ välj_kvartal = st.radio("Vilket kvartal vill du se?"
 display_goals(välj_kvartal)
 
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
-skapa_mål_func(skapa_mål)
+skapa_mål_func(skapa_mål, välj_kvartal)
 
 def ta_bort_mål(key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
