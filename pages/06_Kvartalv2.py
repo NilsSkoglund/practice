@@ -92,7 +92,7 @@ def display_goals(kvartal, år):
     items = db.fetch({"år": år, "kvartal": kvartal}).items
 
     if len(items) == 0:
-        st.info(f"Finns inga mål för {kvartal}")    
+        st.info(f"Finns inga mål för {år} - {kvartal}")    
 
     for item in items:
         display_goal(item)
