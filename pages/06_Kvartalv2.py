@@ -5,6 +5,8 @@ from deta import Deta
 def add_goal_to_db(dct):
     # Connect to Deta Base
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    namn = dct["namn"]
+    kvartal = dct["kvartal"]
     key = kvartal+namn
     
     try:
