@@ -116,11 +116,13 @@ def meny_ta_bort_mål(ta_bort, kvartal, år):
                             , args = (item["key"], ))
 
 ################################# Program #####################################
-current_year = st.session_state["current_year"]
-lista_år = list(range(current_year, current_year+5))
-välj_år = st.radio("Vilket år vill du se?"
-                        , lista_år
-                        , horizontal=True)
+
+with st.expander("Välj år och kvartal"):
+    current_year = st.session_state["current_year"]
+    lista_år = list(range(current_year, current_year+5))
+    välj_år = st.radio("Vilket år vill du se?"
+                            , lista_år
+                            , horizontal=True)
 
 välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , ('Q1', 'Q2', 'Q3', 'Q4')
