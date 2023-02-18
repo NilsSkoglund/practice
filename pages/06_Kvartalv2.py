@@ -68,17 +68,22 @@ def display_goal(item):
                     , args = (item, key))
 
 
-def display_goals():
+def display_goals(kvartal):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-    items = db.fetch().items
+    items = db.fetch({"kvartal": kvartal}).items
 
-    q1 = [item for item in items if item["kvartal"] == "Q1"]
-    st.header("Kvartal 1")
+    if len(items) == 0:
+        st.info(f"Inget mål har lagts till för {kvartal}")
 
-    for item in q1:
+    st.header(kvartal)
+
+    for item in items:
         display_goal(item)
 
-display_goals()
+välj_kvartal = st.radio("Vilket kvartal vill du se?", 
+                        ('Q1', 'Q2', 'Q3', 'Q4'))
+
+display_goals(välj_kvartal)
 
 skapa_mål = st.checkbox("Lägg till ett nytt mål")
 skapa_mål_func(skapa_mål)
