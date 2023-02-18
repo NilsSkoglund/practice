@@ -49,7 +49,7 @@ skapa_mål_func()
 def display_goal(item):
 
     with st.expander(item["namn"]):
-        st.subheader(item["namn"])
+        st.markdown("---")
         st.markdown("**Beskrivning av mål:**")
         st.write(item["beskrivning"])
         st.markdown("**Datum för mål:**")
