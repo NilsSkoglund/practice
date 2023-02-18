@@ -7,10 +7,10 @@ def add_goal_to_db(dct):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     key = kvartal+namn
     
-    try:
-        db.insert(dct, key)
-    except:
-        st.error(f"Mål med namn {namn} finns redan för {kvartal}")
+    #try:
+    db.insert(dct, key)
+    #except:
+    #    st.error(f"Mål med namn {namn} finns redan för {kvartal}")
     
 
 
