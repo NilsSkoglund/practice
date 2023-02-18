@@ -52,7 +52,7 @@ def display_goal(item):
     with st.expander(item["namn"]):
         key = item["key"] + "uppnått"
         st.checkbox("Uppnåt"
-                    , value = item["uppnåt"]
+                    , value = item["uppnått"]
                     , key = key
                     , on_change=goal_reached_update_db
                     , args = (item, key))
