@@ -79,7 +79,8 @@ välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , horizontal=True)
 st.header(välj_kvartal)
 
-skapa_mål = st.checkbox("Lägg till ett nytt mål")
+with st.expander("alternative"):
+    skapa_mål = st.checkbox("Lägg till ett nytt mål")
 skapa_mål_func(skapa_mål, välj_kvartal)
 
 display_goals(välj_kvartal)
