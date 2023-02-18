@@ -41,8 +41,6 @@ def skapa_mål_func(skapa_mål):
                             , "uppnåt": False}
                 add_goal_to_db(temp_dct)            
 
-skapa_mål = st.checkbox("Lägg till ett nytt mål")
-skapa_mål_func(skapa_mål)
 
 
 def display_goal(item):
@@ -62,14 +60,15 @@ def display_goal(item):
 
 def display_goals():
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-
     items = db.fetch().items
 
     q1 = [item for item in items if item["kvartal"] == "Q1"]
-
     st.header("Kvartal 1")
 
     for item in q1:
         display_goal(item)
 
 display_goals()
+
+skapa_mål = st.checkbox("Lägg till ett nytt mål")
+skapa_mål_func(skapa_mål)
