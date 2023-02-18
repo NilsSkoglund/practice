@@ -2,6 +2,7 @@ import streamlit as st
 from datetime import datetime, time
 from deta import Deta
 
+################################ functions ####################################
 def add_goal_to_db(dct):
     # Connect to Deta Base
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
@@ -42,7 +43,6 @@ def goal_reached_update_db(item, key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     db.put(item)
 
-
 def display_goal(item):
 
     with st.expander(item["namn"]):
@@ -63,7 +63,6 @@ def display_goal(item):
                     , on_change=goal_reached_update_db
                     , args = (item, key))
 
-
 def display_goals(kvartal):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     items = db.fetch({"kvartal": kvartal}).items
@@ -73,17 +72,6 @@ def display_goals(kvartal):
 
     for item in items:
         display_goal(item)
-
-välj_kvartal = st.radio("Vilket kvartal vill du se?"
-                        , ('Q1', 'Q2', 'Q3', 'Q4')
-                        , horizontal=True)
-st.header(välj_kvartal)
-
-with st.expander("alternative"):
-    skapa_mål = st.checkbox("Lägg till ett nytt mål")
-skapa_mål_func(skapa_mål, välj_kvartal)
-
-display_goals(välj_kvartal)
 
 def ta_bort_mål(key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
@@ -103,6 +91,24 @@ def meny_ta_bort_mål(ta_bort, kvartal):
                             , on_change = ta_bort_mål
                             , args = (item["key"], ))
 
-ta_bort_mål_var = st.checkbox("Ta bort mål")
+################################# Program #####################################
+
+välj_kvartal = st.radio("Vilket kvartal vill du se?"
+                        , ('Q1', 'Q2', 'Q3', 'Q4')
+                        , horizontal=True)
+st.header(välj_kvartal)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    skapa_mål = st.checkbox("Lägg till ett nytt mål")
+with col2:
+    ta_bort_mål_var = st.checkbox("Ta bort mål")
+
 meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal)
+skapa_mål_func(skapa_mål, välj_kvartal)
+
+display_goals(välj_kvartal)
+
+
 
