@@ -129,7 +129,8 @@ välj_kvartal = st.radio("Vilket kvartal vill du se?"
 st.header(f"{välj_kvartal} - {välj_år}")
 
 vy = st.radio("Välj vy"
-            , ("Visningsvy", "Redigeringsvy"))
+            , ("Visningsvy", "Redigeringsvy")
+            , horizontal=True)
             
 
 if vy == "Redigeringsvy":
