@@ -1,6 +1,20 @@
 import streamlit as st
 from datetime import datetime, time
 from deta import Deta
+############################## Sessuin State ###################################
+if "end of Q1" not in st.session_state:
+    st.session_state["end of Q1"] = "03-31"
+    st.session_state["end of Q2"] = "06-30"
+    st.session_state["end of Q2"] = "09-30"
+    st.session_state["end of Q2"] = "12-31"
+
+    st.session_state["current_date"] = datetime.now().date()
+    st.session_state["current_year"] = datetime.now().date().year
+    st.session_state["current_month"] = datetime.now().date().month
+
+    st.session_state["current_quarter"] =\
+         (st.session_state["current_month"]-1)//3
+
 
 ################################ functions ####################################
 def add_goal_to_db(dct):
@@ -93,8 +107,15 @@ def meny_ta_bort_mål(ta_bort, kvartal):
 
 ################################# Program #####################################
 
+current_year = st.session_state["current_year"]
+lista_år = list(range(current_year, current_year+5))
+välj_år = st.radio("Vilket år vill du se?"
+                        , lista_år
+                        , horizontal=True)
+
 välj_kvartal = st.radio("Vilket kvartal vill du se?"
                         , ('Q1', 'Q2', 'Q3', 'Q4')
+                        , index=st.session_state["current_quarter"]
                         , horizontal=True)
 st.header(välj_kvartal)
 
