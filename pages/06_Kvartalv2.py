@@ -43,8 +43,9 @@ def skapa_mål_func(skapa_mål, kvartal, år):
             namn = st.text_input("Namn på målet")
             beskrivning = st.text_input("Beskriv ditt mål")
             year, month, day = get_goal_end_date(kvartal, år)
-            datum = st.date_input("När ska målet vara uppnåt?"
-                                , value = datetime.date(year, month, day))
+            datum = st.date_input(
+                "När ska målet vara uppnåt?",
+                datetime.date(year, month, day))
             noteringar = st.text_area("Övriga anteckningar")
 
             submitted = st.form_submit_button("Skapa mål")
