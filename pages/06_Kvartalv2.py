@@ -47,7 +47,7 @@ skapa_mål_func()
 
 def display_goal(item):
 
-    with st.expander(item["name"]):
+    with st.expander(item["namn"]):
         st.write(item["beskrivning"])
         st.write(item["datum"])
         st.write(item["noteringar"])
