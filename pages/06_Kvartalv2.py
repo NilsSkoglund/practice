@@ -13,7 +13,7 @@ db = st.session_state["deta"].Base("Quarterly_goals")
 # Open form
     # name - text input
     # specify goal - text input
-with st.form("my_form"):
+with st.form("my_form", clear_on_submit=True):
    st.subheader("Skapa mål")
    kvartal = st.radio(
         "För vilket kvartal gäller målet?"
@@ -34,4 +34,3 @@ with st.form("my_form"):
                 , "datum": datum
                 , "noteringar":noteringar}
     st.write(temp_dct)
-    st.experimental_rerun()
