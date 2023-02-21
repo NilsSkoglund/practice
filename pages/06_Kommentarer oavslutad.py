@@ -33,9 +33,9 @@ def add_recommendation():
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         if submitted:
-            st.info("Rekommendation tillagd i visningsvyn")
             rubrik = rubrik.strip().title()
             add_comment_to_db(key, rubrik, text)
+            st.info("Rekommendation tillagd")
 
 def modify_item(key, col):
     db.update({col:st.session_state[key+col]}, key)
