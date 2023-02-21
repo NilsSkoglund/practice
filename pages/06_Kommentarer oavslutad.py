@@ -33,6 +33,7 @@ def add_comment():
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         if submitted:
+            rubrik = rubrik.strip().title()
             add_comment_to_db(key, rubrik, text)
 
     
@@ -45,15 +46,23 @@ if add_general:
     add_comment()
     time.sleep(0.5)
 
-items = fetch_from_db()
+def display_item():
 
-for item in items:
-    st.text_area("comment"
-                , value=item["Comment"]
-                , key=item["key"]
-                , on_change=modify_comment
-                , args=(item["key"], item["Comment"])
-                , label_visibility="collapsed")
+    items = fetch_from_db()
+    rubriker = [item["Rubrik"] for item in items]
+
+    for rubrik in rubriker:
+        st.subheader(rubrik)
+        filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
+        for item in filtered_items:
+            st.text_area("Some value"
+                        , value=item["Comment"]
+                        , key=item["key"]
+                        , on_change=modify_comment
+                        , args=(item["key"], item["Comment"],)
+                        , label_visibility="collapsed")
+
+display_item()
 
 ## Lägg till mål
     ## Lägg till namn på mål
