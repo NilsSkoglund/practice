@@ -17,7 +17,7 @@ def modify_comment(key, comment):
 
 
 
-temp_dct = {"Comment":{}}
+temp_dct = {"Comment":""}
 try:
     db.insert(temp_dct)
 except:
