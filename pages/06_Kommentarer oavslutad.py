@@ -50,8 +50,9 @@ def display_item():
 
     items = fetch_from_db()
     rubriker = [item["Rubrik"] for item in items]
+    unika_rubriker = set(rubriker)
 
-    for rubrik in set(rubriker):
+    for rubrik in unika_rubriker:
         st.subheader(rubrik)
         filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
         for item in filtered_items:
