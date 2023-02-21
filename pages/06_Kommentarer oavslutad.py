@@ -25,20 +25,17 @@ def add_comment():
     text_input = form.text_input("Rubrik")
     text_area = form.text_area("Kommentar:")
     # Every form must have a submit button.
-    submitted = form.form_submit_button("Submit"
+    form.form_submit_button("Submit"
                         , on_change=add_comment_to_db
                         , args=(key, text_input, text_area))
-    if submitted:
-        st.write("Hej")
     
 
 def modify_comment(key, comment):
     db.update({"Comment":comment}, key)
 
-key_add_comment = "Lägg till kommentar"
-st.button(key_add_comment
-            , key = f"{key_add_comment}"
-            , on_click=add_comment)
+add_general = st.checkbox("Lägg till...")
+if add_general:
+    add_comment()
 
 items = db.fetch().items
 
