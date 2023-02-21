@@ -61,11 +61,12 @@ def edit_recommendations():
     #     filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
     for item in items:
         col = "Rubrik"
+        key = item["key"] + "text input"
         st.text_input("Rubrik"
                     , value=item["Rubrik"]
-                    , key=item["key"] + "text input"
+                    , key=key
                     , on_change=modify_item
-                    , args=(item["key"], {col: item[col]},)
+                    , args=(item["key"], {col: st.session_state[key]},)
                     , label_visibility="visible")
         col = "Comment"
         st.text_area("Rekommendation"
