@@ -97,6 +97,7 @@ def remove_recommendations():
                     , on_change=remove_single_recommendation
                     , args=(item["key"], )
                     , label_visibility="visible")
+        st.markdown("---")
 
 ################################# Program #####################################
 
