@@ -63,14 +63,14 @@ def edit_recommendations():
         col = "Rubrik"
         st.text_input("Some value"
                     , value=item["Rubrik"]
-                    , key=item["key"]
+                    , key=item["key"] + "text input"
                     , on_change=modify_item
                     , args=(item["key"], {col: item[col]},)
                     , label_visibility="collapsed")
         col = "Comment"
         st.text_area("Some value"
                     , value=item["Comment"]
-                    , key=item["key"]
+                    , key=item["key"] + "text area"
                     , on_change=modify_item
                     , args=(item["key"], {col: item[col]},)
                     , label_visibility="collapsed")
