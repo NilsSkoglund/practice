@@ -94,6 +94,7 @@ if vy == "Redigeringsvy":
         add_recommendation()
     elif val_redigering == "Redigera":
         st.write("Redigeringsalternativ...")
+        edit_recommendations()
     elif val_redigering == "Ta bort":
         st.write("Ta bort...")
 
