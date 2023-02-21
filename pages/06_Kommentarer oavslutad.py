@@ -25,9 +25,11 @@ def add_comment():
         text_input = st.text_input("Rubrik")
         text_area = st.text_area("Kommentar:")
         # Every form must have a submit button.
-        st.form_submit_button("Submit"
+        submitted = st.form_submit_button("Submit"
                             , on_change=add_comment_to_db
                             , args=(key, text_input, text_area))
+        if submitted:
+            st.write("Hej")
     
 
 def modify_comment(key, comment):
