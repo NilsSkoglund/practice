@@ -36,8 +36,8 @@ def add_recommendation():
             rubrik = rubrik.strip().title()
             add_comment_to_db(key, rubrik, text)
 
-def modify_item(key, dct):
-    db.update(dct, key)
+def modify_item(key, col):
+    db.update({col:st.session_state[key+col]}, key)
 
 def display_recommendations():
 
@@ -61,19 +61,20 @@ def edit_recommendations():
     #     filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
     for item in items:
         col = "Rubrik"
-        key = item["key"] + "text input"
+        key = item["key"] + col
         st.text_input("Rubrik"
                     , value=item["Rubrik"]
                     , key=key
                     , on_change=modify_item
-                    , args=(item["key"], {col: st.session_state[key]},)
+                    , args=(item["key"], col,)
                     , label_visibility="visible")
         col = "Comment"
+        key = item["key"] + col
         st.text_area("Rekommendation"
                     , value=item["Comment"]
-                    , key=item["key"] + "text area"
+                    , key=key
                     , on_change=modify_item
-                    , args=(item["key"], {col: item[col]},)
+                    , args=(item["key"], col,)
                     , label_visibility="visible")
         st.markdown("---")
     
