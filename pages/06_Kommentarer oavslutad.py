@@ -3,6 +3,7 @@ from datetime import datetime, time
 from deta import Deta
 import string
 import random
+import time
 
 # Connect to Deta Base
 if "deta" not in st.session_state:
@@ -36,6 +37,7 @@ def modify_comment(key, comment):
 add_general = st.checkbox("Lägg till...")
 if add_general:
     add_comment()
+    time.sleep(0.5)
 
 items = db.fetch().items
 
