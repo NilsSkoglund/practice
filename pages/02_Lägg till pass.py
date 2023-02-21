@@ -62,7 +62,7 @@ def display_inlagda_pass():
         st.write(item)
 
     st.selectbox("Ta bort ett pass"
-                , options = lista_pass
+                , options = ["välj från listan för att ta bort ett pass"] + lista_pass
                 , key = "ta bort pass"
                 , on_change=remove_workout)
 
