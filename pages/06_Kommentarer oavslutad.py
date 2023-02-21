@@ -15,25 +15,25 @@ def fetch_from_db():
 
 # functions
 
-def add_comment_to_db(key, text_input, text_area):
-    db.put({"Rubrik":text_input, "Comment":text_area}, key)
+def add_comment_to_db(key, rubrik, text):
+    db.put({"Rubrik":rubrik, "Comment":text}, key)
 def add_comment():
 
     
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
     items = fetch_from_db()
     keys = [i["key"] for i in items]
-    if key in keys:
+    while key in keys:
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
 
     with st.form("My form"):
 
-        text_input = st.text_input("Rubrik")
-        text_area = st.text_area("Kommentar:")
+        rubrik = st.text_input("Rubrik")
+        text = st.text_area("Kommentar:")
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         if submitted:
-            add_comment_to_db(key, text_input, text_area)
+            add_comment_to_db(key, rubrik, text)
 
     
 
