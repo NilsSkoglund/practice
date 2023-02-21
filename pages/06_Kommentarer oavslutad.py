@@ -18,7 +18,7 @@ def add_comment_to_db(key,text_input):
 def add_comment():
 
     with st.form("My form"):
-        text_input = text_input("Rubrik")
+        text_input = st.text_input("Rubrik")
 
 
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
