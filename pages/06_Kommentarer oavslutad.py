@@ -36,8 +36,6 @@ def add_recommendation():
             rubrik = rubrik.strip().title()
             add_comment_to_db(key, rubrik, text)
 
-    
-
 def modify_comment(key, comment):
     db.update({"Comment":comment}, key)
 
@@ -58,6 +56,8 @@ def display_recommendations():
                         , args=(item["key"], item["Comment"],)
                         , label_visibility="collapsed")
 
+################################# Program #####################################
+
 vy = st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
@@ -65,6 +65,7 @@ vy = st.radio("Välj vy"
             
 
 if vy == "Redigeringsvy":
+    st.markdown("---")
 
     val_redigering = st.radio("Välj ..."
                             , ("Lägg till", "Redigera", "Ta bort")
@@ -79,9 +80,3 @@ if vy == "Redigeringsvy":
 
 elif vy == "Visningsvy":
     display_recommendations()
-
-
-#     meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
-#     skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
-
-# display_goals(välj_kvartal, välj_år)
