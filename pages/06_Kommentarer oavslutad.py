@@ -15,15 +15,6 @@ def add_comment():
 def modify_comment(key, comment):
     db.update({"Comment":comment}, key)
 
-
-
-temp_dct = {"Comment":""}
-try:
-    db.insert(temp_dct)
-except:
-    pass
-## Lägg till Kommentar
-    ## Text  area
 key_add_comment = "Lägg till kommentar"
 st.button(key_add_comment
             , key = f"{key_add_comment}"
