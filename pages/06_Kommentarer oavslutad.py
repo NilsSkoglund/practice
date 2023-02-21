@@ -12,18 +12,25 @@ db = st.session_state["deta"].Base(table)
 
 # functions
 
-def add_comment_to_db(key):
+def add_comment_to_db(key,text_input):
     val = st.session_state[key]
-    db.put({"Comment":val}, key)
+    db.put({"Rubrik":text_input, "Comment":val}, key)
 def add_comment():
-    key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
-    keys = [i["key"] for i in db.fetch().items]
-    while key in keys:
+
+    with st.form("My form"):
+        text_input = text_input("Rubrik")
+
+
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
-    text_area = st.text_area("Kommentar:"
-                            , key=key
-                            , on_change=add_comment_to_db
-                            , args=(key, ))
+        keys = [i["key"] for i in db.fetch().items]
+        while key in keys:
+            key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
+        text_area = st.text_area("Kommentar:"
+                                , key=key
+                                , on_change=add_comment_to_db
+                                , args=(key, text_input))
+        # Every form must have a submit button.
+        submitted = st.form_submit_button("Submit")
     
 
 def modify_comment(key, comment):
