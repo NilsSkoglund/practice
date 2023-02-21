@@ -63,9 +63,9 @@ vy = st.radio("Välj vy"
             , horizontal=True
             , label_visibility="collapsed")
             
+st.markdown("---")
 
 if vy == "Redigeringsvy":
-    st.markdown("---")
 
     val_redigering = st.radio("Välj ..."
                             , ("Lägg till", "Redigera", "Ta bort")
