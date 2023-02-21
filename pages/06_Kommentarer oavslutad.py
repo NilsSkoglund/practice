@@ -16,7 +16,7 @@ def add_comment_to_db(key, text_input, text_area):
     db.put({"Rubrik":text_input, "Comment":text_area}, key)
 def add_comment():
 
-    form = st.form("My form"):
+    form = st.form("My form")
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
     keys = [i["key"] for i in db.fetch().items]
     while key in keys:
