@@ -61,19 +61,21 @@ def edit_recommendations():
     #     filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
     for item in items:
         col = "Rubrik"
-        st.text_input("Some value"
+        st.text_input("Rubrik"
                     , value=item["Rubrik"]
                     , key=item["key"] + "text input"
                     , on_change=modify_item
                     , args=(item["key"], {col: item[col]},)
-                    , label_visibility="collapsed")
+                    , label_visibility="visible")
         col = "Comment"
-        st.text_area("Some value"
+        st.text_area("Rekommendation"
                     , value=item["Comment"]
                     , key=item["key"] + "text area"
                     , on_change=modify_item
                     , args=(item["key"], {col: item[col]},)
-                    , label_visibility="collapsed")
+                    , label_visibility="visible")
+    st.markdown("---")
+    
 
 ################################# Program #####################################
 
