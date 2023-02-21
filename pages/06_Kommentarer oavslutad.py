@@ -77,7 +77,25 @@ def edit_recommendations():
                     , args=(item["key"], col,)
                     , label_visibility="visible")
         st.markdown("---")
-    
+
+def remove_recommendations():
+    def remove_single_recommendation(key):
+        db.delete(key)
+
+    items = fetch_from_db()
+    rubriker = [item["Rubrik"] for item in items]
+    unika_rubriker = set(rubriker)
+
+    for rubrik in unika_rubriker:
+        st.subheader(rubrik)
+        filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
+        for item in filtered_items:
+            st.write(item["Comment"])
+            st.checkbox("Ta bort"
+                    , key=item["key"]
+                    , on_change=remove_single_recommendation
+                    , args=(item["key"], )
+                    , label_visibility="visible")
 
 ################################# Program #####################################
 
@@ -100,7 +118,8 @@ if vy == "Redigeringsvy":
         st.write("---")
         edit_recommendations()
     elif val_redigering == "Ta bort":
-        st.write("Ta bort...")
+        st.write("---")
+        remove_recommendations()
 
 elif vy == "Visningsvy":
     display_recommendations()
