@@ -74,7 +74,7 @@ def edit_recommendations():
                     , on_change=modify_item
                     , args=(item["key"], {col: item[col]},)
                     , label_visibility="visible")
-    st.markdown("---")
+        st.markdown("---")
     
 
 ################################# Program #####################################
