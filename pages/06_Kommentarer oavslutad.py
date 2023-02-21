@@ -26,7 +26,7 @@ def add_comment():
     text_area = form.text_area("Kommentar:")
     # Every form must have a submit button.
     form.form_submit_button("Submit"
-                        , on_change=add_comment_to_db
+                        , on_click=add_comment_to_db
                         , args=(key, text_input, text_area,))
     
 
