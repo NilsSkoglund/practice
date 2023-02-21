@@ -23,7 +23,7 @@ def add_comment():
     text_area = st.text_area("Kommentar:"
                             , key=key
                             , on_change=add_comment_to_db
-                            , args=(key))
+                            , args=(key, ))
     
 
 def modify_comment(key, comment):
