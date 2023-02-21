@@ -17,13 +17,12 @@ def add_comment_to_db(key, text_input, text_area):
 def add_comment():
 
     with st.form("My form"):
-        text_input = st.text_input("Rubrik")
-
-
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
         keys = [i["key"] for i in db.fetch().items]
         while key in keys:
             key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
+
+        text_input = st.text_input("Rubrik")
         text_area = st.text_area("Kommentar:")
         # Every form must have a submit button.
         st.form_submit_button("Submit"
