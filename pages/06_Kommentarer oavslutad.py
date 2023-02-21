@@ -1,58 +1,44 @@
 import streamlit as st
 from datetime import datetime, time
 from deta import Deta
+
+# Connect to Deta Base
+if "deta" not in st.session_state:
+    st.session_state["deta"] = Deta(st.secrets["deta_key"])
+table = "general"
+db = Deta(st.secrets["deta_key"]).Base(table)
+
 # functions
-# def add_comment(quarter):
-#     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-#     item = db.get(quarter)
-#     next_comment_no = len(item["Comments"]) + 1
+def add_comment():
+    db.put(st.session_state[key_add_comment])
 
-#     text = "Skriv din kommentar här."
-#     item["Comments"].update({f"Comment{next_comment_no}": text})
-#     db.put(item)
-
-# def modify_comment(comment, quarter):
-#     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-#     item = db.get(quarter)
-#     if st.session_state[comment] == "":
-#         del item["Comments"][comment]
-#     else:
-#         item["Comments"][comment] = st.session_state[comment]
-#     db.put(item)
+def modify_comment(key, comment):
+    db.update(comment, key)
 
 
 
-# # Connect to Deta Base with your Project Key
-# if "deta" not in st.session_state:
-#     st.session_state["deta"] = Deta(st.secrets["deta_key"])
+temp_dct = {"Comment":{}}
+try:
+    db.insert(temp_dct)
+except:
+    pass
+## Lägg till Kommentar
+    ## Text  area
+key_add_comment = "Lägg till kommentar"
+st.button(key_add_comment
+            , key = f"{key_add_comment}"
+            , on_click=add_comment)
 
+items = db.fetch().items
 
-# db = st.session_state["deta"].Base("Quarterly_goals")
-# ## Q1
-# quarter = "Q1"
-# temp_dct = {"Comments":{}, "Goals":{}}
-# try:
-#     db.insert(temp_dct, quarter)
-# except:
-#     pass
-# ## Lägg till Kommentar
-#     ## Text  area
-# key_add_comment = "Lägg till kommentar"
-# st.button(key_add_comment
-#             , key = f"{quarter}{key_add_comment}"
-#             , on_click=add_comment
-#             , args=(quarter,))
+for item in items:
+    st.text_area("comment"
+                , value=item["Comment"]
+                , key=item["key"]
+                , on_change=modify_comment
+                , args=(item["key"], item["Comment"])
+                , label_visibility="collapsed")
 
-# item = st.session_state["deta"].Base("Quarterly_goals").get(quarter)
-
-# for comment in item["Comments"].keys():
-#     st.text_area(comment
-#                 , value=item["Comments"][comment]
-#                 , key=comment
-#                 , on_change=modify_comment
-#                 , args=(comment, quarter)
-#                 , label_visibility="collapsed")
-
-# ## Lägg till mål
-#     ## Lägg till namn på mål
-#     ## Lägg till checkbox
+## Lägg till mål
+    ## Lägg till namn på mål
+    ## Lägg till checkbox
