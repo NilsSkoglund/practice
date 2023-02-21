@@ -26,7 +26,7 @@ def add_recommendation():
     while key in keys:
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
 
-    with st.form("My form"):
+    with st.form("My form", clear_on_submit=True):
 
         rubrik = st.text_input("Rubrik")
         text = st.text_area("Kommentar:")
