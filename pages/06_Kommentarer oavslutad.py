@@ -21,7 +21,7 @@ def add_comment():
 
     
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
-    items = fetch_from_db
+    items = fetch_from_db()
     keys = [i["key"] for i in items]
     if key in keys:
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
