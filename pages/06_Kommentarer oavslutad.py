@@ -17,7 +17,7 @@ def fetch_from_db():
 
 def add_comment_to_db(key, rubrik, text):
     db.put({"Rubrik":rubrik, "Comment":text}, key)
-def add_comment():
+def add_recommendation():
 
     
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
@@ -41,7 +41,7 @@ def add_comment():
 def modify_comment(key, comment):
     db.update({"Comment":comment}, key)
 
-def display_item():
+def display_recommendations():
 
     items = fetch_from_db()
     rubriker = [item["Rubrik"] for item in items]
@@ -58,12 +58,29 @@ def display_item():
                         , args=(item["key"], item["Comment"],)
                         , label_visibility="collapsed")
 
-add_general = st.checkbox("Lägg till...")
-if add_general:
-    add_comment()
+vy = st.radio("Välj vy"
+            , ("Visningsvy", "Redigeringsvy")
+            , horizontal=True
+            , label_visibility="collapsed")
+            
 
-display_item()
+if vy == "Redigeringsvy":
 
-## Lägg till mål
-    ## Lägg till namn på mål
-    ## Lägg till checkbox
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        skapa_rekommendation = st.checkbox("Lägg till rekommendation")
+        if skapa_rekommendation:
+            add_recommendation()
+    with col2:
+        redigera_rekommentation = st.checkbox("Redigera rekommendation")
+    with col3:
+        ta_bort_rekommendation_var = st.checkbox("Ta bort rekommendation")
+
+elif vy == "Visningsvy":
+    display_recommendations()
+
+#     meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
+#     skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
+
+# display_goals(välj_kvartal, välj_år)
