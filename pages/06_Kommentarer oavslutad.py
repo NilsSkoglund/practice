@@ -70,16 +70,17 @@ if vy == "Redigeringsvy":
                             , ("Lägg till", "Redigera", "Ta bort")
                             , horizontal=True
                             , label_visibility="collapsed")
+    if val_redigering == "Lägg till":
+        add_recommendation()
+    elif val_redigering == "Redigera":
+        st.write("Redigeringsalternativ...")
+    elif val_redigering == "Ta bort":
+        st.write("Ta bort...")
 
 elif vy == "Visningsvy":
     display_recommendations()
 
-if val_redigering == "Lägg till":
-    add_recommendation()
-elif val_redigering == "Redigera":
-    st.write("Redigeringsalternativ...")
-elif val_redigering == "Ta bort":
-    st.write("Ta bort...")
+
 #     meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
 #     skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
 
