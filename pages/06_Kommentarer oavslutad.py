@@ -27,7 +27,7 @@ def add_comment():
     
 
 def modify_comment(key, comment):
-    db.update(comment, key)
+    db.update({"Comment":comment}, key)
 
 key_add_comment = "Lägg till kommentar"
 st.button(key_add_comment
