@@ -14,7 +14,7 @@ db = st.session_state["deta"].Base(table)
 
 def add_comment_to_db(key):
     val = st.session_state[key]
-    db.put(val, key)
+    db.put({"Comment":val}, key)
 def add_comment():
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
     keys = [i["key"] for i in db.fetch().items]
