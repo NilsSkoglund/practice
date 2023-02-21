@@ -51,7 +51,7 @@ def display_item():
     items = fetch_from_db()
     rubriker = [item["Rubrik"] for item in items]
 
-    for rubrik in rubriker:
+    for rubrik in set(rubriker):
         st.subheader(rubrik)
         filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
         for item in filtered_items:
