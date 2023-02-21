@@ -70,8 +70,6 @@ if vy == "Redigeringsvy":
 
     with col1:
         skapa_rekommendation = st.checkbox("Lägg till rekommendation")
-        if skapa_rekommendation:
-            add_recommendation()
     with col2:
         redigera_rekommentation = st.checkbox("Redigera rekommendation")
     with col3:
@@ -80,6 +78,8 @@ if vy == "Redigeringsvy":
 elif vy == "Visningsvy":
     display_recommendations()
 
+if skapa_rekommendation:
+    add_recommendation()
 #     meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
 #     skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
 
