@@ -6,7 +6,7 @@ from deta import Deta
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 table = "general"
-db = Deta(st.secrets["deta_key"]).Base(table)
+db = st.session_state["deta"].Base(table)
 
 # functions
 def add_comment():
