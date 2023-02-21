@@ -10,6 +10,8 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 table = "general"
 db = st.session_state["deta"].Base(table)
+def fetch_from_db():
+    return db.fetch().items
 
 # functions
 
@@ -41,7 +43,7 @@ if add_general:
     add_comment()
     time.sleep(0.5)
 
-items = db.fetch().items
+items = fetch_from_db()
 
 for item in items:
     st.text_area("comment"
