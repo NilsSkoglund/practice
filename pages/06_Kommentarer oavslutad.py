@@ -89,7 +89,8 @@ def remove_recommendations():
 
     for rubrik in unika_rubriker:
         st.subheader(rubrik)
-        filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
+        filtered_items =\
+             list(filter(lambda item: item['Rubrik'] == rubrik, items))
         for item in filtered_items:
             st.write(item["Comment"])
             st.checkbox("Ta bort"
