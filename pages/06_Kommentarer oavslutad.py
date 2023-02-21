@@ -41,11 +41,6 @@ def add_comment():
 def modify_comment(key, comment):
     db.update({"Comment":comment}, key)
 
-add_general = st.checkbox("Lägg till...")
-if add_general:
-    add_comment()
-    time.sleep(0.5)
-
 def display_item():
 
     items = fetch_from_db()
@@ -62,6 +57,10 @@ def display_item():
                         , on_change=modify_comment
                         , args=(item["key"], item["Comment"],)
                         , label_visibility="collapsed")
+
+add_general = st.checkbox("Lägg till...")
+if add_general:
+    add_comment()
 
 display_item()
 
