@@ -13,7 +13,7 @@ def add_comment():
     db.put(st.session_state[key_add_comment])
 
 def modify_comment(key, comment):
-    db.update(comment, key)
+    db.update({"Comment":comment}, key)
 
 
 
