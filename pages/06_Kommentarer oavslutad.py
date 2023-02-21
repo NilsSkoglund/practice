@@ -66,20 +66,20 @@ vy = st.radio("Välj vy"
 
 if vy == "Redigeringsvy":
 
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        skapa_rekommendation = st.checkbox("Lägg till rekommendation")
-    with col2:
-        redigera_rekommentation = st.checkbox("Redigera rekommendation")
-    with col3:
-        ta_bort_rekommendation_var = st.checkbox("Ta bort rekommendation")
+    val_redigering = st.radio("Välj ..."
+                            , ("Lägg till", "Redigera", "Ta bort")
+                            , horizontal=True
+                            , label_visibility="collapsed")
 
 elif vy == "Visningsvy":
     display_recommendations()
 
-if skapa_rekommendation:
+if val_redigering == "Lägg till":
     add_recommendation()
+elif val_redigering == "Redigera":
+    st.write("Redigeringsalternativ...")
+elif val_redigering == "Ta bort":
+    st.write("Ta bort...")
 #     meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
 #     skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
 
