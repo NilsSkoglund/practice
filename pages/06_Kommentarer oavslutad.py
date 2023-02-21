@@ -21,8 +21,9 @@ def add_comment():
 
     
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
-    keys = [i["key"] for i in db.fetch().items]
-    while key in keys:
+    items = fetch_from_db
+    keys = [i["key"] for i in items]
+    if key in keys:
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
 
     with st.form("My form"):
@@ -34,7 +35,7 @@ def add_comment():
                             , on_click=add_comment_to_db
                             , args=(key, text_input, text_area,))
         if submitted:
-            st.write(key, text_input)
+            st.write(key, text_input, text_area)
 
     
 
