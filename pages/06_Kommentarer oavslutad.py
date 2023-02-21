@@ -17,18 +17,20 @@ def add_comment_to_db(key, text_input, text_area):
     db.put({"Rubrik":text_input, "Comment":text_area}, key)
 def add_comment():
 
-    form = st.form("My form")
+    
     key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
     keys = [i["key"] for i in db.fetch().items]
     while key in keys:
         key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
 
-    text_input = form.text_input("Rubrik")
-    text_area = form.text_area("Kommentar:")
-    # Every form must have a submit button.
-    form.form_submit_button("Submit"
-                        , on_click=add_comment_to_db
-                        , args=(key, text_input, text_area,))
+    with st.form("My form"):
+
+        text_input = st.text_input("Rubrik")
+        text_area = st.text_area("Kommentar:")
+        # Every form must have a submit button.
+        st.form_submit_button("Submit"
+                            , on_click=add_comment_to_db
+                            , args=(key, text_input, text_area,))
     
 
 def modify_comment(key, comment):
