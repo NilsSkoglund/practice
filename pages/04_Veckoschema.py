@@ -51,7 +51,7 @@ def display_note(item):
                     , on_change=update_db_weekly_note
                     , args=(item["key"]))
 
-def display_exercises(item):
+def display_exercises(item, day):
     for key in item[day].keys():                        
         st.markdown("---")
         st.subheader(key)
@@ -108,7 +108,7 @@ def display_items(db_items, display_weeks):
             for day in st.session_state["lista_veckodagar"]:
                 if len(item[day]) > 0:
                     with st.expander(day):
-                        display_exercises(item)
+                        display_exercises(item, day)
 
 db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
 db_items = sorted(db_items, key=lambda x: int(x["key"]))
