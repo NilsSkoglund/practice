@@ -135,6 +135,14 @@ def edit_goals(kvartal, år):
     items = db.fetch([{"kvartal": kvartal}, {"år": år}]).items
 
     for item in items:
+        col = "år"
+        key = item["key"] + col
+        st.number_input(col
+                    , value=item[col]
+                    , key=key
+                    , on_change=modify_item
+                    , args=(item["key"], col,)
+                    , label_visibility="visible")
         col = "namn"
         key = item["key"] + col
         st.text_input(col
