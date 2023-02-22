@@ -15,9 +15,6 @@ if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 db = st.session_state["deta"].Base("Veckoscheman")
 
-db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
-db_items = sorted(db_items, key=lambda x: int(x["key"]))
-
 def exercise_widgets_update_db(widget_str, week, day, workout):
     
     db_item = db.get(week)
@@ -103,21 +100,24 @@ def display_exercises(item):
                     , on_change = exercise_widgets_update_db
                     , args = ("Sluttid", item['key'], day, key))
 
+def display_items(db_items, display_weeks):
+    for item in db_items:
+        if item["key"] in display_weeks:
+            st.header(f"Vecka {item['key']}")
+            display_note(item)
+            for day in st.session_state["lista_veckodagar"]:
+                if len(item[day]) > 0:
+                    with st.expander(day):
+                        display_exercises(item)
 
+db_items = st.session_state["deta"].Base("Veckoscheman").fetch().items
+db_items = sorted(db_items, key=lambda x: int(x["key"]))
 
 weeks = [i["key"] for i in db_items]
+
 display_week_checkboxes(weeks)
 display_weeks = choose_weeks_to_display(weeks)
-
-
-for item in db_items:
-    if item["key"] in display_weeks:
-        st.header(f"Vecka {item['key']}")
-        display_note(item)
-        for day in st.session_state["lista_veckodagar"]:
-            if len(item[day]) > 0:
-                with st.expander(day):
-                    display_exercises(item)
+display_items(db_items, display_weeks)
 
                     
 
