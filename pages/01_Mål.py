@@ -147,12 +147,12 @@ def edit_goals(kvartal, år):
                     , label_visibility="visible")
         col = "kvartal"
         key = item["key"] + col
-        st.radio_button(col
-                    , options=("Q1", "Q2", "Q3", "Q4")
-                    , key=key
-                    , on_change=modify_item
-                    , args=(item["key"], col,)
-                    , label_visibility="visible")
+        st.radio(col
+                , options=("Q1", "Q2", "Q3", "Q4")
+                , key=key
+                , on_change=modify_item
+                , args=(item["key"], col,)
+                , label_visibility="visible")
         col = "datum"
         key = item["key"] + col
         year, month, day = get_goal_end_date(kvartal, år)
