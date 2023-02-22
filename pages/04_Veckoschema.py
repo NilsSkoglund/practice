@@ -51,7 +51,7 @@ for item in db_items:
     if item["key"] in display_weeks:
         st.header(f"Vecka {item['key']}")
         st.text_area("Allmänna noteringar om veckan"
-                    , value = "..."
+                    , value = item["note"]
                     , key = item["key"]+"note"
                     , on_change=update_db_weekly_note
                     , args=(item["key"]))
