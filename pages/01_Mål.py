@@ -124,7 +124,7 @@ def modify_item(key, col):
     db.update({col:st.session_state[key+col]}, key)
 
 def edit_goals(kvartal, år):
-    items = fetch_from_db([{"kvartal": kvartal}, {"år": år}])
+    items = db.fetch([{"kvartal": kvartal}, {"år": år}]).items
     # rubriker = [item["Rubrik"] for item in items]
     # unika_rubriker = set(rubriker)
 
