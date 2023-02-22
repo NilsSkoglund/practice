@@ -216,14 +216,15 @@ if vy == "Redigeringsvy":
                             , label_visibility="collapsed")
 
     if val_redigering == "Lägg till":
+        st.write("---")
         skapa_mål_func(välj_kvartal, välj_år)
     elif val_redigering == "Redigera":
+        st.write("---")
         edit_goals(välj_kvartal, välj_år)
     elif val_redigering == "Ta bort":
-        meny_ta_bort_mål(välj_kvartal, välj_år)
+        st.write("---")
+        meny_ta_bort_mål(välj_kvartal, välj_år)    
 
-    st.write("---")
-    
 elif vy == "Visningsvy":
     display_goals(välj_kvartal, välj_år)
 
