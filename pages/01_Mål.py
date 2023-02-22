@@ -179,6 +179,7 @@ with st.expander("Ändra år och kvartal"):
     välj_år = st.radio("Vilket år vill du se?"
                             , lista_år
                             , horizontal=True)
+    välj_år = int(välj_år)
 
     välj_kvartal = st.radio("Vilket kvartal vill du se?"
                             , ('Q1', 'Q2', 'Q3', 'Q4')
