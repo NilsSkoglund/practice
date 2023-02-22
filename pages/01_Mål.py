@@ -132,7 +132,9 @@ def modify_item(key, col):
         db.update(dct, key)
 
 def edit_goals(kvartal, år):
-    items = db.fetch([{"kvartal": kvartal}, {"år": år}]).items
+    items = db.fetch({"år": år}).items
+
+    items = list(filter(lambda item: item['kvartal'] == kvartal, items))
 
     for item in items:
         col = "år"
