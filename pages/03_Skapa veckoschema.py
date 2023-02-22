@@ -71,9 +71,6 @@ if "first_day_of_week" in st.session_state:
     
 
 
-st.subheader(f"Vecka: {week_from_input}")
-
-list_week_days()
 
 db = st.session_state["deta"].Base("workouts")
 st.session_state["workouts"] = [i["key"] for i in db.fetch().items]
@@ -102,7 +99,9 @@ def remove_workout_from_schedule(week, day, workout):
     del item[day][workout]
     db.put(item)
 
+st.subheader(f"Vecka: {week_from_input}")
 
+list_week_days()
 
 for day in st.session_state["lista_veckodagar"]:
 
