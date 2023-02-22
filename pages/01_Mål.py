@@ -10,6 +10,13 @@ if "current_date" not in st.session_state:
     st.session_state["current_quarter"] =\
          (st.session_state["current_month"]-1)//3
 
+# Connect to Deta Base
+if "deta" not in st.session_state:
+    st.session_state["deta"] = Deta(st.secrets["deta_key"])
+table = "Quarterly_goals"
+db = st.session_state["deta"].Base(table)
+def fetch_from_db():
+    return db.fetch().items
 
 ################################ functions ####################################
 def add_goal_to_db(dct):
@@ -113,6 +120,36 @@ def meny_ta_bort_mål(kvartal, år):
                         , on_change = ta_bort_mål
                         , args = (item["key"], ))
 
+def modify_item(key, col):
+    db.update({col:st.session_state[key+col]}, key)
+
+def edit_goals(kvartal, år):
+    items = fetch_from_db([{"kvartal": kvartal}, {"år": år}])
+    # rubriker = [item["Rubrik"] for item in items]
+    # unika_rubriker = set(rubriker)
+
+    # for rubrik in unika_rubriker:
+    #     st.subheader(rubrik)
+    #     filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
+    for item in items:
+        col = "namn"
+        key = item["key"] + col
+        st.text_input(col
+                    , value=item[col]
+                    , key=key
+                    , on_change=modify_item
+                    , args=(item["key"], col,)
+                    , label_visibility="visible")
+        # col = "Comment"
+        # key = item["key"] + col
+        # st.text_area("Rekommendation"
+        #             , value=item["Comment"]
+        #             , key=key
+        #             , on_change=modify_item
+        #             , args=(item["key"], col,)
+        #             , label_visibility="visible")
+        st.markdown("---")
+
 ################################# Program #####################################
 
 with st.expander("Ändra år och kvartal"):
@@ -146,6 +183,7 @@ if vy == "Redigeringsvy":
     elif val_redigering == "Redigera":
         st.write("---")
         st.write("redigera")
+        edit_goals(välj_kvartal, välj_år)
     elif val_redigering == "Ta bort":
         st.write("---")
         meny_ta_bort_mål(välj_kvartal, välj_år)
