@@ -31,7 +31,7 @@ def add_recommendation():
         rubrik = st.text_input("Rubrik")
         text = st.text_area("Kommentar:")
         # Every form must have a submit button.
-        submitted = st.form_submit_button("Submit")
+        submitted = st.form_submit_button("Lägg till rekommendation")
         if submitted:
             rubrik = rubrik.strip().title()
             add_comment_to_db(key, rubrik, text)
