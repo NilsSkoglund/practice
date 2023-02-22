@@ -121,20 +121,32 @@ def meny_ta_bort_mål(kvartal, år):
                         , args = (item["key"], ))
 
 def modify_item(key, col):
-    db.update({col:st.session_state[key+col]}, key)
+    if col == "datum":
+        col == st.session_state[key+col]
+        dct = {"datum": {"år": col.year
+                            , "månad":col.month
+                            , "dag":col.day}}
+        db.update(dct, key)
+    else:
+        dct = {col:st.session_state[key+col]}
+        db.update(dct, key)
 
 def edit_goals(kvartal, år):
     items = db.fetch([{"kvartal": kvartal}, {"år": år}]).items
-    # rubriker = [item["Rubrik"] for item in items]
-    # unika_rubriker = set(rubriker)
 
-    # for rubrik in unika_rubriker:
-    #     st.subheader(rubrik)
-    #     filtered_items = list(filter(lambda person: person['Rubrik'] == rubrik, items))
     for item in items:
         col = "namn"
         key = item["key"] + col
         st.text_input(col
+                    , value=item[col]
+                    , key=key
+                    , on_change=modify_item
+                    , args=(item["key"], col,)
+                    , label_visibility="visible")
+        
+        col = "datum"
+        key = item["key"] + col
+        st.date_input(col
                     , value=item[col]
                     , key=key
                     , on_change=modify_item
