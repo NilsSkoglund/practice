@@ -58,7 +58,7 @@ if "first_day_of_week" in st.session_state:
     week_from_input = st.session_state["week_from_input"]
     db_name = "Veckoscheman"
 
-    dct_temp = {}
+    dct_temp = {"note":""}
 
     for day in st.session_state["lista_veckodagar"]:
         dct_temp[day] = {}
