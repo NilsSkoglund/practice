@@ -145,15 +145,14 @@ def edit_goals(kvartal, år):
                     , on_change=modify_item
                     , args=(item["key"], col,)
                     , label_visibility="visible")
-        col = "namn"
+        col = "kvartal"
         key = item["key"] + col
-        st.text_input(col
-                    , value=item[col]
+        st.radio_button(col
+                    , options=("Q1", "Q2", "Q3", "Q4")
                     , key=key
                     , on_change=modify_item
                     , args=(item["key"], col,)
                     , label_visibility="visible")
-        
         col = "datum"
         key = item["key"] + col
         year, month, day = get_goal_end_date(kvartal, år)
@@ -163,6 +162,17 @@ def edit_goals(kvartal, år):
                     , on_change=modify_item
                     , args=(item["key"], col,)
                     , label_visibility="visible")
+
+        text_input_cols = ["namn", "beskrivning", "noteringar"]
+        for col in text_input_cols:
+            key = item["key"] + col
+            st.text_input(col
+                        , value=item[col]
+                        , key=key
+                        , on_change=modify_item
+                        , args=(item["key"], col,)
+                        , label_visibility="visible")
+        
         # col = "Comment"
         # key = item["key"] + col
         # st.text_area("Rekommendation"
