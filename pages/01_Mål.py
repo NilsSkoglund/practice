@@ -184,8 +184,6 @@ def edit_goals(kvartal, år):
                         , args=(item["key"], col,)
                         , label_visibility="visible")
 
-            #st.markdown("---")
-
 ################################# Program #####################################
 
 with st.expander("Ändra år och kvartal"):
@@ -208,6 +206,7 @@ vy = st.radio("Välj vy"
             , horizontal=True
             , label_visibility="collapsed")
             
+st.markdown("---")
 
 if vy == "Redigeringsvy":
 
@@ -224,16 +223,6 @@ if vy == "Redigeringsvy":
     elif val_redigering == "Ta bort":
         st.write("---")
         meny_ta_bort_mål(välj_kvartal, välj_år)
-
-    # col1, col2 = st.columns(2)
-
-    # with col1:
-    #     skapa_mål = st.checkbox("Lägg till ett nytt mål")
-    # with col2:
-    #     ta_bort_mål_var = st.checkbox("Ta bort mål")
-
-    # meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
-    # skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
 
 elif vy == "Visningsvy":
     display_goals(välj_kvartal, välj_år)
