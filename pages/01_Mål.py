@@ -35,32 +35,31 @@ def get_goal_end_date(kvartal, år):
         return år, 12, 31
 
 
-def skapa_mål_func(skapa_mål, kvartal, år):
+def skapa_mål_func(kvartal, år):
 
-    if skapa_mål:
-        with st.form("my_form", clear_on_submit=True):
-            st.subheader("Skapa mål")
-            namn = st.text_input("Namn på målet")
-            beskrivning = st.text_input("Beskriv ditt mål")
-            year, month, day = get_goal_end_date(kvartal, år)
-            datum = st.date_input(
-                "När ska målet vara uppnåt?",
-                datetime(year, month, day))
-            noteringar = st.text_area("Övriga anteckningar")
+    with st.form("my_form", clear_on_submit=True):
+        st.subheader("Skapa mål")
+        namn = st.text_input("Namn på målet")
+        beskrivning = st.text_input("Beskriv ditt mål")
+        year, month, day = get_goal_end_date(kvartal, år)
+        datum = st.date_input(
+            "När ska målet vara uppnåt?",
+            datetime(year, month, day))
+        noteringar = st.text_area("Övriga anteckningar")
 
-            submitted = st.form_submit_button("Skapa mål")
+        submitted = st.form_submit_button("Skapa mål")
 
-            if submitted:
-                temp_dct = {"år": år
-                            , "kvartal":kvartal
-                            , "namn":namn
-                            , "beskrivning":beskrivning
-                            , "datum": {"år": datum.year
-                                , "månad":datum.month
-                                , "dag":datum.day}
-                            , "noteringar":noteringar
-                            , "uppnått": False}
-                add_goal_to_db(temp_dct)            
+        if submitted:
+            temp_dct = {"år": år
+                        , "kvartal":kvartal
+                        , "namn":namn
+                        , "beskrivning":beskrivning
+                        , "datum": {"år": datum.year
+                            , "månad":datum.month
+                            , "dag":datum.day}
+                        , "noteringar":noteringar
+                        , "uppnått": False}
+            add_goal_to_db(temp_dct)            
 
 def goal_reached_update_db(item, key):
     item["uppnått"] = st.session_state[key]
@@ -101,19 +100,18 @@ def ta_bort_mål(key):
     db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
     db.delete(key)
 
-def meny_ta_bort_mål(ta_bort, kvartal, år):
-    if ta_bort:
-        db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
-        items = db.fetch({"år": år, "kvartal":kvartal}).items
+def meny_ta_bort_mål(kvartal, år):
+    db = Deta(st.secrets["deta_key"]).Base("Quarterly_goals")
+    items = db.fetch({"år": år, "kvartal":kvartal}).items
 
-        display = "Tryck i checkbox för att ta bort målet"
-        with st.expander(display, expanded = True):
+    display = "Tryck i checkbox för att ta bort målet"
+    with st.expander(display, expanded = True):
 
-            for item in items:                
-                st.checkbox(item['namn']
-                            , key = item["key"]
-                            , on_change = ta_bort_mål
-                            , args = (item["key"], ))
+        for item in items:                
+            st.checkbox(item['namn']
+                        , key = item["key"]
+                        , on_change = ta_bort_mål
+                        , args = (item["key"], ))
 
 ################################# Program #####################################
 
@@ -139,17 +137,31 @@ vy = st.radio("Välj vy"
 
 if vy == "Redigeringsvy":
 
-    col1, col2 = st.columns(2)
+    val_redigering = st.radio("Välj ..."
+                            , ("Lägg till", "Redigera", "Ta bort")
+                            , horizontal=True
+                            , label_visibility="collapsed")
+    if val_redigering == "Lägg till":
+        skapa_mål_func(välj_kvartal, välj_år)
+    elif val_redigering == "Redigera":
+        st.write("---")
+        st.write("redigera")
+    elif val_redigering == "Ta bort":
+        st.write("---")
+        meny_ta_bort_mål(välj_kvartal, välj_år)
 
-    with col1:
-        skapa_mål = st.checkbox("Lägg till ett nytt mål")
-    with col2:
-        ta_bort_mål_var = st.checkbox("Ta bort mål")
+    # col1, col2 = st.columns(2)
 
-    meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
-    skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
+    # with col1:
+    #     skapa_mål = st.checkbox("Lägg till ett nytt mål")
+    # with col2:
+    #     ta_bort_mål_var = st.checkbox("Ta bort mål")
 
-display_goals(välj_kvartal, välj_år)
+    # meny_ta_bort_mål(ta_bort_mål_var, välj_kvartal, välj_år)
+    # skapa_mål_func(skapa_mål, välj_kvartal, välj_år)
+
+elif vy == "Visningsvy":
+    display_goals(välj_kvartal, välj_år)
 
 
 
