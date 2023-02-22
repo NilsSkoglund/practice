@@ -209,19 +209,18 @@ vy = st.radio("Välj vy"
 st.markdown("---")
 
 if vy == "Redigeringsvy":
+    st.write("---")
 
     val_redigering = st.radio("Välj ..."
                             , ("Lägg till", "Redigera", "Ta bort")
                             , horizontal=True
                             , label_visibility="collapsed")
+                            
     if val_redigering == "Lägg till":
         skapa_mål_func(välj_kvartal, välj_år)
     elif val_redigering == "Redigera":
-        st.write("---")
-        st.write("redigera")
         edit_goals(välj_kvartal, välj_år)
     elif val_redigering == "Ta bort":
-        st.write("---")
         meny_ta_bort_mål(välj_kvartal, välj_år)
 
 elif vy == "Visningsvy":
