@@ -117,6 +117,7 @@ if vy == "Redigeringsvy":
                             , horizontal=True
                             , label_visibility="collapsed")
     if val_redigering == "Lägg till":
+        st.write("---")
         add_recommendation()
     elif val_redigering == "Redigera":
         st.write("---")
