@@ -152,6 +152,7 @@ def edit_goals(kvartal, år):
                 , key=key
                 , on_change=modify_item
                 , args=(item["key"], col,)
+                , horizontal=True
                 , label_visibility="visible")
         col = "datum"
         key = item["key"] + col
@@ -163,7 +164,7 @@ def edit_goals(kvartal, år):
                     , args=(item["key"], col,)
                     , label_visibility="visible")
 
-        text_input_cols = ["namn", "beskrivning", "noteringar"]
+        text_input_cols = ["namn", "beskrivning"]
         for col in text_input_cols:
             key = item["key"] + col
             st.text_input(col
@@ -172,15 +173,16 @@ def edit_goals(kvartal, år):
                         , on_change=modify_item
                         , args=(item["key"], col,)
                         , label_visibility="visible")
-        
-        # col = "Comment"
-        # key = item["key"] + col
-        # st.text_area("Rekommendation"
-        #             , value=item["Comment"]
-        #             , key=key
-        #             , on_change=modify_item
-        #             , args=(item["key"], col,)
-        #             , label_visibility="visible")
+
+        col = "noteringar"
+        key = item["key"] + col
+        st.text_area(col
+                    , value=item[col]
+                    , key=key
+                    , on_change=modify_item
+                    , args=(item["key"], col,)
+                    , label_visibility="visible")
+
         st.markdown("---")
 
 ################################# Program #####################################
