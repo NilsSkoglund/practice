@@ -2,6 +2,15 @@ import streamlit as st
 from datetime import datetime, time
 from deta import Deta
 # Connect to Deta Base with your Project Key
+st.session_state["lista_veckodagar"] = [
+    "måndag"
+    , "tisdag"
+    , "onsdag"
+    , "torsdag"
+    , "fredag"
+    , "lördag"
+    , "söndag"
+]
 if "deta" not in st.session_state:
     st.session_state["deta"] = Deta(st.secrets["deta_key"])
 
