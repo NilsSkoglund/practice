@@ -146,8 +146,9 @@ def edit_goals(kvartal, år):
         
         col = "datum"
         key = item["key"] + col
+        year, month, day = get_goal_end_date(kvartal, år)
         st.date_input(col
-                    , value=item[col]
+                    , value=datetime(year, month, day)
                     , key=key
                     , on_change=modify_item
                     , args=(item["key"], col,)
