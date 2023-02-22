@@ -19,12 +19,12 @@ def add_comment_to_db(key, rubrik, text):
     db.put({"Rubrik":rubrik, "Comment":text}, key)
 def add_recommendation():
 
-    
-    key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
+    ascii = string.ascii_uppercase
+    key = "".join([random.choice(ascii) for i in range(16)])
     items = fetch_from_db()
     keys = [i["key"] for i in items]
     while key in keys:
-        key = "".join([random.choice(string.ascii_uppercase) for i in range(16)])
+        key = "".join([random.choice(ascii) for i in range(16)])
 
     with st.form("My form", clear_on_submit=True):
 
