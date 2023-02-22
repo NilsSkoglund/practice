@@ -137,53 +137,54 @@ def edit_goals(kvartal, år):
     items = list(filter(lambda item: item['kvartal'] == kvartal, items))
 
     for item in items:
-        col = "år"
-        key = item["key"] + col
-        st.number_input(col
-                    , value=item[col]
-                    , key=key
-                    , on_change=modify_item
-                    , args=(item["key"], col,)
-                    , label_visibility="visible")
-        col = "kvartal"
-        key = item["key"] + col
-        st.radio(col
-                , options=("Q1", "Q2", "Q3", "Q4")
-                , key=key
-                , on_change=modify_item
-                , args=(item["key"], col,)
-                , horizontal=True
-                , label_visibility="visible")
-        col = "datum"
-        key = item["key"] + col
-        year, month, day = get_goal_end_date(kvartal, år)
-        st.date_input(col
-                    , value=datetime(year, month, day)
-                    , key=key
-                    , on_change=modify_item
-                    , args=(item["key"], col,)
-                    , label_visibility="visible")
-
-        text_input_cols = ["namn", "beskrivning"]
-        for col in text_input_cols:
+        with st.expander(item["namn"]):
+            col = "år"
             key = item["key"] + col
-            st.text_input(col
+            st.number_input(col
+                        , value=item[col]
+                        , key=key
+                        , on_change=modify_item
+                        , args=(item["key"], col,)
+                        , label_visibility="visible")
+            col = "kvartal"
+            key = item["key"] + col
+            st.radio(col
+                    , options=("Q1", "Q2", "Q3", "Q4")
+                    , key=key
+                    , on_change=modify_item
+                    , args=(item["key"], col,)
+                    , horizontal=True
+                    , label_visibility="visible")
+            col = "datum"
+            key = item["key"] + col
+            year, month, day = get_goal_end_date(kvartal, år)
+            st.date_input(col
+                        , value=datetime(year, month, day)
+                        , key=key
+                        , on_change=modify_item
+                        , args=(item["key"], col,)
+                        , label_visibility="visible")
+
+            text_input_cols = ["namn", "beskrivning"]
+            for col in text_input_cols:
+                key = item["key"] + col
+                st.text_input(col
+                            , value=item[col]
+                            , key=key
+                            , on_change=modify_item
+                            , args=(item["key"], col,)
+                            , label_visibility="visible")
+
+            col = "noteringar"
+            key = item["key"] + col
+            st.text_area(col
                         , value=item[col]
                         , key=key
                         , on_change=modify_item
                         , args=(item["key"], col,)
                         , label_visibility="visible")
 
-        col = "noteringar"
-        key = item["key"] + col
-        st.text_area(col
-                    , value=item[col]
-                    , key=key
-                    , on_change=modify_item
-                    , args=(item["key"], col,)
-                    , label_visibility="visible")
-
-        st.markdown("---")
+            #st.markdown("---")
 
 ################################# Program #####################################
 
