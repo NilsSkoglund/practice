@@ -30,10 +30,10 @@ def add_exercise():
     # if key already exist, insert throws an error
     try:
         st.session_state["db"].insert(temp_dct
-        , key = st.session_state["workout name"])
+            , key = st.session_state["workout name"])
 
         text_from_db = st.session_state["db"]\
-        .get(st.session_state["workout name"])
+            .get(st.session_state["workout name"])
    
         st.session_state["no_of_exercises"] =\
             len(text_from_db["Övningar"].keys())
