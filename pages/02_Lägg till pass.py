@@ -32,7 +32,7 @@ def add_exercise():
         st.session_state["db"].insert(temp_dct
         , key = st.session_state["workout name"])
     except:
-        pass
+        st.info("Namn upptaget")
 
     text_from_db = st.session_state["db"]\
         .get(st.session_state["workout name"])
