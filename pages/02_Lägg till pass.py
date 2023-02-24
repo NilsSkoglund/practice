@@ -90,7 +90,7 @@ st.session_state["checked workout name"] = ""
 
 
 if st.session_state["workout name"]:
-    if check_if_key_exits() and not already_checked():
+    if check_if_key_exits() and already_checked() == False:
         st.info("Name already exists")
     else:
         st.session_state["checked workout name"] =\
