@@ -62,9 +62,10 @@ def display_inlagda_pass():
         st.write(item)
 
     st.selectbox("Ta bort ett pass"
-                , options = ["välj från listan för att ta bort ett pass"] + lista_pass
+                , options = ["Väl pass att ta bort"] + lista_pass
                 , key = "ta bort pass"
-                , on_change=remove_workout)
+                , on_change=remove_workout
+                , label_visibility="collapsed")
 
 ################################## Program ####################################
 
