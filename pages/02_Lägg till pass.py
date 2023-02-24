@@ -86,7 +86,8 @@ st.header("Lägg till pass")
 st.text_input("Ange namnet på passet du vill lägga till"
             , key = "workout name")
 
-st.session_state["checked workout name"] = ""
+if "checked workout name" not in st.session_state:
+    st.session_state["checked workout name"] = ""
 
 
 if st.session_state["workout name"]:
