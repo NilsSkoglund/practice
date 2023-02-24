@@ -76,17 +76,29 @@ def check_if_key_exits():
     else:
         return False
 
+def already_checked():
+    return st.session_state["checked workout name"] ==\
+         st.session_state["workout name"]
+
 ################################## Program ####################################
 
 st.header("Lägg till pass")
 st.text_input("Ange namnet på passet du vill lägga till"
             , key = "workout name")
 
+st.session_state["checked workout name"] = ""
+
+
 if st.session_state["workout name"]:
-    if check_if_key_exits():
+    if check_if_key_exits() and not already_checked():
         st.info("Name already exists")
     else:
+        st.session_state["checked workout name"] =\
+            st.session_state["workout name"]
+    
+    
         add_workout()
+
 
 # st.checkbox("Visa alla inlagda pass"
 #             , key = "Visa inlagda pass")
