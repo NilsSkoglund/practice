@@ -31,7 +31,10 @@ def add_exercise():
     try:
         st.session_state["db"].insert(temp_dct
         , key = st.session_state["workout name"])
-        
+
+        text_from_db = st.session_state["db"]\
+        .get(st.session_state["workout name"])
+   
         st.session_state["no_of_exercises"] =\
             len(text_from_db["Övningar"].keys())
 
@@ -41,13 +44,13 @@ def add_exercise():
         st.text_input("Lägg till övning"
                     , on_change=update_workouts_db
                     , key=st.session_state["next_exercise"])  
+
+        st.write(text_from_db)
+
     except:
         st.info("Namn upptaget")
 
-    text_from_db = st.session_state["db"]\
-        .get(st.session_state["workout name"])
-   
-    st.write(text_from_db)
+    
 
 def remove_workout():
     st.session_state["db"].delete(st.session_state["ta bort pass"])
