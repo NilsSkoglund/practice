@@ -47,7 +47,8 @@ def add_exercise():
     except:
         st.info("Namn upptaget")
 
-        
+    text_from_db = st.session_state["db"]\
+        .get(st.session_state["workout name"])
    
     st.write(text_from_db)
 
