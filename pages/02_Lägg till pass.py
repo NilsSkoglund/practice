@@ -26,6 +26,9 @@ def update_workouts_db():
 
 
 def add_exercise():
+    temp_dct = {"Övningar":{}}
+    st.session_state["db"].put(temp_dct
+            , key = st.session_state["workout name"])
 
     text_from_db = st.session_state["db"]\
         .get(st.session_state["workout name"])
@@ -44,15 +47,6 @@ def add_exercise():
 
 
 def add_workout():
-    
-    # if key already exist, insert throws an error
-    try:
-        temp_dct = {"Övningar":{}}
-        st.session_state["db"].insert(temp_dct
-                , key = st.session_state["workout name"])
-
-    except:
-        return st.info("Namn upptaget")
 
     add_exercise()
 
@@ -76,6 +70,12 @@ def display_inlagda_pass():
                 , on_change=remove_workout
                 , label_visibility="collapsed")
 
+def check_if_key_exits():
+    if st.session_state["db"].get(st.session_state["workout name"]):
+        return True
+    else:
+        return False
+
 ################################## Program ####################################
 
 st.header("Lägg till pass")
@@ -83,7 +83,10 @@ st.text_input("Ange namnet på passet du vill lägga till"
             , key = "workout name")
 
 if st.session_state["workout name"]:
-    add_workout()
+    if check_if_key_exits():
+        st.info("Name already exists")
+    else:
+        add_workout()
 
 # st.checkbox("Visa alla inlagda pass"
 #             , key = "Visa inlagda pass")
