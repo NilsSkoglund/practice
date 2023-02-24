@@ -76,8 +76,8 @@ st.text_input("Ange namnet på passet du vill lägga till"
 if st.session_state["workout name"]:
     add_exercise()
 
-st.checkbox("Visa alla inlagda pass"
-            , key = "Visa inlagda pass")
+# st.checkbox("Visa alla inlagda pass"
+#             , key = "Visa inlagda pass")
 
-if st.session_state["Visa inlagda pass"]:
-    display_inlagda_pass()
+# if st.session_state["Visa inlagda pass"]:
+#     display_inlagda_pass()
