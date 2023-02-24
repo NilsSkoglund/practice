@@ -52,7 +52,7 @@ def add_workout():
                 , key = st.session_state["workout name"])
 
     except:
-        st.info("Namn upptaget")
+        return st.info("Namn upptaget")
 
     add_exercise()
 
