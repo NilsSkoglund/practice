@@ -26,9 +26,6 @@ def update_workouts_db():
 
 
 def add_exercise():
-    temp_dct = {"Övningar":{}}
-    st.session_state["db"].insert(temp_dct
-                , key = st.session_state["workout name"])
 
     text_from_db = st.session_state["db"]\
         .get(st.session_state["workout name"])
@@ -50,10 +47,14 @@ def add_workout():
     
     # if key already exist, insert throws an error
     try:
-        add_exercise()
+        temp_dct = {"Övningar":{}}
+        st.session_state["db"].insert(temp_dct
+                , key = st.session_state["workout name"])
 
     except:
         st.info("Namn upptaget")
+
+    add_exercise()
 
     
 
