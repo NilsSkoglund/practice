@@ -226,16 +226,13 @@ st.write(f"Veckonummer: {current_week}")
 choice = options_menu()
 
 if choice == "show":
-    st.write("show")
     weeks = select_weeks()
     
     display_week(db.fetch().items, weeks)
 
 if choice == "add/edit":
-    st.write("add/edit")
     add_weekly_schedule()
 
 if choice == "remove":
-    st.write("remove")
     menu_remove_workout()
 
