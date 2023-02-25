@@ -52,8 +52,12 @@ def display_workouts(options):
     filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
     for w in filtered_w:
         with st.expander(w["Namn"]):
+            st.write("**Övningar**")
             st.markdown(w["Övningar"])
-            st.markdown(w["Tidsåtgång (minuter)"])
+
+            st.markdown(f"**Tidsåtgång** {w['Tidsåtgång (minuter)']}")
+
+            st.write("**Anteckningar**")
             st.markdown(w["Anteckningar"])
 
 
