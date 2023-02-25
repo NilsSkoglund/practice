@@ -153,12 +153,40 @@ def add_weekly_schedule():
     loop_days(chosen_week)
 
 # choice == "show"
-def select_exercises():
+def select_weeks():
     weeks = [item["key"] for item in db.fetch().items]
     options = st.multiselect("Välj pass att visa"
                              , weeks
                              , default=[current_weak])
     return options
+
+def exercise_widgets_update_db(widget_str, week, day, workout):
+    db_item = db.get(week)
+    db_item[day][workout][widget_str] =\
+            st.session_state[f"{widget_str}{week}{day}{workout}"]
+
+def display_exercises(item, day):
+    for key in item[day].keys():                        
+        st.markdown("---")
+        st.subheader(key)
+        current_item = item[day][key]
+        genomfört = current_item["Genomfört"]
+        genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
+        st.checkbox("Genomfört pass"
+                , value = genomfört
+                , key = genomfört_string
+                , on_change = exercise_widgets_update_db
+                , args=("Genomfört", item['key'], day, key))
+
+def display_week(db_items, weeks):
+    for item in db_items:
+        if item["key"] in weeks:
+            st.header(f"Vecka {item['key']}")
+            #display_note(item)
+            for day in lista_veckodagar:
+                if len(item[day]) > 0:
+                    with st.expander(day):
+                        display_exercises(item, day)
 
 ################################## Program ####################################
 st.subheader(f"Dagens datum: {datetime.now().date()}")
@@ -168,9 +196,9 @@ choice = options_menu()
 
 if choice == "show":
     st.write("show")
-    options = select_exercises()
-    for i in options:
-        st.write(type(i))
+    weeks = select_weeks()
+    
+    display_week(db.fetch().items, weeks)
 
 if choice == "add/edit":
     st.write("add/edit")
