@@ -36,10 +36,8 @@ def workout_form(name):
         if submitted:
             update_db(name, exercises)
 
-def add_workout():
-    workout_added, name = workout_name()
-    if workout_added:
-        workout_form(name)
+def add_workout(name):
+    workout_form(name)
 
 ################################## Program ####################################
 
@@ -48,4 +46,6 @@ choice = helper_funcs.options_menu()
 st.write(choice)
 
 if choice == "add":
-    add_workout()
+    workout_added, name = workout_name()
+    if workout_added:
+        add_workout(name)
