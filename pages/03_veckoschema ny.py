@@ -156,7 +156,8 @@ def add_weekly_schedule():
 def select_exercises():
     weeks = [item["key"] for item in db.fetch().items]
     options = st.multiselect("Välj pass att visa"
-                             , weeks)
+                             , weeks
+                             , default=current_weak)
     return options
 
 ################################## Program ####################################
