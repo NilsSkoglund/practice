@@ -108,6 +108,19 @@ def edit_workout(options):
                           , args=(key, col, )
             )
 
+def remove_workout(key):
+    db.delete(key)
+
+def menu_remove_workout():
+    items = db.fetch().items
+    display = "Tryck i checkbox för att ta bort målet"
+    with st.expander(display, expanded = True):
+        for item in items:                
+            st.checkbox(item['Namn']
+                        , key = item["key"]
+                        , on_change = remove_workout
+                        , args = (item["key"], ))
+
 ################################## Program ####################################
 
 choice = helper_funcs.options_menu()
@@ -125,3 +138,6 @@ if choice == "edit":
     options = select_exercises()
     st.write("---")
     edit_workout(options)
+
+if choice == "remove":
+    menu_remove_workout()
