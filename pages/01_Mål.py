@@ -201,6 +201,8 @@ with st.expander("Ändra år och kvartal"):
                             
 st.header(f"{välj_kvartal} - {välj_år}")
 
+vy = ""
+
 vy = st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
@@ -210,7 +212,7 @@ st.markdown("---")
 
 st.write(vy)
 
-if not vy:
+if vy == "":
     pass
 
 elif vy == "Visningsvy":
