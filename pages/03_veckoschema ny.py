@@ -167,7 +167,7 @@ choice = options_menu()
 
 if choice == "show":
     st.write("show")
-    options = select_exercises
+    options = select_exercises()
     for i in options:
         st.write(i)
 
