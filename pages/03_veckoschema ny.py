@@ -75,7 +75,7 @@ def add_weekly_schedule():
 st.subheader(f"Dagens datum: {datetime.now().date()}")
 st.write(f"Veckonummer: {current_weak}")
 
-choice = helper_funcs.options_menu()
+choice = options_menu()
 
 if choice == "show":
     st.write("show")
