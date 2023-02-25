@@ -14,13 +14,14 @@ db = st.session_state["deta"].Base(table)
 
 ################################# Functions ###################################
 def workout_name():
-    name = st.text_input("Ange namn på pass")
     workout_added = False
-    try:
-        db.insert(name)
-        workout_added = True
-    except:
-        st.info("Namn finns redan. Välj ett annat namn.")
+    name = st.text_input("Ange namn på pass")
+    if name:
+        try:
+            db.insert(name)
+            workout_added = True
+        except:
+            st.info("Namn finns redan. Välj ett annat namn.")
     return workout_added, name
 
 def update_db(name, exercises):
