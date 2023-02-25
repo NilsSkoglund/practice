@@ -18,7 +18,8 @@ def workout_name():
     name = st.text_input("Ange namn på pass")
     if name:
         try:
-            db.insert(name)
+            dct = {"Övningar":""}
+            db.insert(dct, name)
             workout_added = True
         except:
             st.info("Namn finns redan. Välj ett annat namn.")
