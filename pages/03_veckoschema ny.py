@@ -11,7 +11,7 @@ if "deta" not in st.session_state:
 table = "weekly_schedule"
 db = st.session_state["deta"].Base(table)
 
-current_weak = datetime.now().date().isocalendar().week
+current_weak = str(datetime.now().date().isocalendar().week)
 
 lista_veckodagar = [
     "måndag"
@@ -157,7 +157,7 @@ def select_exercises():
     weeks = [item["key"] for item in db.fetch().items]
     options = st.multiselect("Välj pass att visa"
                              , weeks
-                             , default=current_weak)
+                             , default=[current_weak])
     return options
 
 ################################## Program ####################################
