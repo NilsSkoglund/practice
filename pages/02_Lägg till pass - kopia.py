@@ -42,7 +42,7 @@ def add_workout():
     workout_form()
 
 def select_exercises():
-    exercise_names = [item["Name"] for item in db.fetch().items]
+    exercise_names = [item["Namn"] for item in db.fetch().items]
     options = st.multiselect("Välj pass att visa"
                              , exercise_names)
     return options
