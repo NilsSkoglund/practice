@@ -125,8 +125,6 @@ def menu_remove_workout():
 
 choice = helper_funcs.options_menu()
 
-st.write(choice)
-
 if choice == "show":
     options = select_exercises()
     display_workouts(options)
