@@ -74,7 +74,31 @@ def edit_workout(options):
         key = w["key"]
         with st.expander(w["Namn"]):
             col = "Namn"
-            st.text_input("Namn"
+            st.text_input(col
+                          , value=w[col]
+                          , key = key+col
+                          , on_change=edit_workout_db
+                          , args=(key, col, )
+            )
+
+            col = "Övningar"
+            st.text_input(col
+                          , value=w[col]
+                          , key = key+col
+                          , on_change=edit_workout_db
+                          , args=(key, col, )
+            )
+
+            col = "Tidsåtgång (minuter)"
+            st.number_input(col
+                          , value=w[col]
+                          , key = key+col
+                          , on_change=edit_workout_db
+                          , args=(key, col, )
+            )
+
+            col = "Anteckningar"
+            st.number_input(col
                           , value=w[col]
                           , key = key+col
                           , on_change=edit_workout_db
