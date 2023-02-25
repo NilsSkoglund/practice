@@ -14,18 +14,29 @@ db = st.session_state["deta"].Base(table)
 
 ################################# Functions ###################################
 
-def update_db(name, exercises, key):
-    dct = {"Namn":name, "Övningar": exercises}
+def update_db(key, name, exercises, time, notes):
+    dct = {"Namn":name
+           , "Övningar": exercises
+           , "Tidsåtgång (minuter)": time
+           , "Anteckningar": notes
+           }
     db.put(dct, key)
 
 def workout_form():
-    with st.form("my form"):
+    with st.form("my form", clear_on_submit=True):
         key = helper_funcs.generate_key(db)
         name = st.text_input("Ange namn på pass")
         exercises = st.text_area("Lägg in övningar")
+        time = st.number_input("Uppskattad tidsåtgång (minuter)")
+        notes = st.text_area("Allmänna anteckningar")
         submitted = st.form_submit_button("Skapa pass")
         if submitted:
-            update_db(name, exercises, key)
+            update_db(key
+                      , name
+                      , exercises
+                      , time
+                      , notes
+                      )
 
 def add_workout():
     workout_form()
