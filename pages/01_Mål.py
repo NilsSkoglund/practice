@@ -221,13 +221,13 @@ if st.session_state["vy_mål"] == "Redigeringsvy":
             , label_visibility="collapsed"
             , key = "val_redigering_mål")
 
-    if st.session_sate["val_redigering_mål"] == "Lägg till":
+    if st.session_state["val_redigering_mål"] == "Lägg till":
         st.write("---")
         skapa_mål_func(välj_kvartal, välj_år)
-    elif st.session_sate["val_redigering_mål"] == "Redigera":
+    elif st.session_state["val_redigering_mål"] == "Redigera":
         st.write("---")
         edit_goals(välj_kvartal, välj_år)
-    elif st.session_sate["val_redigering_mål"] == "Ta bort":
+    elif st.session_state["val_redigering_mål"] == "Ta bort":
         st.write("---")
         meny_ta_bort_mål(välj_kvartal, välj_år)    
 
