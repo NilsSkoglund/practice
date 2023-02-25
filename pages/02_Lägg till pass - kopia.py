@@ -15,7 +15,7 @@ db = st.session_state["deta"].Base(table)
 ################################# Functions ###################################
 def workout_name():
     workout_added = False
-    name = st.text_input("Ange namn på pass")
+    name = st.text_input("Ange namn på pass", "")
     if name:
         try:
             dct = {"Övningar":""}
