@@ -24,6 +24,7 @@ def add_workout_db(key, name, exercises, time, notes):
 
 def add_workout():
     with st.form("my form", clear_on_submit=True):
+        st.subheader("Skapa pass")
         key = helper_funcs.generate_key(db)
         name = st.text_input("Ange namn på pass")
         exercises = st.text_area("Lägg in övningar")
