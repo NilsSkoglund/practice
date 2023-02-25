@@ -127,6 +127,7 @@ choice = helper_funcs.options_menu()
 
 if choice == "show":
     options = select_exercises()
+    st.write("---")
     display_workouts(options)
 
 if choice == "add":

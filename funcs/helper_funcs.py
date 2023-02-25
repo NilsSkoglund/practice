@@ -34,12 +34,14 @@ def generate_key(db):
     ''' 
     Requires a deta base "table" as argument
     Generate a random key used in db and in session state
-    Makes sure that key doesn't already exist in passed db 
+    Makes sure that the key doesn't already exist in table 
     '''
-    ascii = string.ascii_uppercase
-    key = "".join([random.choice(ascii) for i in range(16)])
-
+    def randomize_key():
+        ascii = string.ascii_uppercase
+        return "".join([random.choice(ascii) for i in range(16)])
+    
+    key = randomize_key()
     items = db.fetch().items
     keys = [i["key"] for i in items]
     while key in keys:
-        key = "".join([random.choice(ascii) for i in range(16)])
+        key = randomize_key()
