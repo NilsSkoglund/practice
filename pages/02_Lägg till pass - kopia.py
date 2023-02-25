@@ -73,7 +73,7 @@ def edit_workout(options):
     for w in filtered_w:
         key = w["key"]
         with st.expander(w["Namn"]):
-            col = w["Namn"]
+            col = "Namn"
             st.text_input("Namn"
                           , value=col
                           , key = key+col
@@ -96,4 +96,5 @@ if choice == "add":
 
 if choice == "edit":
     options = select_exercises()
+    st.write("---")
     edit_workout(options)
