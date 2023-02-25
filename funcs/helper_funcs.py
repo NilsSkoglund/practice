@@ -1,4 +1,6 @@
 import streamlit as st
+import string
+import random
 
 def options_menu():
     vy = st.radio("Välj vy"
@@ -27,3 +29,17 @@ def options_menu():
 
     elif vy == "Visningsvy":
         return "show"
+    
+def generate_key(db):
+    ''' 
+    Requires a deta base "table" as argument
+    Generate a random key used in db and in session state
+    Makes sure that key doesn't already exist in passed db 
+    '''
+    ascii = string.ascii_uppercase
+    key = "".join([random.choice(ascii) for i in range(16)])
+
+    items = db.fetch().items
+    keys = [i["key"] for i in items]
+    while key in keys:
+        key = "".join([random.choice(ascii) for i in range(16)])
