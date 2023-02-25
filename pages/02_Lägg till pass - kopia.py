@@ -82,7 +82,7 @@ def edit_workout(options):
             )
 
             col = "Övningar"
-            st.text_input(col
+            st.text_area(col
                           , value=w[col]
                           , key = key+col
                           , on_change=edit_workout_db
@@ -98,7 +98,7 @@ def edit_workout(options):
             )
 
             col = "Anteckningar"
-            st.text_input(col
+            st.text_area(col
                           , value=w[col]
                           , key = key+col
                           , on_change=edit_workout_db
