@@ -47,6 +47,12 @@ def select_exercises():
                              , exercise_names)
     return options
 
+def display_workouts(options):
+    workouts = db.fetch({"Name":options})
+    for w in workouts:
+        with st.expander(w["Namn"]):
+            st.markdown(w["Övningar"])
+
 ################################## Program ####################################
 
 choice = helper_funcs.options_menu()
@@ -58,5 +64,4 @@ if choice == "add":
 
 if choice == "show":
     options = select_exercises()
-    for i in options:
-        st.write(i)
+    display_workouts(options)
