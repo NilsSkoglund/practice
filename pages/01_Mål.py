@@ -208,6 +208,9 @@ vy = st.radio("Välj vy"
             
 st.markdown("---")
 
+if vy == "Visningsvy":
+    display_goals(välj_kvartal, välj_år)
+
 if vy == "Redigeringsvy":
 
     val_redigering = st.radio("Välj ..."
@@ -225,8 +228,6 @@ if vy == "Redigeringsvy":
         st.write("---")
         meny_ta_bort_mål(välj_kvartal, välj_år)    
 
-elif vy == "Visningsvy":
-    display_goals(välj_kvartal, välj_år)
 
 
 
