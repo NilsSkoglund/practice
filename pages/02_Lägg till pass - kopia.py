@@ -1,9 +1,9 @@
 import streamlit as st
 from datetime import datetime
 from deta import Deta
-from funcs import test
+from funcs import helper_funcs
 
-test.hej()
+helper_funcs.options_menu()
 
 ############################### Session state #################################
 if "deta" not in st.session_state:

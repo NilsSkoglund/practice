@@ -1,26 +1,26 @@
-vy = st.radio("Välj vy"
+import streamlit as st
+
+def options_menu():
+    vy = st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
             , label_visibility="collapsed")
             
-st.markdown("---")
+    st.markdown("---")
 
-if vy == "Redigeringsvy":
+    if vy == "Redigeringsvy":
 
-    val_redigering = st.radio("Välj ..."
-                            , ("Lägg till", "Redigera", "Ta bort")
-                            , horizontal=True
-                            , label_visibility="collapsed")
+        val_redigering = st.radio("Välj ..."
+                                , ("Lägg till", "Redigera", "Ta bort")
+                                , horizontal=True
+                                , label_visibility="collapsed")
 
-    if val_redigering == "Lägg till":
-        st.write("---")
-        skapa_mål_func(välj_kvartal, välj_år)
-    elif val_redigering == "Redigera":
-        st.write("---")
-        edit_goals(välj_kvartal, välj_år)
-    elif val_redigering == "Ta bort":
-        st.write("---")
-        meny_ta_bort_mål(välj_kvartal, välj_år)    
+        if val_redigering == "Lägg till":
+            st.write("---")
+        elif val_redigering == "Redigera":
+            st.write("---")
+        elif val_redigering == "Ta bort":
+            st.write("---")   
 
-elif vy == "Visningsvy":
-    display_goals(välj_kvartal, välj_år)
+    elif vy == "Visningsvy":
+        st.write("visningsvy")
