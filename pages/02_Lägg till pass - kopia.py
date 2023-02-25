@@ -55,7 +55,8 @@ def display_workouts(options):
             st.write("**Övningar**")
             st.markdown(w["Övningar"])
 
-            st.markdown(f"**Tidsåtgång** {w['Tidsåtgång (minuter)']}")
+            st.markdown(f"**Uppskattad tidsåtgång**")
+            st.markdown(f"{w['Tidsåtgång (minuter)']} min")
 
             st.write("**Anteckningar**")
             st.markdown(w["Anteckningar"])
