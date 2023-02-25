@@ -211,7 +211,7 @@ def remove_workout(key):
 
 def menu_remove_workout():
     items = db.fetch().items
-    display = "Tryck i checkbox för att ta bort målet"
+    display = "Tryck i checkbox för att ta bort veckoschema"
     with st.expander(display, expanded = True):
         for item in items:                
             st.checkbox(f"Vecka: {item['key']}"
