@@ -201,24 +201,19 @@ with st.expander("Ändra år och kvartal"):
                             
 st.header(f"{välj_kvartal} - {välj_år}")
 
-vy = ""
-
-vy = st.radio("Välj vy"
+vy_mål = st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
             , label_visibility="collapsed")
             
 st.markdown("---")
 
-st.write(vy)
+st.write(vy_mål)
 
-if vy == "":
-    pass
-
-elif vy == "Visningsvy":
+if vy_mål == "Visningsvy":
     display_goals(välj_kvartal, välj_år)
 
-else:
+if vy_mål == "Redigeringsvy":
 
     val_redigering = st.radio("Välj ..."
                             , ("Lägg till", "Redigera", "Ta bort")
