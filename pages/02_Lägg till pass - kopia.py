@@ -48,10 +48,14 @@ def select_exercises():
     return options
 
 def display_workouts(options):
-    workouts = db.fetch({"Name":options})
-    for w in workouts:
+    workouts = db.fetch().items
+    filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
+    for w in filtered_w:
         with st.expander(w["Namn"]):
             st.markdown(w["Övningar"])
+            st.markdown(w["Tidsåtgång (minuter)"])
+            st.markdown(w["Anteckningar"])
+
 
 ################################## Program ####################################
 
