@@ -11,7 +11,7 @@ if "deta" not in st.session_state:
 table = "weekly_schedule"
 db = st.session_state["deta"].Base(table)
 
-current_weak = str(datetime.now().date().isocalendar().week)
+current_week = str(datetime.now().date().isocalendar().week)
 
 lista_veckodagar = [
     "måndag"
@@ -154,17 +154,17 @@ def add_weekly_schedule():
     list_days()
     loop_days(chosen_week)
 
-
-# choice == "remove"
-
-
-
 # choice == "show"
 def select_weeks():
     weeks = [item["key"] for item in db.fetch().items]
-    options = st.multiselect("Välj pass att visa"
+    
+    if current_week in weeks:
+        options = st.multiselect("Välj pass att visa"
                              , weeks
-                             , default=[current_weak])
+                             , default=[current_week])
+    else:
+        options = st.multiselect("Välj pass att visa"
+                             , weeks)
     return options
 
 def exercise_widgets_update_db(widget_str, week, day, workout):
@@ -221,7 +221,7 @@ def menu_remove_workout():
 
 ################################## Program ####################################
 st.subheader(f"Dagens datum: {datetime.now().date()}")
-st.write(f"Veckonummer: {current_weak}")
+st.write(f"Veckonummer: {current_week}")
 
 choice = options_menu()
 
