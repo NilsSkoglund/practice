@@ -68,8 +68,40 @@ def choose_week():
     
     return week_from_input
 
+def insert_weekly_schedule_db(chosen_week):
+    '''
+        Create a new entry for chosen week in db
+        Insert will throw an error if week already exists in db
+    '''
+    dct_temp = {"note":""}
+    for day in lista_veckodagar:
+        dct_temp[day] = {}
+    try:
+        db.insert(dct_temp, key = f"{chosen_week}")
+    except:
+        pass
+
+def list_days():    
+    col1, col2 = st.columns(2)
+
+    stop_index = 4
+    with col1:
+        for day in lista_veckodagar[:stop_index]:
+            st.checkbox(
+                f"Lägg till pass {day}"
+                , key=day
+            )
+    with col2:
+        for day in lista_veckodagar[stop_index:]:
+            st.checkbox(
+                f"Lägg till pass {day}"
+                , key=day
+            )
+
 def add_weekly_schedule():
     chosen_week = choose_week()
+    insert_weekly_schedule_db(chosen_week)
+    list_days()
 
 ################################## Program ####################################
 st.subheader(f"Dagens datum: {datetime.now().date()}")
