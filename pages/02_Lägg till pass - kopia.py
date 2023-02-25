@@ -27,7 +27,7 @@ def workout_form():
         key = helper_funcs.generate_key(db)
         name = st.text_input("Ange namn på pass")
         exercises = st.text_area("Lägg in övningar")
-        time = st.number_input("Uppskattad tidsåtgång (minuter)", 30)
+        time = st.number_input("Uppskattad tidsåtgång (minuter)", value=30)
         notes = st.text_area("Allmänna anteckningar")
         submitted = st.form_submit_button("Skapa pass")
         if submitted:
