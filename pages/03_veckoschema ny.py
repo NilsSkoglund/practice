@@ -56,6 +56,8 @@ def options_menu():
 
     elif vy == "Visningsvy":
         return "show"
+    
+# choice == "add/edit"
 
 def choose_week():
     st.date_input(
@@ -152,6 +154,11 @@ def add_weekly_schedule():
     list_days()
     loop_days(chosen_week)
 
+
+# choice == "remove"
+
+
+
 # choice == "show"
 def select_weeks():
     weeks = [item["key"] for item in db.fetch().items]
@@ -169,7 +176,7 @@ def display_exercises(item, day):
     for key in item[day].keys():                        
         st.markdown("---")
         st.subheader(key)
-        
+
         current_item = item[day][key]
 
         genomfört = current_item["Genomfört"]
@@ -198,6 +205,20 @@ def display_week(db_items, weeks):
                     with st.expander(day):
                         display_exercises(item, day)
 
+# choice == "remove"
+def remove_workout(key):
+    db.delete(key)
+
+def menu_remove_workout():
+    items = db.fetch().items
+    display = "Tryck i checkbox för att ta bort målet"
+    with st.expander(display, expanded = True):
+        for item in items:                
+            st.checkbox(f"Vecka: {item['key']}"
+                        , key = item["key"]
+                        , on_change = remove_workout
+                        , args = (item["key"], ))
+
 ################################## Program ####################################
 st.subheader(f"Dagens datum: {datetime.now().date()}")
 st.write(f"Veckonummer: {current_weak}")
@@ -216,3 +237,5 @@ if choice == "add/edit":
 
 if choice == "remove":
     st.write("remove")
+    menu_remove_workout()
+
