@@ -150,7 +150,7 @@ def loop_days(chosen_week):
 def add_weekly_schedule():
     chosen_week = choose_week()
     insert_weekly_schedule_db(chosen_week)
-    st.subheader(f"Vecka: {chosen_week}")
+    st.subheader(f"Vecka {chosen_week}")
     list_days()
     loop_days(chosen_week)
 
