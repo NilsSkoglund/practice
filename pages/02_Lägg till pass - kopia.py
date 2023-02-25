@@ -67,7 +67,7 @@ def edit_workout_db(key, col):
 
 
 
-def edit_workout():
+def edit_workout(options):
     workouts = db.fetch().items
     filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
     for w in filtered_w:
