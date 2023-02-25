@@ -77,6 +77,8 @@ def edit_workout(options):
             st.text_input(col
                           , value=w[col]
                           , key = key+col
+                          , help = "Om du byter namn behöver du välja\
+                            det nya namnet från dropdown-menyn"
                           , on_change=edit_workout_db
                           , args=(key, col, )
             )
