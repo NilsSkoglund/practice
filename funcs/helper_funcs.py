@@ -26,5 +26,4 @@ def options_menu():
             return "remove"
 
     elif vy == "Visningsvy":
-        st.write("visningsvy")
         return "show"
