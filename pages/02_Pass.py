@@ -50,7 +50,7 @@ def display_workouts(options):
     workouts = db.fetch().items
     filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
     for w in filtered_w:
-        with st.expander(w["Namn"]):
+        with st.expander(w["Namn"], expanded=True):
             st.write("**Övningar**")
             st.markdown(w["Övningar"])
             st.write("")
@@ -74,7 +74,7 @@ def edit_workout(options):
     filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
     for w in filtered_w:
         key = w["key"]
-        with st.expander(w["Namn"]):
+        with st.expander(w["Namn"], expanded=True):
             col = "Namn"
             st.text_input(col
                           , value=w[col]
