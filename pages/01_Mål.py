@@ -210,8 +210,10 @@ st.markdown("---")
 
 st.write(vy)
 
+if not vy:
+    pass
 
-if vy == "Visningsvy":
+elif vy == "Visningsvy":
     display_goals(välj_kvartal, välj_år)
 
 else:
