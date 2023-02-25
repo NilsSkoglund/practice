@@ -152,6 +152,13 @@ def add_weekly_schedule():
     list_days()
     loop_days(chosen_week)
 
+# choice == "show"
+def select_exercises():
+    weeks = [item["key"] for item in db.fetch().items]
+    options = st.multiselect("Välj pass att visa"
+                             , weeks)
+    return options
+
 ################################## Program ####################################
 st.subheader(f"Dagens datum: {datetime.now().date()}")
 st.write(f"Veckonummer: {current_weak}")
@@ -160,6 +167,9 @@ choice = options_menu()
 
 if choice == "show":
     st.write("show")
+    options = select_exercises
+    for i in options:
+        st.write(i)
 
 if choice == "add/edit":
     st.write("add/edit")
