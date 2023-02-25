@@ -101,17 +101,15 @@ def list_days():
             )
 
 def add_workout_to_weekly_schedule(day, week):
-    
-    db_res = db.get(f"{week}")    
-
-    pass_namn =  st.session_state[f"selectbox_{day}"]
-
-    temp_dct = {"Genomfört": False
-            , "Kommentar": ""}
-
-    db_res[day].update({pass_namn: temp_dct})
-
-    db.put(db_res)
+    if st.session_state[f"selectbox_{day}"] != "Välj pass":
+        db_res = db.get(f"{week}")    
+        pass_namn =  st.session_state[f"selectbox_{day}"]
+        temp_dct = {"Genomfört": False
+                , "Kommentar": ""}
+        db_res[day].update({pass_namn: temp_dct})
+        db.put(db_res)
+    else:
+        pass
 
 def remove_workout_from_schedule(week, day, workout):
     item = db.get(week)
@@ -124,7 +122,7 @@ def loop_days(chosen_week):
         if st.session_state[day]:
             with st.expander(day):
                 st.selectbox(""
-                    , options = workouts
+                    , options = ["Välj pass"] + workouts
                     , key = f"selectbox_{day}"
                     , on_change = add_workout_to_weekly_schedule
                     , args = (day, chosen_week, )
