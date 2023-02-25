@@ -14,7 +14,7 @@ db = st.session_state["deta"].Base(table)
 
 ################################# Functions ###################################
 
-def update_db(key, name, exercises, time, notes):
+def add_workout_db(key, name, exercises, time, notes):
     dct = {"Namn":name
            , "Övningar": exercises
            , "Tidsåtgång (minuter)": time
@@ -22,7 +22,7 @@ def update_db(key, name, exercises, time, notes):
            }
     db.put(dct, key)
 
-def workout_form():
+def add_workout():
     with st.form("my form", clear_on_submit=True):
         key = helper_funcs.generate_key(db)
         name = st.text_input("Ange namn på pass")
@@ -31,15 +31,13 @@ def workout_form():
         notes = st.text_area("Allmänna anteckningar")
         submitted = st.form_submit_button("Skapa pass")
         if submitted:
-            update_db(key
+            add_workout_db(key
                       , name
                       , exercises
                       , time
                       , notes
                       )
 
-def add_workout():
-    workout_form()
 
 def select_exercises():
     exercise_names = [item["Namn"] for item in db.fetch().items]
@@ -61,6 +59,27 @@ def display_workouts(options):
             st.write("**Anteckningar**")
             st.markdown(w["Anteckningar"])
 
+def edit_workout_db(key, col):
+    new_val = st.session_state[key+col]
+    dct = {col: new_val}
+    db.update(dct, key)
+
+
+
+
+def edit_workout():
+    workouts = db.fetch().items
+    filtered_w = list(filter(lambda x: x['Namn'] in options, workouts))
+    for w in filtered_w:
+        key = w["key"]
+        with st.expander(w["Namn"]):
+            col = w["Namn"]
+            st.text_input("Namn"
+                          , value=col
+                          , key = key+col
+                          , on_change=edit_workout_db
+                          , args=(key, col, )
+            )
 
 ################################## Program ####################################
 
@@ -68,9 +87,13 @@ choice = helper_funcs.options_menu()
 
 st.write(choice)
 
-if choice == "add":
-    add_workout()
-
 if choice == "show":
     options = select_exercises()
     display_workouts(options)
+
+if choice == "add":
+    add_workout()
+
+if choice == "edit":
+    options = select_exercises()
+    edit_workout(options)
