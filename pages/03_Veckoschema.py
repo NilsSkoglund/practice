@@ -159,11 +159,11 @@ def select_weeks():
     weeks = [item["key"] for item in db.fetch().items]
     
     if current_week in weeks:
-        options = st.multiselect("Välj pass att visa"
+        options = st.multiselect("Välj vecka att visa"
                              , weeks
                              , default=[current_week])
     else:
-        options = st.multiselect("Välj pass att visa"
+        options = st.multiselect("Välj vecka att visa"
                              , weeks)
     return options
 
