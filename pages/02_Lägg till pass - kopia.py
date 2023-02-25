@@ -41,6 +41,12 @@ def workout_form():
 def add_workout():
     workout_form()
 
+def select_exercises():
+    exercise_names = [item["Name"] for item in db.fetch().items]
+    options = st.multiselect("Välj pass att visa"
+                             , exercise_names)
+    return options
+
 ################################## Program ####################################
 
 choice = helper_funcs.options_menu()
@@ -49,3 +55,8 @@ st.write(choice)
 
 if choice == "add":
     add_workout()
+
+if choice == "show":
+    options = select_exercises()
+    for i in options:
+        st.write(i)
