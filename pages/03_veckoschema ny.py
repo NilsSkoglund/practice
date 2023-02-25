@@ -169,7 +169,7 @@ if choice == "show":
     st.write("show")
     options = select_exercises()
     for i in options:
-        st.write(i)
+        st.write(type(i))
 
 if choice == "add/edit":
     st.write("add/edit")
