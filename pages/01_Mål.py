@@ -208,6 +208,8 @@ vy = st.radio("Välj vy"
             
 st.markdown("---")
 
+st.write(vy)
+
 
 if vy == "Visningsvy":
     display_goals(välj_kvartal, välj_år)
