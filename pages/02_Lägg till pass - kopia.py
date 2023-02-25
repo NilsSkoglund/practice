@@ -75,7 +75,7 @@ def edit_workout(options):
         with st.expander(w["Namn"]):
             col = "Namn"
             st.text_input("Namn"
-                          , value=col
+                          , value=w[col]
                           , key = key+col
                           , on_change=edit_workout_db
                           , args=(key, col, )
