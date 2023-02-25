@@ -3,7 +3,9 @@ from datetime import datetime
 from deta import Deta
 from funcs import helper_funcs
 
-helper_funcs.options_menu()
+choice = helper_funcs.options_menu()
+
+st.write(choice)
 
 ############################### Session state #################################
 if "deta" not in st.session_state:

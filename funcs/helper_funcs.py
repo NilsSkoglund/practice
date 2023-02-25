@@ -17,10 +17,14 @@ def options_menu():
 
         if val_redigering == "Lägg till":
             st.write("---")
+            return "add"
         elif val_redigering == "Redigera":
             st.write("---")
+            return "edit"
         elif val_redigering == "Ta bort":
-            st.write("---")   
+            st.write("---")  
+            return "remove"
 
     elif vy == "Visningsvy":
         st.write("visningsvy")
+        return "show"
