@@ -169,7 +169,9 @@ def display_exercises(item, day):
     for key in item[day].keys():                        
         st.markdown("---")
         st.subheader(key)
+        
         current_item = item[day][key]
+
         genomfört = current_item["Genomfört"]
         genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
         st.checkbox("Genomfört pass"
@@ -177,6 +179,14 @@ def display_exercises(item, day):
                 , key = genomfört_string
                 , on_change = exercise_widgets_update_db
                 , args=("Genomfört", item['key'], day, key))
+        
+        kommentar = current_item["Kommentar"]
+        kommentar_string = f"Kommentar{item['key']}{day}{key}"
+        st.text_area("Kommentar"
+                    , value = kommentar
+                    , key = kommentar_string
+                    , on_change = exercise_widgets_update_db
+                    , args = ("Kommentar", item['key'], day, key))
 
 def display_week(db_items, weeks):
     for item in db_items:
