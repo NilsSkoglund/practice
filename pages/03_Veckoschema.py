@@ -26,36 +26,56 @@ db_workouts = st.session_state["deta"].Base("workouts_new")
 workouts = [i["Namn"] for i in db_workouts.fetch().items]
 
 ################################# Functions ###################################
-def options_menu():
-    '''
-    Options menu for weekly schedule.
-    Differs from other options menu...
-    ... since add and edit are bundled together
-    '''
-    vy = st.radio("Välj vy"
-            , ("Visningsvy", "Redigeringsvy")
-            , horizontal=True
-            , label_visibility="collapsed")
-            
-    st.markdown("---")
 
-    if vy == "Redigeringsvy":
+# choice == "show"
+def select_weeks():
+    weeks = [item["key"] for item in db.fetch().items]
+    
+    if current_week in weeks:
+        options = st.multiselect("Välj vecka att visa"
+                             , weeks
+                             , default=[current_week])
+    else:
+        options = st.multiselect("Välj vecka att visa"
+                             , weeks)
+    return options
 
-        val_redigering = st.radio("Välj ..."
-                                , ("Lägg till/Redigera",  "Ta bort")
-                                , horizontal=True
-                                , label_visibility="collapsed")
+def exercise_widgets_update_db(widget_str, week, day, workout):
+    db_item = db.get(week)
+    db_item[day][workout][widget_str] =\
+            st.session_state[f"{widget_str}{week}{day}{workout}"]
 
-        if val_redigering == "Lägg till/Redigera":
-            st.write("---")
-            return "add/edit"
+def display_exercises(item, day):
+    for key in item[day].keys():                        
+        st.markdown("---")
+        st.subheader(key)
+
+        current_item = item[day][key]
+
+        genomfört = current_item["Genomfört"]
+        genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
+        st.checkbox("Genomfört pass"
+                , value = genomfört
+                , key = genomfört_string
+                , on_change = exercise_widgets_update_db
+                , args=("Genomfört", item['key'], day, key))
         
-        elif val_redigering == "Ta bort":
-            st.write("---")  
-            return "remove"
+        kommentar = current_item["Kommentar"]
+        kommentar_string = f"Kommentar{item['key']}{day}{key}"
+        st.text_area("Kommentar"
+                    , value = kommentar
+                    , key = kommentar_string
+                    , on_change = exercise_widgets_update_db
+                    , args = ("Kommentar", item['key'], day, key))
 
-    elif vy == "Visningsvy":
-        return "show"
+def display_week(db_items, weeks):
+    for item in db_items:
+        if item["key"] in weeks:
+            st.header(f"Vecka {item['key']}")
+            for day in lista_veckodagar:
+                if len(item[day]) > 0:
+                    with st.expander(day):
+                        display_exercises(item, day)
     
 # choice == "add/edit"
 
@@ -132,7 +152,6 @@ def loop_days(chosen_week):
                 )
 
                 week_dct = db.get(chosen_week)
-                #st.markdown(f"**{day}**")
                 if len(week_dct[day].keys()) == 0:
                     st.markdown("- Inget pass inlagt")
                 else:
@@ -153,58 +172,8 @@ def add_weekly_schedule():
     list_days()
     loop_days(chosen_week)
 
-# choice == "show"
-def select_weeks():
-    weeks = [item["key"] for item in db.fetch().items]
-    
-    if current_week in weeks:
-        options = st.multiselect("Välj vecka att visa"
-                             , weeks
-                             , default=[current_week])
-    else:
-        options = st.multiselect("Välj vecka att visa"
-                             , weeks)
-    return options
-
-def exercise_widgets_update_db(widget_str, week, day, workout):
-    db_item = db.get(week)
-    db_item[day][workout][widget_str] =\
-            st.session_state[f"{widget_str}{week}{day}{workout}"]
-
-def display_exercises(item, day):
-    for key in item[day].keys():                        
-        st.markdown("---")
-        st.subheader(key)
-
-        current_item = item[day][key]
-
-        genomfört = current_item["Genomfört"]
-        genomfört_string = f"Genomfört{item['key']}{day}{key}"                    
-        st.checkbox("Genomfört pass"
-                , value = genomfört
-                , key = genomfört_string
-                , on_change = exercise_widgets_update_db
-                , args=("Genomfört", item['key'], day, key))
-        
-        kommentar = current_item["Kommentar"]
-        kommentar_string = f"Kommentar{item['key']}{day}{key}"
-        st.text_area("Kommentar"
-                    , value = kommentar
-                    , key = kommentar_string
-                    , on_change = exercise_widgets_update_db
-                    , args = ("Kommentar", item['key'], day, key))
-
-def display_week(db_items, weeks):
-    for item in db_items:
-        if item["key"] in weeks:
-            st.header(f"Vecka {item['key']}")
-            #display_note(item)
-            for day in lista_veckodagar:
-                if len(item[day]) > 0:
-                    with st.expander(day):
-                        display_exercises(item, day)
-
 # choice == "remove"
+
 def remove_workout(key):
     db.delete(key)
 
@@ -219,10 +188,10 @@ def menu_remove_workout():
                         , args = (item["key"], ))
 
 ################################## Program ####################################
+
 st.subheader(f"Dagens datum: {datetime.now().date()}")
 st.write(f"Veckonummer: {current_week}")
 
-# choice = options_menu()
 page = "veckoschema"
 choice = helper_funcs.options_menu_dev(page)
 
