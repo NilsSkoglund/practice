@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime, time
 from deta import Deta
+from funcs import helper_funcs
 ############################## Sessuin State ###################################
 if "current_date" not in st.session_state:
     st.session_state["current_date"] = datetime.now().date()
@@ -200,36 +201,56 @@ with st.expander("Ändra år och kvartal"):
                             , horizontal=True)
                             
 st.header(f"{välj_kvartal} - {välj_år}")
+page = "_mål"
 
-st.radio("Välj vy"
-        , ("Visningsvy", "Redigeringsvy")
-        , horizontal=True
-        , label_visibility="collapsed"
-        , key = "vy_mål")
-            
+choice = options_menu_dev.options_menu(page)
+
 st.markdown("---")
 
-
-if st.session_state["vy_mål"] == "Visningsvy":
+if choice == "show":
     display_goals(välj_kvartal, välj_år)
 
-if st.session_state["vy_mål"] == "Redigeringsvy":
+if choice == "add":
+    st.write("---")
+    skapa_mål_func(välj_kvartal, välj_år)
 
-    st.radio("Välj ..."
-            , ("Lägg till", "Redigera", "Ta bort")
-            , horizontal=True
-            , label_visibility="collapsed"
-            , key = "val_redigering_mål")
+if choice == "edit":
+    st.write("---")
+    edit_goals(välj_kvartal, välj_år)
 
-    if st.session_state["val_redigering_mål"] == "Lägg till":
-        st.write("---")
-        skapa_mål_func(välj_kvartal, välj_år)
-    elif st.session_state["val_redigering_mål"] == "Redigera":
-        st.write("---")
-        edit_goals(välj_kvartal, välj_år)
-    elif st.session_state["val_redigering_mål"] == "Ta bort":
-        st.write("---")
-        meny_ta_bort_mål(välj_kvartal, välj_år)    
+if choice == "remove":
+    st.write("---")
+    meny_ta_bort_mål(välj_kvartal, välj_år)
+
+# st.radio("Välj vy"
+#         , ("Visningsvy", "Redigeringsvy")
+#         , horizontal=True
+#         , label_visibility="collapsed"
+#         , key = "vy_mål")
+            
+# st.markdown("---")
+
+
+# if st.session_state["vy_mål"] == "Visningsvy":
+#     display_goals(välj_kvartal, välj_år)
+
+# if st.session_state["vy_mål"] == "Redigeringsvy":
+
+#     st.radio("Välj ..."
+#             , ("Lägg till", "Redigera", "Ta bort")
+#             , horizontal=True
+#             , label_visibility="collapsed"
+#             , key = "val_redigering_mål")
+
+#     if st.session_state["val_redigering_mål"] == "Lägg till":
+#         st.write("---")
+#         skapa_mål_func(välj_kvartal, välj_år)
+#     elif st.session_state["val_redigering_mål"] == "Redigera":
+#         st.write("---")
+#         edit_goals(välj_kvartal, välj_år)
+#     elif st.session_state["val_redigering_mål"] == "Ta bort":
+#         st.write("---")
+#         meny_ta_bort_mål(välj_kvartal, välj_år)    
 
 
 

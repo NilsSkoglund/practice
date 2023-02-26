@@ -29,6 +29,40 @@ def options_menu():
 
     elif vy == "Visningsvy":
         return "show"
+
+    
+def options_menu_dev(page):
+    key = "vy"
+    vy = st.radio("Välj vy"
+            , ("Visningsvy", "Redigeringsvy")
+            , horizontal=True
+            , label_visibility="collapsed"
+            , key=st.session_state[key+page])
+            
+    st.markdown("---")
+
+    if st.session_state[key+page] == "Visningsvy":
+        return "show"
+
+    if st.session_state[key+page] == "Redigeringsvy":
+        key = "val_redigering"
+        val_redigering = st.radio("Välj ..."
+                                , ("Lägg till", "Redigera", "Ta bort")
+                                , horizontal=True
+                                , label_visibility="collapsed"
+                                , key=st.session_state[key+page])
+
+        if st.session_state[key+page] == "Lägg till":
+            st.write("---")
+            return "add"
+        elif st.session_state[key+page] == "Redigera":
+            st.write("---")
+            return "edit"
+        elif st.session_state[key+page] == "Ta bort":
+            st.write("---")  
+            return "remove"
+
+    
     
 def generate_key(db):
     ''' 
