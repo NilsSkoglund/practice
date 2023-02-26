@@ -32,33 +32,33 @@ def options_menu():
 
     
 def options_menu_dev(page):
-    key = "vy"
+    key = "vy" + page
     st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
             , label_visibility="collapsed"
-            , key=st.session_state[key+page])
+            , key=key)
             
     st.markdown("---")
 
-    if st.session_state[key+page] == "Visningsvy":
+    if st.session_state[key] == "Visningsvy":
         return "show"
 
-    if st.session_state[key+page] == "Redigeringsvy":
-        key = "val_redigering"
+    if st.session_state[key] == "Redigeringsvy":
+        key = "val_redigering" + page
         st.radio("Välj ..."
                                 , ("Lägg till", "Redigera", "Ta bort")
                                 , horizontal=True
                                 , label_visibility="collapsed"
-                                , key=st.session_state[key+page])
+                                , key=key)
 
-        if st.session_state[key+page] == "Lägg till":
+        if st.session_state[key] == "Lägg till":
             st.write("---")
             return "add"
-        elif st.session_state[key+page] == "Redigera":
+        elif st.session_state[key] == "Redigera":
             st.write("---")
             return "edit"
-        elif st.session_state[key+page] == "Ta bort":
+        elif st.session_state[key] == "Ta bort":
             st.write("---")  
             return "remove"
 
