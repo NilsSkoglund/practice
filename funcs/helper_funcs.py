@@ -32,35 +32,64 @@ def options_menu():
 
     
 def options_menu_dev(page):
-    key = "vy" + page
-    st.radio("Välj vy"
-            , ("Visningsvy", "Redigeringsvy")
-            , horizontal=True
-            , label_visibility="collapsed"
-            , key=key)
-            
-    st.markdown("---")
 
-    if st.session_state[key] == "Visningsvy":
-        return "show"
+    if page == "veckoschema":
+        key = "vy" + page
+        st.radio("Välj vy"
+                , ("Visningsvy", "Redigeringsvy")
+                , horizontal=True
+                , label_visibility="collapsed"
+                , key=key)
+                
+        st.markdown("---")
 
-    if st.session_state[key] == "Redigeringsvy":
-        key = "val_redigering" + page
-        st.radio("Välj ..."
-                                , ("Lägg till", "Redigera", "Ta bort")
-                                , horizontal=True
-                                , label_visibility="collapsed"
-                                , key=key)
+        if st.session_state[key] == "Visningsvy":
+            return "show"
 
-        if st.session_state[key] == "Lägg till":
-            st.write("---")
-            return "add"
-        elif st.session_state[key] == "Redigera":
-            st.write("---")
-            return "edit"
-        elif st.session_state[key] == "Ta bort":
-            st.write("---")  
-            return "remove"
+        if st.session_state[key] == "Redigeringsvy":
+            key = "val_redigering" + page
+            st.radio("Välj ..."
+                    , ("Lägg till/Redigera",  "Ta bort")
+                    , horizontal=True
+                    , label_visibility="collapsed"
+                    , key=key)
+
+            if st.session_state[key] == "Lägg till/Redigera":
+                st.write("---")
+                return "add/edit"
+            elif st.session_state[key] == "Ta bort":
+                st.write("---")  
+                return "remove"
+    else:        
+        key = "vy" + page
+        st.radio("Välj vy"
+                , ("Visningsvy", "Redigeringsvy")
+                , horizontal=True
+                , label_visibility="collapsed"
+                , key=key)
+                
+        st.markdown("---")
+
+        if st.session_state[key] == "Visningsvy":
+            return "show"
+
+        if st.session_state[key] == "Redigeringsvy":
+            key = "val_redigering" + page
+            st.radio("Välj ..."
+                    , ("Lägg till", "Redigera", "Ta bort")
+                    , horizontal=True
+                    , label_visibility="collapsed"
+                    , key=key)
+
+            if st.session_state[key] == "Lägg till":
+                st.write("---")
+                return "add"
+            elif st.session_state[key] == "Redigera":
+                st.write("---")
+                return "edit"
+            elif st.session_state[key] == "Ta bort":
+                st.write("---")  
+                return "remove"
 
     
     

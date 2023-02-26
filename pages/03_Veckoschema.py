@@ -222,7 +222,9 @@ def menu_remove_workout():
 st.subheader(f"Dagens datum: {datetime.now().date()}")
 st.write(f"Veckonummer: {current_week}")
 
-choice = options_menu()
+# choice = options_menu()
+page = "veckoschema"
+choice = helper_funcs.options_menu_dev(page)
 
 if choice == "show":
     weeks = select_weeks()
