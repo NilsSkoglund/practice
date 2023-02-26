@@ -33,7 +33,7 @@ def options_menu():
     
 def options_menu_dev(page):
     key = "vy"
-    vy = st.radio("Välj vy"
+    st.radio("Välj vy"
             , ("Visningsvy", "Redigeringsvy")
             , horizontal=True
             , label_visibility="collapsed"
@@ -46,7 +46,7 @@ def options_menu_dev(page):
 
     if st.session_state[key+page] == "Redigeringsvy":
         key = "val_redigering"
-        val_redigering = st.radio("Välj ..."
+        st.radio("Välj ..."
                                 , ("Lägg till", "Redigera", "Ta bort")
                                 , horizontal=True
                                 , label_visibility="collapsed"
