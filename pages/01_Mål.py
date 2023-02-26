@@ -203,7 +203,7 @@ with st.expander("Ändra år och kvartal"):
 st.header(f"{välj_kvartal} - {välj_år}")
 page = "_mål"
 
-choice = options_menu_dev.options_menu(page)
+choice = helper_funcs.options_menu_dev(page)
 
 st.markdown("---")
 
