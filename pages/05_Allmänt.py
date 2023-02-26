@@ -4,6 +4,7 @@ from deta import Deta
 import string
 import random
 import time
+from funcs import helper_funcs
 
 # Connect to Deta Base
 if "deta" not in st.session_state:
@@ -102,29 +103,47 @@ def remove_recommendations():
         st.markdown("---")
 
 ################################# Program #####################################
+page = "allmänt"
+choice = helper_funcs.options_menu_dev(page)
 
-vy = st.radio("Välj vy"
-            , ("Visningsvy", "Redigeringsvy")
-            , horizontal=True
-            , label_visibility="collapsed")
-            
 st.markdown("---")
 
-if vy == "Redigeringsvy":
-
-    val_redigering = st.radio("Välj ..."
-                            , ("Lägg till", "Redigera", "Ta bort")
-                            , horizontal=True
-                            , label_visibility="collapsed")
-    if val_redigering == "Lägg till":
-        st.write("---")
-        add_recommendation()
-    elif val_redigering == "Redigera":
-        st.write("---")
-        edit_recommendations()
-    elif val_redigering == "Ta bort":
-        st.write("---")
-        remove_recommendations()
-
-elif vy == "Visningsvy":
+if choice == "show":
     display_recommendations()
+
+if choice == "add":
+    st.write("---")
+    add_recommendation()
+
+if choice == "edit":
+    st.write("---")
+    edit_recommendations()
+
+if choice == "remove":
+    st.write("---")
+    remove_recommendations()
+# vy = st.radio("Välj vy"
+#             , ("Visningsvy", "Redigeringsvy")
+#             , horizontal=True
+#             , label_visibility="collapsed")
+            
+# st.markdown("---")
+
+# if vy == "Redigeringsvy":
+
+#     val_redigering = st.radio("Välj ..."
+#                             , ("Lägg till", "Redigera", "Ta bort")
+#                             , horizontal=True
+#                             , label_visibility="collapsed")
+#     if val_redigering == "Lägg till":
+#         st.write("---")
+#         add_recommendation()
+#     elif val_redigering == "Redigera":
+#         st.write("---")
+#         edit_recommendations()
+#     elif val_redigering == "Ta bort":
+#         st.write("---")
+#         remove_recommendations()
+
+# elif vy == "Visningsvy":
+#     display_recommendations()
