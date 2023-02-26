@@ -123,8 +123,8 @@ def menu_remove_workout():
                         , args = (item["key"], ))
 
 ################################## Program ####################################
-
-choice = helper_funcs.options_menu()
+page = "pass"
+choice = helper_funcs.options_menu_dev(page)
 
 if choice == "show":
     options = select_exercises()
